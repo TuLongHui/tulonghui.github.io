@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:title" content="屠隆宝典攻略 - DFSP疾病科普">
+<meta property="og:description" content="屠隆宝典——DFSP患者就诊攻略、术后护理、保险理赔、治疗用药全攻略">
+<meta property="og:type" content="article">
+<title>屠隆宝典攻略</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;touch-action:manipulation;}
+:root{--primary:#1a6b4a;--primary-light:#2a9d6e;--primary-dark:#0f4a32;--accent:#e8734a;--bg:#f0f4f2;--card:#fff;--text:#2c3e3a;--text-light:#5a7269;--border:#d8e3de;--nav-h:56px;--header-h:140px;--safe-b:env(safe-area-inset-bottom,0px);--safe-t:env(safe-area-inset-top,0px);}
+html,body{height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--text);background:var(--bg);font-size:14px;line-height:1.6;}
+
+/* ===== Header ===== */
+.app-header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--header-h);background:linear-gradient(135deg,var(--primary-dark),var(--primary),var(--primary-light));color:#fff;padding:calc(var(--safe-t) + 12px) 16px 12px;display:flex;align-items:center;gap:12px;}
+.badge{width:52px;height:52px;border-radius:12px;overflow:hidden;flex-shrink:0;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;}
+.badge img{width:100%;height:100%;object-fit:contain;}
+.header-text h1{font-size:22px;font-weight:700;line-height:1.3;letter-spacing:2px;}
+.header-text .subtitle{font-size:12px;opacity:0.8;margin-top:2px;}
+.badge-text{font-size:10px;opacity:0.6;margin-top:4px;letter-spacing:1px;}
+
+/* ===== Lang Switch ===== */
+.lang-switch{position:absolute;top:calc(var(--safe-t) + 12px);right:16px;display:flex;gap:0;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.3);}
+.lang-btn{padding:4px 10px;font-size:11px;color:#fff;background:transparent;border:none;cursor:pointer;font-weight:500;}
+.lang-btn.active{background:rgba(255,255,255,0.25);font-weight:700;}
+
+/* ===== Pages Container ===== */
+.pages{position:fixed;top:var(--header-h);left:0;right:0;bottom:var(--nav-h);overflow:hidden;}
+.page{position:absolute;top:0;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;opacity:0;transform:translateX(30px);transition:opacity .3s ease,transform .3s ease;pointer-events:none;padding:12px 14px 20px;}
+.page.active{opacity:1;transform:translateX(0);pointer-events:auto;}
+.page-scroll{max-width:600px;margin:0 auto;}
+
+/* ===== Bottom Nav ===== */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;height:calc(var(--nav-h) + var(--safe-b));padding-bottom:var(--safe-b);background:#fff;border-top:1px solid var(--border);display:flex;align-items:stretch;}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;-webkit-user-select:none;user-select:none;transition:color .2s;}
+.nav-item .nav-icon{font-size:20px;line-height:1;}
+.nav-item .nav-label{font-size:10px;color:var(--text-light);transition:color .2s;}
+.nav-item.active .nav-icon{transform:scale(1.15);}
+.nav-item.active .nav-label{color:var(--primary);font-weight:700;}
+
+/* ===== More Menu ===== */
+.more-overlay{position:fixed;bottom:0;left:0;right:0;top:0;z-index:200;background:rgba(0,0,0,0.4);opacity:0;pointer-events:none;transition:opacity .25s;}
+.more-overlay.show{opacity:1;pointer-events:auto;}
+.more-menu{position:fixed;bottom:calc(var(--nav-h) + var(--safe-b));left:0;right:0;z-index:201;background:#fff;border-radius:16px 16px 0 0;padding:16px 12px calc(12px + var(--safe-b));transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);box-shadow:0 -4px 20px rgba(0,0,0,0.1);}
+.more-overlay.show .more-menu{transform:translateY(0);}
+.more-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:12px;padding-left:4px;}
+.more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.more-item{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 4px;border-radius:12px;background:var(--bg);cursor:pointer;transition:background .2s;}
+.more-item:active{background:#d8e3de;}
+.more-icon{font-size:24px;line-height:1;}
+.more-label{font-size:12px;color:var(--text);font-weight:500;}
+
+/* ===== Card (reuse original styles) ===== */
+.card{background:var(--card);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 1px 8px rgba(0,0,0,0.05);}
+.card-title{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.card-title .icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.info-item{background:var(--bg);border-radius:8px;padding:10px;text-align:center;}
+.info-item .label{font-size:11px;color:var(--text-light);margin-bottom:4px;}
+.info-item .value{font-size:15px;font-weight:700;color:var(--primary);}
+.list-item{margin-bottom:12px;}
+.list-item h4{font-size:14px;font-weight:700;margin-bottom:6px;color:var(--primary);}
+.list-item p{font-size:13px;line-height:1.7;color:var(--text);}
+.timeline{position:relative;padding-left:20px;}
+.timeline-item{position:relative;margin-bottom:14px;padding-left:16px;}
+.timeline-item::before{content:'';position:absolute;left:0;top:6px;width:8px;height:8px;border-radius:50%;background:var(--primary);}
+.timeline-item::after{content:'';position:absolute;left:3px;top:14px;width:2px;height:calc(100% - 6px);background:var(--border);}
+.timeline-item:last-child::after{display:none;}
+.timeline-item .time{font-size:13px;font-weight:700;color:var(--primary);margin-bottom:4px;}
+.timeline-item .desc{font-size:13px;line-height:1.7;color:var(--text);}
+.cmp-table{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0;border-radius:8px;overflow:hidden;}
+.cmp-table th{background:var(--primary);color:#fff;padding:8px 6px;font-weight:600;text-align:left;font-size:11px;}
+.cmp-table td{padding:8px 6px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12px;}
+.cmp-table tr:last-child td{border-bottom:none;}
+.warn-box{background:#fff8f0;border:1px solid #fde0c8;border-radius:8px;padding:12px;font-size:12px;line-height:1.7;margin:8px 0;}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;margin-right:4px;}
+.tag-blue{background:#e6f0fe;color:#1e40af;}
+.tag-orange{background:#fef0e6;color:#c45a20;}
+.tag-green{background:#e6f5ee;color:#1a6b4a;}
+.tag-purple{background:#f0e6fe;color:#6b21a8;}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--primary);color:#fff;font-size:13px;font-weight:700;margin-right:6px;flex-shrink:0;}
+.flow-chart{background:var(--bg);border-radius:10px;padding:12px;margin:8px 0;font-size:12px;line-height:1.8;text-align:center;}
+.flow-arrow{text-align:center;color:var(--primary);font-size:18px;margin:4px 0;}
+p{font-size:13px;line-height:1.8;margin-bottom:8px;}
+h3{font-size:15px;margin-bottom:8px;color:var(--primary);}
+strong{color:var(--primary-dark);}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="app-header">
+  <div class="badge"><img src="data:image/png;base64,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" alt="屠龙会"></div>
+  <div class="header-text">
+    <h1 id="headerTitle">屠隆宝典</h1>
+    <div class="subtitle" id="headerSub">DFSP 疾病科普攻略</div>
+    <div class="badge-text" id="badgeText">屠龙会出品</div>
+  </div>
+  <div class="lang-switch">
+    <button class="lang-btn active" data-lang="zh" onclick="switchLang('zh')">中文</button>
+    <button class="lang-btn" data-lang="en" onclick="switchLang('en')">EN</button>
+  </div>
+</header>
+
+<!-- Pages -->
+<div class="pages">
+
+      <div class="page active" id="tab-guide-page">
+        <div class="page-scroll">
+          <div class="card" style="border-left:4px solid var(--accent);">
+    <div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#127979;</span> 中山大学附属第三医院就诊攻略</div>
+    <p style="font-size:13px;color:var(--text-light);line-height:1.7;margin-bottom:10px;">本攻略适用于拟赴中山三院皮肤科万苗坚教授处就诊的DFSP患者，内容来自患者经验分享，仅供参考。医院位于<strong>广州市</strong>（非中山市）。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#128222;</span> 第一步：在线问诊</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">下载"好大夫"APP或微信小程序</div>
+        <div class="desc">搜索<strong>万苗坚</strong>或<strong>中山三院</strong>，找到万教授主页</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">选择问诊方式</div>
+        <div class="desc"><strong>图文问诊</strong>：填写病历资料，等待万教授接诊。工作繁忙，接诊时间不固定，一般<strong>晚上10点以后</strong>接诊，留言即可。<br><strong>电话问诊</strong>：相对较快。<br>不用担心图文问诊时间过期，万教授会多次赠送回复次数。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">申请会诊</div>
+        <div class="desc">按万教授要求<strong>邮寄切片会诊</strong>。在原先就诊医院病理科借出<strong>病理切片</strong>和<strong>免疫组化切片</strong>，最好再备<strong>8张白片</strong>备用，3um厚，封胶，烤片！</div>
+      </div>
+    </div>
+    <div class="warn-box">
+      <strong>&#9888; 重要提醒：</strong>需附上写有<strong>就诊号、联系方式</strong>等个人信息的纸条（空白纸写好！），就诊号一定要写好，不然医生无法开单缴费做病理会诊！
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128196;</span> 第二步：建档办卡</div>
+    <div class="list-item">
+      <h4>线上建档</h4>
+      <p>通过<strong>中山三院APP</strong>或<strong>中山三院微信公众号</strong>建档办卡，建档选<strong>自费</strong>，入院后才会进行医保登记</p>
+    </div>
+    <div class="list-item">
+      <h4>等待会诊结果</h4>
+      <p>签收切片后，当天或次日留意三院公众号跳出<strong>缴费提示</strong>或等待电话通知</p>
+    </div>
+    <div class="list-item">
+      <h4>缴费后约1~3个工作日出会诊病理报告</h4>
+      <p>三院公众号、APP、小程序皆可查询（<strong>报告查询 → 病理</strong>）</p>
+    </div>
+    <div class="list-item">
+      <h4>预约入院</h4>
+      <p>将会诊病理报告通过<strong>好大夫发给万教授</strong>，预约入院时间。一般<strong>周一、周二入院</strong>，<strong>周三、周四手术</strong>，下周二出院</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128652;</span> 第三步：交通路线</div>
+    <p style="font-size:13px;color:var(--text-light);margin-bottom:12px;">目的地：<strong>中山大学附属第三医院天河院区</strong></p>
+    <table class="cmp-table">
+      <tr><th>出发地</th><th>路线</th></tr>
+      <tr><td>白云机场</td><td>3号北延线 → 体育西路站 → 转3号线 → 岗顶站D口出</td></tr>
+      <tr><td>广州站</td><td>5号线 → 珠江新城站 → 转3号线 → 岗顶站</td></tr>
+      <tr><td>广州北站</td><td>9号线 → 高增站 → 转3号北延线 → 体育西路站 → 转3号线 → 岗顶站</td></tr>
+      <tr><td>广州南站</td><td>7号线 → 汉溪长隆站 → 转3号线 → 岗顶站</td></tr>
+      <tr><td>广州东站</td><td>3号北延线 → 体育西路站 → 转3号线 → 岗顶站</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#f0e6fe;color:#6b21a8;">&#127973;</span> 第四步：入院办理</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">前往住院部</div>
+        <div class="desc">住院办理在<strong>2号楼2楼</strong>。进医院大门右手边是2号楼（全院最破旧大楼），进大门后不要拐弯，沿着大路直行约40米，走到2号楼与6号楼中间，右拐往里走约50米，找到<strong>皮肤科病房入口</strong>（一个小门）</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">坐电梯上二楼</div>
+        <div class="desc">到达住院部，去<strong>医生办公室</strong>找医生办理入院，在<strong>护士站</strong>等待空床位</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">住院须知</div>
+        <div class="desc">住院时长约<strong>一周</strong>，入院押金<strong>1~2万</strong>。有五人间和二人间，因床位紧张不可自主选择病房，听从安排即可</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">添加万教授微信</div>
+        <div class="desc">晚上万教授会来病房查房，让新入院的患者添加他的微信，便于术后咨询相关问题、复查发报告等</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#128736;</span> 第五步：术前准备</div>
+    <div class="list-item">
+      <h4>术前检查</h4>
+      <p>确定手术方式与时间，有<strong>局麻</strong>和<strong>全麻</strong>两种。周一至周四局麻手术，全麻手术在周五</p>
+    </div>
+    <div class="list-item">
+      <h4>购买物品</h4>
+      <p>自行购买<strong>五斤大米</strong>和<strong>女士长丝袜</strong>，护士/护工帮忙制作米袋，用来术后压刀口。院内超市、医院周边或外卖皆可购买</p>
+    </div>
+    <div class="list-item">
+      <h4>陪床须知</h4>
+      <p>陪床人员有床、枕头、被子。床头二维码可扫码点餐，也可以外卖（可送至病床旁），周边饮食种类丰富</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#9989;</span> 第六步：手术与住院</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">手术当天</div>
+        <div class="desc">手术氛围轻松，手术时可与万教授聊天放松心情，位置好的可以玩手机。<strong>术中冰冻快速病理</strong>会显示皮缘、基底是否见肿瘤，由陪诊人员轮椅送至病房（局麻）</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">冰冻切片说明</div>
+        <div class="desc">因冰冻切片存在误差率，会另取外围点位，加做<strong>石蜡切片</strong>看切缘</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">术后等待报告</div>
+        <div class="desc">术后有<strong>石蜡切缘报告</strong>、<strong>肿物免疫组化报告</strong>、<strong>FISH检测报告</strong>，约1~3工作日出报告。石蜡切缘报告显示切缘1-X未见肿瘤，表示已切净，即可办理出院</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">住院期间</div>
+        <div class="desc">等待期间多串门聊天，多交朋友，打发无聊时光。正常周日晚万教授会来病房拍<strong>毕业合照</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128694;</span> 第七步：出院与后续</div>
+    <div class="list-item">
+      <h4>出院结算</h4>
+      <p><strong>职工医保</strong>报销后自费约1000~5000元，<strong>新农合</strong>大约报销一半，具体根据参保地医保政策决定</p>
+    </div>
+    <div class="list-item">
+      <h4>病假与保险</h4>
+      <p>有病假的让医生医嘱上注明休息时长。有商业保险的可去对面一楼打印<strong>住院费用明细</strong>及<strong>医保结算单</strong>（微信公众号里也有电子版），重疾险可按重症赔付</p>
+    </div>
+    <div class="list-item">
+      <h4>CT胶片</h4>
+      <p>肺部有结节的，记得把<strong>CT胶片取出来</strong>，便于当地医院复查对比（公众号里也有电子胶片）</p>
+    </div>
+    <div class="list-item">
+      <h4>复印病历</h4>
+      <p>出院两周后，三院APP或微信小程序可申请<strong>复印病历</strong></p>
+    </div>
+    <div class="list-item">
+      <h4>办理门特</h4>
+      <p>带上所有病历资料和医保卡，前往当地医院办理<strong>门特</strong>（部分地区可在线办理）。门特办理成功后，与DFSP相关的门诊检查和靶向治疗费用可报销，报销比例极高</p>
+    </div>
+    <div class="list-item">
+      <h4>术后靶向药</h4>
+      <p>经典型多数不用吃靶向药，肉瘤型根据占比，吃相应时长的靶向药辅助治疗。副作用较重的，请及时去当地医院就诊，并微信联系万教授。吃靶向药的患者按时查<strong>血常规、肝功、肾功</strong>，检查结果异常可微信发给万教授</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128137;</span> 术后复查与护理</div>
+    <div class="list-item">
+      <h4>定期复查</h4>
+      <p>正常<strong>三个月复查一次彩超</strong>，<strong>每年一次胸部CT</strong>。检查结果可微信发给万教授。离得近去三院复查的，提前预约周一、周二上午的彩超，结果出来后下午直接去门诊找他，<strong>无需挂号</strong></p>
+    </div>
+    <div class="list-item">
+      <h4>伤口护理</h4>
+      <p>拆线后可用<strong>减张器</strong>预防疤痕变宽；痂掉完后可用<strong>疤痕贴</strong>预防疤痕增生；也可以使用<strong>弹力衣加压</strong>，淘宝可定制</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#9888;</span> 异地就医备案</div>
+    <div class="drug-detail">
+      外省就医人员需<strong>异地就医备案</strong>，支付宝和微信皆可在线备案（直接搜"异地就医"，选择"其他跨省临时外地就医人员备案"）。<br>
+      如有当地医院开具的<strong>转诊证明</strong>，可至当地医院医保窗口办理转诊，<strong>报销比例更高</strong>。
+    </div>
+  </div>
+
+  <div class="card" style="background:linear-gradient(135deg,#e6f5ee,#f0faf5);border:none;">
+    <div style="text-align:center;padding:10px 0;">
+      <div style="font-size:16px;font-weight:700;color:var(--primary-dark);margin-bottom:8px;">谨遵医嘱，饮食规律，早睡早起</div>
+      <div style="font-size:14px;color:var(--text-light);line-height:1.8;">保持良好心态，不用特别在意分型，<strong>切干净就好</strong>！<br>还有不清楚的地方，请群里询问，战友们主打一个热情。<br>最后祝各位旅途愉快、一切顺利、永不复发！</div>
+    </div>
+  </div>
+        </div>
+      </div>
+
+      <div class="page" id="tab-care-page">
+        <div class="page-scroll">
+          <div class="card" style="border-left:4px solid var(--accent);">
+    <div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#129656;</span> 术后瘢痕预防</div>
+    <p style="font-size:13px;color:var(--text-light);line-height:1.7;">内容来源：中山大学附属第三医院 皮肤外科 万苗坚教授</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#128161;</span> 核心理念</div>
+    <p style="font-size:14px;line-height:1.8;">术后瘢痕大小明显与否，影响因素多，除<strong>伤口大小、伤口部位</strong>以及<strong>瘢痕体质</strong>等外，还与<strong>术后预防</strong>密切相关；其中<strong>皮肤减张非常重要</strong>，张力大直接影响瘢痕的宽度和增生等程度。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#f0e6fe;color:#6b21a8;">&#127919;</span> 减张措施</div>
+    <div class="info-grid" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="info-item">
+        <div class="label">注射肉毒素</div>
+        <div class="value" style="font-size:13px;">减轻肌张力</div>
+      </div>
+      <div class="info-item">
+        <div class="label">瘢痕弹力套</div>
+        <div class="value" style="font-size:13px;">持续加压</div>
+      </div>
+      <div class="info-item">
+        <div class="label">减张贴/减张器</div>
+        <div class="value" style="font-size:13px;color:#c45a20;">最重要</div>
+      </div>
+    </div>
+    <div style="margin-top:14px;padding:14px;background:var(--bg);border-radius:10px;font-size:13px;line-height:1.7;">
+      <strong>三大核心减张工具：</strong>
+      <ol style="padding-left:20px;margin-top:6px;">
+        <li style="margin-bottom:6px;"><strong>减张贴</strong>（免缝胶带）— 适合线性切口</li>
+        <li style="margin-bottom:6px;"><strong>皮肤减张器</strong>（拉链式）— 适合较长切口</li>
+        <li style="margin-bottom:6px;"><strong>瘢痕贴</strong>（硅胶贴）— 预防增生+减张</li>
+      </ol>
+      <div class="warn-box" style="margin-top:10px;margin-bottom:0;">
+        <strong>&#9888; 使用时长：</strong>至少使用<strong>三个月以上</strong>！
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128221;</span> 减张贴使用方法</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">Step 1 &mdash; 清洁伤口</div>
+        <div class="desc">用<strong>医用无菌生理盐水</strong>清洗伤口，擦干即可贴胶带</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Step 2 &mdash; 贴合方向</div>
+        <div class="desc"><strong>与切口垂直</strong>贴！垂直伤口，伤口不长一条足够，一般超过切口<strong>1cm</strong>即可；伤口长可以增加一条</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Step 3 &mdash; 挤压贴合</div>
+        <div class="desc">贴的时候，用手指先固定一侧，另外一手指位于伤口另一侧，<strong>往中心稍微挤压</strong>，有<strong>少许皱折</strong>，然后贴上</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Step 4 &mdash; 定期更换</div>
+        <div class="desc"><strong>2天</strong>或不粘时更换</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128279;</span> 皮肤减张器使用方法</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">固定一侧</div>
+        <div class="desc">先固定减张器的一侧于皮肤上</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">拉链拉紧</div>
+        <div class="desc">用<strong>拉链</strong>逐渐拉紧皮肤，有<strong>少许皱折</strong>即可</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="background:#fff8f0;border:1px solid #fde0c4;">
+    <div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#9888;</span> 重要注意事项</div>
+    <div class="list-item" style="border-bottom:1px solid var(--border);">
+      <h4><span class="tag tag-red">过敏预警</span> 不要重复一个地方贴</h4>
+      <p>容易引起<strong>皮肤发红、水疱</strong>等过敏反应，有过敏就不能再贴</p>
+    </div>
+    <div class="list-item" style="border-bottom:1px solid var(--border);">
+      <h4><span class="tag tag-orange">更换频率</span> 2天或不粘更换</h4>
+      <p>不要一直贴到不粘才换，发现粘性下降及时更换</p>
+    </div>
+    <div class="list-item" style="border-bottom:1px solid var(--border);">
+      <h4><span class="tag tag-blue">贴法关键</span> 垂直切口 + 中心挤压</h4>
+      <p>必须与切口方向垂直贴，贴时两侧往中心稍微挤压使皮肤有少许皱折</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-green">持续时间</span> 至少3个月以上</h4>
+      <p>减张是预防瘢痕增宽最关键的措施，坚持使用效果最好</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#128736;</span> 术后护理综合建议</div>
+    <div class="list-item" style="border-bottom:1px solid var(--border);">
+      <h4>拆线后</h4>
+      <p>即可开始使用<strong>减张器</strong>预防疤痕变宽</p>
+    </div>
+    <div class="list-item" style="border-bottom:1px solid var(--border);">
+      <h4>痂掉完后</h4>
+      <p>可使用<strong>疤痕贴</strong>（硅胶贴）预防疤痕增生</p>
+    </div>
+    <div class="list-item" style="border-bottom:1px solid var(--border);">
+      <h4>加压疗法</h4>
+      <p>也可使用<strong>弹力衣加压</strong>，淘宝可定制</p>
+    </div>
+    <div class="list-item">
+      <h4>定期复查</h4>
+      <p>正常<strong>三个月复查一次彩超</strong>，<strong>每年一次胸部CT</strong>，检查结果可微信发给万教授</p>
+    </div>
+  </div>
+
+  <div class="card" style="background:linear-gradient(135deg,#e6f5ee,#f0faf5);border:none;">
+    <div style="text-align:center;padding:6px 0;">
+      <div style="font-size:15px;font-weight:700;color:var(--primary-dark);margin-bottom:6px;">坚持减张，预防瘢痕</div>
+      <div style="font-size:13px;color:var(--text-light);line-height:1.8;">减张是术后瘢痕预防最关键的一环<br>至少坚持三个月以上，切莫半途而废！</div>
+    </div>
+  </div>
+        </div>
+      </div>
+
+      <div class="page" id="tab-discharge-page">
+        <div class="page-scroll">
+          <div class="card" style="border-left:4px solid var(--accent);">
+    <div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128209;</span> DFSP 术后出院注意事项</div>
+    <p style="font-size:13px;color:var(--text-light);">以下内容分为<strong>经典型</strong>和<strong>肉瘤型（FS型）</strong>两部分，请根据自身分型参考</p>
+  </div>
+
+  <!-- 经典型 -->
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#9989;</span> 经典型出院须知</div>
+
+    <div class="section-title">1. 换药拆线</div>
+    <div class="list-item">
+      <h4><span class="tag tag-green">换药</span> 每天换药</h4>
+      <p>如做不到可2~3天换一次，但要保持<strong>伤口干净</strong>，不出汗、不沾水、不弄脏</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-green">拆线</span> 术后2~3周拆线</h4>
+      <p>小伤口<strong>2周</strong>，大伤口或局部张力大的<strong>3周</strong></p>
+    </div>
+
+    <div class="section-title">2. 术后定期复查</div>
+    <table class="cmp-table">
+      <tr><th>检查项目</th><th>复查频率</th></tr>
+      <tr><td>体表肿物彩超</td><td>前3年：每<strong>3~6个月</strong><br>第3~5年：每<strong>6~12个月</strong></td></tr>
+      <tr><td>胸部CT</td><td>每年一次，平扫即可</td></tr>
+    </table>
+    <div class="warn-box" style="margin-bottom:0;">
+      <strong>&#9888; 所有复查检查结果发给万教授看</strong>
+    </div>
+
+    <div class="section-title">3. 生活方式</div>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="label">不抽烟</div>
+        <div class="value" style="font-size:20px;">&#128684;</div>
+      </div>
+      <div class="info-item">
+        <div class="label">不喝酒</div>
+        <div class="value" style="font-size:20px;">&#128694;</div>
+      </div>
+      <div class="info-item">
+        <div class="label">不熬夜</div>
+        <div class="value" style="font-size:20px;">&#128164;</div>
+      </div>
+      <div class="info-item">
+        <div class="label">避免辛辣</div>
+        <div class="value" style="font-size:20px;">&#127798;</div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--text-light);margin-top:10px;">生活压力、工作压力、学习压力不要太大</p>
+
+    <div class="section-title">4. 瘢痕预防</div>
+    <div class="list-item">
+      <h4><span class="tag tag-blue">硅酮类祛疤药膏</span></h4>
+      <p>自购，<strong>拆线掉痂后</strong>才可用，至少3~6个月</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-blue">减张器/减张贴</span></h4>
+      <p><strong>不拆线即可用</strong>，3~6个月</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-blue">定向加压</span></h4>
+      <p>腹部可用<strong>束腹带</strong>，四肢用<strong>弹力袖套/腿套</strong>，胸部肩背部可用<strong>弹力衣</strong></p>
+    </div>
+    <div style="background:var(--bg);border-radius:10px;padding:14px;font-size:13px;line-height:1.7;margin-top:8px;">
+      <strong>定向加压方法：</strong>按伤口大小准备合适尺寸的<strong>毛巾、纱布</strong>等，覆盖伤口后再使用弹力产品，除洗澡外<strong>23小时使用</strong>，用够<strong>1年</strong>。
+    </div>
+
+    <div class="section-title">5. 自查</div>
+    <p style="font-size:13px;color:var(--text-light);line-height:1.7;">自己摸手术部位及周边有无长出<strong>圆圆、硬硬</strong>的或不明确的肿块，有疑问去做<strong>彩超</strong>：</p>
+    <div style="margin-top:8px;">
+      <span class="tag tag-green">报瘢痕</span> → 定期观察即可<br>
+      <span class="tag tag-red">可疑/复发</span> → 联系万教授
+    </div>
+  </div>
+
+  <!-- 肉瘤型 -->
+  <div class="card" style="border-left:4px solid #b91c1c;">
+    <div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#9888;</span> 肉瘤型（FS型）出院须知</div>
+    <p style="font-size:13px;color:var(--text-light);margin-bottom:14px;">换药拆线、生活方式、瘢痕预防同上，以下为额外注意事项：</p>
+
+    <div class="list-item">
+      <h4><span class="tag tag-red">随访周期</span> 终身随访</h4>
+      <p>肉瘤型复发风险较经典型高，需终身定期复查</p>
+    </div>
+
+    <div class="list-item">
+      <h4><span class="tag tag-purple">靶向药</span> 伊马替尼（基因检测FISH阳性）</h4>
+      <p>需服用伊马替尼进行辅助治疗</p>
+    </div>
+
+    <div class="list-item">
+      <h4><span class="tag tag-blue">药物选择</span></h4>
+      <p>国产和进口均可；大部分吃国产即可。<strong>片剂和胶囊不要频繁更换</strong></p>
+    </div>
+
+    <div class="drug-card targeted" style="margin-top:14px;">
+      <div class="drug-name">伊马替尼服药指南</div>
+      <div class="drug-detail">
+        <strong>开始时间：</strong>术后三个月内开始吃<br>
+        <strong>用法用量：</strong>每天早上<strong>4片</strong>（400mg），早上<strong>随餐服用</strong>，喝一大杯水<br><br>
+        <strong>服药监测：</strong><br>
+        &bull; <strong>1个月</strong>、<strong>4个月</strong>各查一次<br>
+        &bull; 之后每隔<strong>三个月</strong>复查<strong>血常规</strong>和<strong>肝功肾功生化</strong><br><br>
+        <strong>不良反应：</strong><br>
+        &bull; 胃肠道刺激<br>
+        &bull; 水肿（身体局部水肿）<br>
+        &bull; <strong>轻度不良反应不停药</strong><br><br>
+        <strong>服药周期：</strong>9~12个月，<strong>以医嘱为准</strong>
+      </div>
+    </div>
+  </div>
+        </div>
+      </div>
+
+      <div class="page" id="tab-insurance-page">
+        <div class="page-scroll">
+          <div class="card" style="border-left:4px solid var(--accent);">
+    <div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128176;</span> 保险理赔指南</div>
+    <p style="font-size:13px;color:var(--text-light);">DFSP属于恶性肿瘤，符合重疾险赔付条件，以下为理赔要点参考</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#9989;</span> 理赔资格确认</div>
+    <div class="list-item">
+      <h4><span class="tag tag-green">重疾险</span> 可按恶性肿瘤赔付</h4>
+      <p>DFSP属于<strong>低度恶性软组织肉瘤</strong>，病理报告明确为"肉瘤/恶性"，符合重疾险中<strong>恶性肿瘤</strong>的理赔标准。</p>
+    </div>
+    <div style="background:var(--bg);border-radius:10px;padding:14px;font-size:13px;line-height:1.7;margin:0 0 14px;">
+      <strong style="color:var(--primary-dark);">ICD-O-3 疾病编码（保险理赔核心依据）</strong>
+      <table class="cmp-table" style="margin-top:8px;margin-bottom:0;">
+        <tr><th>分型</th><th>ICD-O-3</th><th>ICD-O-3<br>性质</th><th>ICD-O-3.2</th><th>ICD-O-3.2<br>性质</th><th>重疾险赔付</th></tr>
+        <tr><td><strong>经典型 DFSP</strong></td><td style="font-weight:700;color:#1a6b4a;">8832/3</td><td>恶性</td><td style="font-weight:700;color:#1a6b4a;">8832/1</td><td>交界性</td><td style="color:#1a6b4a;font-weight:700;">可赔付</td></tr>
+        <tr><td><strong>纤维肉瘤型 FS-DFSP</strong></td><td style="font-weight:700;color:#b91c1c;">8832/3</td><td>恶性</td><td style="font-weight:700;color:#b91c1c;">8832/3</td><td>恶性</td><td style="color:#1a6b4a;font-weight:700;">可赔付</td></tr>
+        <tr><td>色素型（Bednar瘤）</td><td>8833/3</td><td>恶性</td><td>8833/1</td><td>交界性</td><td>可赔付</td></tr>
+      </table>
+      <div class="warn-box" style="margin-top:10px;margin-bottom:0;">
+        <strong>&#9888; 关键提示：</strong>目前绝大部分保险条款以<strong>ICD-O-3</strong>为准（注意与<strong>ICD-O-3.2</strong>区分：ICD-O-3中经典型/色素型行为编码为<strong>/3=恶性</strong>，而ICD-O-3.2中则为<strong>/1=交界性</strong>）。经典型编码<strong>8832/3</strong>、色素型<strong>8833/3</strong>（ICD-O-3均判定为恶性），纤维肉瘤型<strong>8832/3</strong>。重疾险以ICD-O-3的行为编码<strong>/3</strong>为赔付依据，DFSP各亚型均符合，<strong>保险公司应予赔付</strong>。如遇拒赔，可据理力争或申请复议。
+      </div>
+    </div>
+    <div class="list-item">
+      <h4>ICD-10 编码</h4>
+      <p><strong>C49</strong>（皮肤和皮下组织结缔组织和其他软组织恶性肿瘤），适用于医疗险报销及医保登记</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-blue">医疗险</span> 住院及手术费用报销</h4>
+      <p>百万医疗险可报销住院手术费用，注意<strong>免赔额</strong>和<strong>等待期</strong>限制</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-orange">门特报销</span> 门诊特定病种</h4>
+      <p>部分地区可办理<strong>门特</strong>，与DFSP相关的门诊检查和靶向治疗费用可报销，报销比例极高</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128221;</span> 理赔所需材料</div>
+    <table class="cmp-table">
+      <tr><th>材料</th><th>说明</th><th>获取方式</th></tr>
+      <tr><td>病理报告</td><td>确诊DFSP的核心依据</td><td>手术医院病理科</td></tr>
+      <tr><td>出院小结/出院记录</td><td>含诊断、手术方式</td><td>出院时医院提供</td></tr>
+      <tr><td>住院费用明细</td><td>各项费用清单</td><td>医院一楼打印/公众号电子版</td></tr>
+      <tr><td>医保结算单</td><td>医保报销凭证</td><td>医院/公众号</td></tr>
+      <tr><td>发票</td><td>医疗费用发票</td><td>医院财务科</td></tr>
+      <tr><td>身份证</td><td>被保险人身份证明</td><td>本人</td></tr>
+      <tr><td>银行卡</td><td>理赔款接收账户</td><td>本人</td></tr>
+      <tr><td>保单号/合同</td><td>保险合同信息</td><td>保险公司APP</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128200;</span> 理赔流程</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">Step 1 &mdash; 报案</div>
+        <div class="desc">出院后尽快通过保险公司<strong>APP、电话、微信公众号</strong>等方式报案，一般要求出院后<strong>10天内</strong>报案</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Step 2 &mdash; 准备材料</div>
+        <div class="desc">收集上述理赔所需材料，<strong>病理报告</strong>和<strong>出院小结</strong>最关键</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Step 3 &mdash; 提交申请</div>
+        <div class="desc">通过APP线上提交或邮寄纸质材料至保险公司，注意材料<strong>复印件</strong>需加盖医院公章</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Step 4 &mdash; 审核</div>
+        <div class="desc">保险公司审核，一般<strong>5~30个工作日</strong>出结果，可能要求补充材料</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Step 5 &mdash; 赔付</div>
+        <div class="desc">审核通过后理赔款打入指定银行账户</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="background:#fff8f0;border:1px solid #fde0c4;">
+    <div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#9888;</span> 重要注意事项</div>
+    <div class="list-item" style="border-bottom:1px solid var(--border);">
+      <h4>出院时务必打印费用明细</h4>
+      <p>出院时去<strong>对面一楼打印住院费用明细</strong>及<strong>医保结算单</strong>，三院公众号里也有电子版，出院后补打较麻烦</p>
+    </div>
+    <div class="list-item" style="border-bottom:1px solid var(--border);">
+      <h4>病历复印</h4>
+      <p>出院<strong>两周后</strong>可在三院APP或微信小程序申请复印病历，理赔需要完整病历</p>
+    </div>
+    <div class="list-item" style="border-bottom:1px solid var(--border);">
+      <h4>CT胶片取出</h4>
+      <p>肺部有结节的记得把<strong>CT胶片取出来</strong>，便于当地医院复查对比（公众号也有电子胶片）</p>
+    </div>
+    <div class="list-item" style="border-bottom:1px solid var(--border);">
+      <h4>等待期注意</h4>
+      <p>如保险尚在<strong>等待期内</strong>确诊，可能无法赔付，需仔细阅读保险合同条款</p>
+    </div>
+    <div class="list-item" style="border-bottom:1px solid var(--border);">
+      <h4>如实告知</h4>
+      <p>投保时如有<strong>既往病史</strong>必须如实告知，否则理赔时可能被拒赔</p>
+    </div>
+    <div class="list-item">
+      <h4>门特办理</h4>
+      <p>带上所有病历资料和医保卡，前往当地医院办理<strong>门特</strong>（部分地区可在线办理）。能办理门特的一定要办，报销比例极高！</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#128176;</span> 常见险种理赔要点</div>
+    <div class="list-item">
+      <h4><span class="tag tag-green">重疾险</span></h4>
+      <p>确诊即赔，一次性给付保额。DFSP属恶性肿瘤，适用重疾险。注意保单是否有<strong>轻症/中症/重疾</strong>分层赔付，DFSP一般按重疾赔付。理赔时需提供<strong>ICD-O-3编码</strong>（经典型8832/3、纤维肉瘤型8832/3），多数保险公司以此编码为赔付判定依据</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-blue">百万医疗险</span></h4>
+      <p>报销住院手术费用（扣除医保和免赔额后）。靶向药费用也可报销，需注意是否在<strong>药品清单</strong>内</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-orange">意外险</span></h4>
+      <p>DFSP不属于意外伤害，<strong>意外险不赔</strong></p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-purple">寿险</span></h4>
+      <p>含身故责任的寿险产品，若DFSP导致身故可赔付，但DFSP死亡率极低</p>
+    </div>
+  </div>
+
+  <div class="card" style="background:#f0f7ff;border:1px solid #c7ddf5;">
+    <div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#127970;</span> 公司团险与工会补助</div>
+    <div class="list-item">
+      <h4><span class="tag tag-blue">公司团险</span> 别忘了公司可能买了保险！</h4>
+      <p>很多公司为员工购买了<strong>团体重疾险、团体医疗险、团体意外险</strong>等补充保险，保障范围可能覆盖DFSP。请咨询<strong>公司HR/人事部门</strong>了解是否有团险，如有则可同时申请理赔，且团险理赔<strong>不影响个人商业险</strong>的赔付</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-green">工会补助</span> 工会可能有大病补助</h4>
+      <p>如所在单位有工会组织，可咨询<strong>工会大病救助/慰问金</strong>政策。部分工会对确诊恶性肿瘤的会员有一次性的<strong>大病补助金</strong>，金额从数千到数万不等，需提供诊断证明和病理报告申请</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-orange">补充医疗</span> 公司补充医疗保险</h4>
+      <p>部分公司提供<strong>补充医疗保险</strong>（如补充医疗报销），可报销医保目录外的自费部分，如自费药品、耗材等。出院后整理好<strong>自费清单</strong>，向公司人事或保险经办人咨询报销流程</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-purple">互助计划</span> 职工互助保障</h4>
+      <p>部分地区/行业有<strong>职工互助保障计划</strong>（如总工会职工互助），参保职工患大病可申请互助金，可向所在单位工会或当地总工会咨询</p>
+    </div>
+    <div class="warn-box" style="margin-bottom:0;">
+      <strong>&#128161; 温馨提示：</strong>团险、工会补助、互助金等与个人商业保险<strong>互不冲突</strong>，可<strong>叠加申领</strong>。出院后第一时间了解公司所有保障渠道，不要遗漏任何一项！
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <strong>&#9888; 免责提醒：</strong>以上内容仅供参考，具体理赔条件和流程以您所持<strong>保险合同条款</strong>为准。如有疑问请联系您的保险代理人或拨打保险公司客服电话咨询。
+  </div>
+        </div>
+      </div>
+
+      <div class="page" id="tab-overview-page">
+        <div class="page-scroll">
+          <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#9432;</span> 疾病定义</div>
+    <p style="font-size:14px;line-height:1.8;">隆突性皮肤纤维肉瘤（DFSP）是一种起源于真皮层成纤维细胞的<strong>低度恶性软组织肉瘤</strong>，由Hoffmann于1925年首次命名。其特征为缓慢生长的皮下结节，具有<strong>局部侵袭性强</strong>但<strong>远处转移率极低</strong>（&lt;5%）的特点，是最常见的皮肤肉瘤类型之一。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128202;</span> 流行病学数据</div>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="label">年发病率</div>
+        <div class="value">0.8~5/百万</div>
+      </div>
+      <div class="info-item">
+        <div class="label">占软组织肉瘤</div>
+        <div class="value">约4%</div>
+      </div>
+      <div class="info-item">
+        <div class="label">好发年龄</div>
+        <div class="value">20~50岁</div>
+      </div>
+      <div class="info-item">
+        <div class="label">性别差异</div>
+        <div class="value">男略多于女</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#f0e6fe;color:#6b21a8;">&#129516;</span> 发病机制</div>
+    <p style="font-size:13px;line-height:1.8;margin-bottom:10px;">约<strong>90%以上</strong>的DFSP患者存在<strong>t(17;22)(q22;q13)</strong>染色体易位，形成<strong>COL1A1-PDGFB融合基因</strong>。<strong>少数患者</strong>（约2-5%）不存在此易位，而是存在<strong>PDGFD</strong>基因重排，形成替代融合基因（如<strong>COL6A3-PDGFD、EMILIN2-PDGFD</strong>等），同样通过激活PDGFR信号通路驱动肿瘤生长。</p>
+    <div style="background:var(--bg);border-radius:10px;padding:14px;font-size:13px;line-height:1.8;">
+      <strong>致病通路：</strong><br>
+      COL1A1基因启动子与PDGFB基因融合 &rarr; PDGFB蛋白持续过度表达 &rarr; 激活PDGFR-&beta;受体酪氨酸激酶 &rarr; 下游RAS/MAPK及PI3K/AKT信号通路持续激活 &rarr; 细胞增殖失控 &rarr; 肿瘤形成<br><br><strong>少数替代通路：</strong>PDGFD基因重排（COL6A3/EMILIN2等融合伙伴）&rarr; PDGFD蛋白过表达 &rarr; 同样激活PDGFR-&beta; &rarr; 下游信号通路激活 &rarr; 肿瘤形成
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#9888;</span> 危险因素</div>
+    <div class="list-item">
+      <h4>遗传因素</h4>
+      <p>COL1A1-PDGFB融合基因是核心驱动因素；少数患者为PDGFD基因重排（COL6A3-PDGFD、EMILIN2-PDGFD等）；神经纤维瘤病1型（NF1）患者发病率增高</p>
+    </div>
+    <div class="list-item">
+      <h4>创伤与手术史</h4>
+      <p>约20%患者有局部创伤或手术史，创伤可能诱发肿瘤或引起对已存在病灶的关注</p>
+    </div>
+    <div class="list-item">
+      <h4>放射线暴露</h4>
+      <p>既往放射治疗区域的DFSP发生率增高，属于放射相关肉瘤之一</p>
+    </div>
+  </div>
+        </div>
+      </div>
+
+      <div class="page" id="tab-symptom-page">
+        <div class="page-scroll">
+          <div class="card">
+    <div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#128308;</span> 典型临床表现</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">早期（数月至数年）</div>
+        <div class="desc">皮肤表面出现<strong>无痛性硬质斑块或小结节</strong>，质地坚硬如橡胶，直径1~3cm，颜色正常或略淡红，与皮肤粘连，可推动</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">进展期（数年）</div>
+        <div class="desc">病灶逐渐<strong>增大隆起</strong>，形成多发结节，呈紫红色或淡蓝色，表面皮肤变薄发亮，可见毛细血管扩张</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">晚期</div>
+        <div class="desc">形成<strong>隆起性肿块</strong>（"隆突"得名），表面可溃破、出血或继发感染，偶有疼痛</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#127919;</span> 好发部位</div>
+    <div class="stat-row">
+      <span class="stat-label">躯干（胸壁、腹壁、背部）</span>
+      <span class="stat-value">40~60%</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">四肢近端（肩、大腿、上臂）</span>
+      <span class="stat-value">20~30%</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">头颈部</span>
+      <span class="stat-value">10~15%</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">其他部位</span>
+      <span class="stat-value">少见</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128293;</span> 临床亚型</div>
+    <div class="list-item">
+      <h4>经典型 DFSP <span class="tag tag-green">最常见</span></h4>
+      <p>HE染色下真皮梭形细胞呈层状或席纹状排列，浸润至皮下脂肪时呈"蜂巢样"分布；CD34（+），Factor XIIIa（-）；生长缓慢，局部复发率高，极少转移</p>
+    </div>
+    <div class="list-item">
+      <h4>纤维肉瘤样型（FS-DFSP） <span class="tag tag-red">侵袭性更高</span></h4>
+      <p>梭形细胞增多、异型性增加，核分裂像增多（>5/10HPF）；束状、人字形或鱼骨状排列而非席纹状；偶见坏死；CD34表达减少甚至缺失；占DFSP约13.5%，局部复发率和远处转移率均增高，转移率可达15~20%</p>
+    </div>
+    <div class="list-item">
+      <h4>色素型（Bednar瘤） <span class="tag tag-blue">少见 &lt;5%</span></h4>
+      <p>层状排列的梭形细胞与分散的含黑色素树突状细胞混合；CD34（+）；色素细胞S-100（+）、HMB45（+）；约占DFSP的1~5%</p>
+    </div>
+    <div class="list-item">
+      <h4>巨细胞型 <span class="tag tag-purple">罕见</span></h4>
+      <p>梭形细胞与多形性或多核巨细胞混合；CD34（+）</p>
+    </div>
+    <div class="list-item">
+      <h4>巨细胞纤维母细胞瘤（GCF） <span class="tag tag-purple">常见于儿童</span></h4>
+      <p>层状、束状、波浪状均匀梭形细胞，具丝状胶原、致密硬化，假血管腔边缘散在多核巨细胞，伴基质黏液样变；GCF与DFSP具有相同遗传异常（COL1A1-PDGFB融合），复发病例可显示DFSP的组织学特征</p>
+    </div>
+    <div class="list-item">
+      <h4>颗粒细胞型 <span class="tag tag-purple">罕见</span></h4>
+      <p>梭形细胞与一定比例的颗粒细胞混合，细胞核偏心圆形、核仁突出、溶酶体颗粒丰富；CD34（+）</p>
+    </div>
+    <div class="list-item">
+      <h4>硬化型 <span class="tag tag-purple">罕见</span></h4>
+      <p>一半以上的低细胞胶原成分中嵌入梭形细胞；CD34（+）</p>
+    </div>
+    <div class="list-item">
+      <h4>黏液型 <span class="tag tag-purple">罕见</span></h4>
+      <p>基质中出现细长浸润性梭形细胞，伴黏液样变（黏液样区域占比>50%），内生血管生长丰富；CD34（+），&alpha;平滑肌肌动蛋白（-），结蛋白（-）；需与黏液样脂肪肉瘤鉴别</p>
+    </div>
+  </div>
+
+  <div class="card" style="border-left:4px solid var(--accent);">
+    <div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128200;</span> DFSP 临床分期</div>
+    <p style="font-size:13px;color:var(--text-light);line-height:1.7;">DFSP分期基于肿瘤生长形态和浸润深度，对手术方案选择和预后评估具有重要指导意义</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#127919;</span> 分期详解</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">I期 &mdash; 非突起性病变</div>
+        <div class="desc">包括<strong>萎缩性或硬化性斑块</strong>、黄色斑或小结节。肿瘤局限于真皮层，尚未隆起，临床易被忽视或误诊为瘢痕</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">II期 &mdash; 突出的原发肿瘤</div>
+        <div class="desc">肿瘤已<strong>隆起于皮肤表面</strong>，形成可触及的肿块。根据浸润深度进一步分为IIA和IIB亚期</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">IIA期 &mdash; 浅表肿瘤</div>
+        <div class="desc">肿瘤<strong>不侵犯深层筋膜</strong>，局限于真皮及皮下脂肪浅层，手术切除相对容易，切缘阴性率较高</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">IIB期 &mdash; 深部肿瘤</div>
+        <div class="desc">肿瘤<strong>位于浅筋膜并浸润筋膜</strong>，或发生在浅筋膜下方。浸润更深，手术难度增加，切缘阳性风险升高，可能需要补充放疗</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">III期 &mdash; 淋巴结转移</div>
+        <div class="desc">肿瘤已<strong>转移至区域淋巴结</strong>。DFSP淋巴结转移极为罕见（<1%），一旦发生提示侵袭性较强的亚型（如FS-DFSP），需行淋巴结清扫+系统治疗</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">IV期 &mdash; 远处转移</div>
+        <div class="desc">肿瘤<strong>转移至远处器官</strong>（最常见为肺）。DFSP远处转移率极低（<5%），几乎均发生于FS-DFSP亚型。需系统治疗（靶向+化疗）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128202;</span> 各期关键数据</div>
+    <table class="cmp-table">
+      <tr><th>分期</th><th>浸润深度</th><th>转移风险</th><th>治疗侧重</th></tr>
+      <tr><td><strong>I期</strong></td><td>真皮层</td><td style="color:#1a6b4a;">极低</td><td>扩大切除</td></tr>
+      <tr><td><strong>IIA期</strong></td><td>皮下脂肪浅层</td><td style="color:#1a6b4a;">极低</td><td>扩大切除</td></tr>
+      <tr><td><strong>IIB期</strong></td><td>浸润筋膜或更深</td><td style="color:#c45a20;">低</td><td>扩大切除+评估放疗</td></tr>
+      <tr><td><strong>III期</strong></td><td>淋巴结转移</td><td style="color:#b91c1c;">中</td><td>淋巴结清扫+系统治疗</td></tr>
+      <tr><td><strong>IV期</strong></td><td>远处器官转移</td><td style="color:#b91c1c;">高</td><td>靶向+化疗联合</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#f0e6fe;color:#6b21a8;">&#129516;</span> 分期与亚型关系</div>
+    <div class="list-item">
+      <h4><span class="tag tag-green">经典型DFSP</span></h4>
+      <p>绝大多数为I~IIB期，极少进展至III/IV期。即使多次局部复发，仍以局部侵袭为主</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-red">FS-DFSP</span></h4>
+      <p>是III/IV期最常见的原因，约15~20%可发生远处转移。分期越高，越需积极系统治疗</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-blue">GCF（儿童型）</span></h4>
+      <p>通常为I~IIA期，复发后可进展为经典型DFSP表现，需长期随访</p>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <strong>&#9888; 提醒：</strong>DFSP分期与软组织肉瘤AJCC/TNM分期体系不同。DFSP的分期更侧重<strong>浸润深度和生长形态</strong>，因为DFSP的转移行为与经典软组织肉瘤有显著差异。
+  </div>
+        </div>
+      </div>
+
+      <div class="page" id="tab-diagnosis-page">
+        <div class="page-scroll">
+          <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128269;</span> 诊断路径</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">Step 1 &mdash; 临床检查</div>
+        <div class="desc">详细询问病史（病程、既往切除史），体格检查评估肿块大小、质地、活动度、与周围组织关系</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Step 2 &mdash; 影像学检查</div>
+        <div class="desc"><strong>MRI</strong>（首选）：评估肿瘤深度及与周围组织关系；<strong>超声</strong>：初步筛查；<strong>CT</strong>：评估骨侵犯</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Step 3 &mdash; 组织活检</div>
+        <div class="desc">粗针穿刺活检或切开活检，<strong>避免小范围切除活检</strong>以免影响后续手术</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Step 4 &mdash; 病理确诊</div>
+        <div class="desc">组织学+免疫组化+分子检测，综合判断确诊</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#f0e6fe;color:#6b21a8;">&#129516;</span> 组织病理特征</div>
+    <div class="list-item">
+      <h4>大体形态</h4>
+      <p>肿瘤位于真皮层，无包膜，灰白色，浸润性生长，向皮下脂肪组织伸出伪足样突起</p>
+    </div>
+    <div class="list-item">
+      <h4>镜下特征</h4>
+      <p>梭形细胞呈特征性<strong>席纹状（storiform）</strong>排列，细胞密集但异型性低，核分裂少；肿瘤向皮下脂肪呈<strong>"蜂窝样"</strong>浸润，具有诊断价值</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#128300;</span> 免疫组化标记</div>
+    <table class="cmp-table">
+      <tr><th>标记物</th><th>表达</th><th>意义</th></tr>
+      <tr><td><strong>CD34</strong></td><td>强阳性（>90%）</td><td>最重要的诊断标记</td></tr>
+      <tr><td>vimentin</td><td>阳性</td><td>间叶组织来源</td></tr>
+      <tr><td>PDGFB</td><td>过表达</td><td>融合基因产物</td></tr>
+      <tr><td>Factor XIIIa</td><td>阴性或弱阳</td><td>与皮肤纤维瘤鉴别</td></tr>
+      <tr><td>S-100</td><td>阴性</td><td>与黑色素瘤鉴别</td></tr>
+      <tr><td>AE1/AE3</td><td>阴性</td><td>与癌鉴别</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#129514;</span> 分子检测</div>
+    <div class="list-item">
+      <h4>FISH检测</h4>
+      <p>检测t(17;22)易位或PDGFB基因重排，敏感性和特异性高，是确诊的金标准之一</p>
+    </div>
+    <div class="list-item">
+      <h4>RT-PCR</h4>
+      <p>检测COL1A1-PDGFB融合转录本，可确定融合位点</p>
+    </div>
+    <div class="list-item">
+      <h4>NGS二代测序</h4>
+      <p>可同时检测融合基因及其他基因变异，适用于疑难病例</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#9888;</span> 鉴别诊断</div>
+    <table class="cmp-table">
+      <tr><th>疾病</th><th>鉴别要点</th></tr>
+      <tr><td>皮肤纤维瘤</td><td>CD34阴性或弱阳，Factor XIIIa强阳，体积小</td></tr>
+      <tr><td>神经纤维瘤</td><td>S-100阳性，CD34部分阳性</td></tr>
+      <tr><td>恶性黑色素瘤</td><td>S-100、HMB45、Melan-A阳性</td></tr>
+      <tr><td>隆起性硬纤维瘤</td><td>beta-catenin核阳性，CD34阴性</td></tr>
+      <tr><td>纤维肉瘤</td><td>无席纹状结构，CD34阴性</td></tr>
+    </table>
+  </div>
+        </div>
+      </div>
+
+      <div class="page" id="tab-treatment-page">
+        <div class="page-scroll">
+          <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#127919;</span> 治疗总原则</div>
+    <p style="font-size:14px;line-height:1.8;"><strong>手术切除是首选治疗方法</strong>。因肿瘤呈局部侵袭性生长且易复发，必须确保足够的切缘。对于不可手术或转移性患者，靶向治疗是重要选择。</p>
+  </div>
+
+  <div class="drug-card surgery">
+    <div class="drug-name">一、扩大切除术</div>
+    <div class="drug-detail">
+      <strong>切除范围：</strong>肿瘤边缘外<strong>2~3cm</strong>，包括深筋膜及以上全层组织<br>
+      <strong>切缘阴性率：</strong>约70~85%<br>
+      <strong>局部复发率：</strong>10~20%（切缘阴性时）<br>
+      <strong>适用：</strong>大多数可切除DFSP的首选方案<br>
+      <strong>注意：</strong>头颈及特殊部位可能无法达到理想切缘
+    </div>
+  </div>
+
+  <div class="drug-card surgery">
+    <div class="drug-name">二、Mohs显微描记手术</div>
+    <div class="drug-detail">
+      <strong>原理：</strong>术中逐层切除并实时冰冻切片检查切缘，直到切缘阴性<br>
+      <strong>局部复发率：</strong>&lt;2%（显著低于扩大切除）<br>
+      <strong>优势：</strong>最大程度保留正常组织，切缘控制精确<br>
+      <strong>适用：</strong>头颈部、特殊部位、复发性DFSP<br>
+      <strong>局限：</strong>耗时较长，需要经验丰富的Mohs外科医师
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <strong>&#9888; 重要提示：</strong>DFSP向皮下脂肪呈"伪足样"浸润，肉眼边界远小于实际病理边界，单纯肉眼判断切缘不可靠，<strong>必须依靠病理学确认切缘阴性</strong>。
+  </div>
+
+  <div class="drug-card radio">
+    <div class="drug-name">三、放射治疗</div>
+    <div class="drug-detail">
+      <strong>辅助放疗：</strong>用于切缘阳性或接近切缘（<1cm）的患者，可降低局部复发率<br>
+      <strong>根治性放疗：</strong>适用于无法手术的患者<br>
+      <strong>剂量：</strong>通常50~66Gy/25~33次<br>
+      <strong>效果：</strong>辅助放疗可将切缘阳性患者的局部控制率提高至85%以上
+    </div>
+  </div>
+
+  <div class="drug-card targeted">
+    <div class="drug-name">四、靶向治疗</div>
+    <div class="drug-detail">
+      <strong>适应证：</strong>不可切除、局部晚期、转移性或新辅助降期<br>
+      <strong>核心药物：</strong>伊马替尼（一线）→ 舒尼替尼（二线）→ 瑞戈非尼/帕唑帕尼/安罗替尼（三线）<br>
+      <strong>有效率：</strong>客观缓解率约50~70%，疾病控制率>90%<br>
+      <strong>新辅助应用：</strong>术前使用缩小肿瘤，降低手术难度和范围
+    </div>
+  </div>
+
+  <div class="drug-card chemo">
+    <div class="drug-name">五、化学治疗</div>
+    <div class="drug-detail">
+      <strong>适用：</strong>转移性或FS-DFSP亚型，对靶向耐药者<br>
+      <strong>方案：</strong>吉西他滨+多西他赛、多柔比星为基础方案<br>
+      <strong>效果：</strong>传统化疗对经典型DFSP敏感性较低，仅作为晚期挽救方案
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128200;</span> 分期对应治疗方案</div>
+    <table class="cmp-table">
+      <tr><th>分期</th><th>浸润深度</th><th>推荐方案</th></tr>
+      <tr><td><strong>I期</strong></td><td>真皮层</td><td>扩大切除术（2~3cm切缘），Mohs手术可选</td></tr>
+      <tr><td><strong>IIA期</strong></td><td>皮下脂肪浅层</td><td>扩大切除术，切缘阴性率高，术后定期随访</td></tr>
+      <tr><td><strong>IIB期</strong></td><td>浸润筋膜或更深</td><td>扩大切除术 + 评估辅助放疗；术前可考虑伊马替尼新辅助降期</td></tr>
+      <tr><td><strong>III期</strong></td><td>淋巴结转移</td><td>淋巴结清扫 + 伊马替尼靶向 + 评估放疗</td></tr>
+      <tr><td><strong>IV期</strong></td><td>远处器官转移</td><td>伊马替尼一线靶向 &rarr; 耐药后舒尼替尼 &rarr; 三线靶向 &rarr; 靶向+化疗联合</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128200;</span> 治疗方案选择流程</div>
+    <div style="font-size:13px;line-height:2;background:var(--bg);border-radius:10px;padding:16px;">
+      <div>&#9312; <strong>可切除肿瘤</strong> &rarr; 扩大切除术或Mohs手术</div>
+      <div>&#9313; <strong>切缘阳性/接近</strong> &rarr; 补充放疗</div>
+      <div>&#9314; <strong>不可切除/局部晚期</strong> &rarr; 伊马替尼靶向治疗</div>
+      <div>&#9315; <strong>伊马替尼耐药</strong> &rarr; 舒尼替尼二线靶向</div>
+      <div>&#9316; <strong>二线仍进展</strong> &rarr; 瑞戈非尼/帕唑帕尼/安罗替尼三线</div>
+      <div>&#9317; <strong>靶向有效后缩小</strong> &rarr; 评估手术机会</div>
+      <div>&#9318; <strong>转移性/FS亚型</strong> &rarr; 靶向+化疗联合</div>
+    </div>
+  </div>
+        </div>
+      </div>
+
+      <div class="page" id="tab-medicine-page">
+        <div class="page-scroll">
+          <div class="drug-card targeted">
+    <div class="drug-name">甲磺酸伊马替尼（Imatinib）<span class="tag tag-purple">一线靶向</span></div>
+    <div class="drug-detail">
+      <strong>作用机制：</strong>选择性抑制PDGFR-&alpha;/&beta;、BCR-ABL、c-KIT酪氨酸激酶，阻断COL1A1-PDGFB融合基因驱动的异常信号通路<br><br>
+      <strong>用法用量：</strong><br>
+      &bull; 每日<strong>400mg</strong>，一次口服<br>
+      &bull; 晚期/转移性可增至每日<strong>600~800mg</strong><br>
+      &bull; 随餐服用，大量饮水<br><br>
+      <strong>疗效：</strong><br>
+      &bull; 客观缓解率（ORR）：50~70%<br>
+      &bull; 疾病控制率（DCR）：>90%<br>
+      &bull; 中位起效时间：1~3个月<br><br>
+      <strong>常见不良反应：</strong><br>
+      &bull; 水肿（眶周、下肢），发生率约60%<br>
+      &bull; 恶心、腹泻、腹痛<br>
+      &bull; 肌肉痉挛、骨痛<br>
+      &bull; 乏力、皮疹<br>
+      &bull; 血液学毒性（中性粒细胞减少、血小板减少）<br><br>
+      <strong>注意事项：</strong><br>
+      &bull; 用药前建议<strong>分子检测确认COL1A1-PDGFB融合</strong><br>
+      &bull; 定期监测血常规、肝肾功能<br>
+      &bull; 避免与CYP3A4强诱导剂/抑制剂合用<br>
+      &bull; 孕妇禁用，育龄女性需避孕
+    </div>
+  </div>
+
+  <div class="drug-card targeted">
+    <div class="drug-name">苹果酸舒尼替尼（Sunitinib）<span class="tag tag-orange">二线靶向</span></div>
+    <div class="drug-detail">
+      <strong>作用机制：</strong>多靶点酪氨酸激酶抑制剂，抑制PDGFR、VEGFR、c-KIT等<br><br>
+      <strong>适应证：</strong>伊马替尼耐药或不耐受的DFSP患者<br><br>
+      <strong>用法用量：</strong><br>
+      &bull; <strong>50mg/日</strong>，口服，连用4周停2周（6周一周期）<br>
+      &bull; 或<strong>37.5mg/日</strong>持续给药方案<br><br>
+      <strong>常见不良反应：</strong><br>
+      &bull; 乏力、高血压、手足综合征<br>
+      &bull; 腹泻、恶心、味觉改变<br>
+      &bull; 骨髓抑制、甲状腺功能减退<br>
+      &bull; 肝功能异常
+    </div>
+  </div>
+
+  <div class="drug-card targeted">
+    <div class="drug-name">帕唑帕尼（Pazopanib）<span class="tag tag-orange">二/三线靶向</span></div>
+    <div class="drug-detail">
+      <strong>作用机制：</strong>多靶点酪氨酸激酶抑制剂，抑制VEGFR、PDGFR-α/β、KIT<br><br>
+      <strong>适应证：</strong>伊马替尼耐药后的软组织肉瘤（含DFSP），可作为二线或三线选择<br><br>
+      <strong>用法用量：</strong><br>
+      &bull; <strong>800mg/日</strong>，口服，空腹服用（餐前1小时或餐后2小时）<br>
+      &bull; 不可掰开或咀嚼<br><br>
+      <strong>常见不良反应：</strong><br>
+      &bull; 高血压、腹泻、恶心<br>
+      &bull; 肝毒性（需密切监测肝功能）<br>
+      &bull; 乏力、毛发褪色/脱色<br>
+      &bull; 蛋白尿
+    </div>
+  </div>
+
+  <div class="drug-card targeted">
+    <div class="drug-name">瑞戈非尼（Regorafenib）<span class="tag tag-orange">三线靶向</span></div>
+    <div class="drug-detail">
+      <strong>作用机制：</strong>口服多激酶抑制剂，靶向PDGFR-β、VEGFR1-3、KIT、RET、RAF等<br><br>
+      <strong>适应证：</strong>伊马替尼和舒尼替尼均耐药的晚期/转移性DFSP<br><br>
+      <strong>用法用量：</strong><br>
+      &bull; <strong>160mg/日</strong>，口服，连用3周停1周（4周一周期）<br>
+      &bull; 随低脂餐服用，每日同一时间<br><br>
+      <strong>常见不良反应：</strong><br>
+      &bull; 手足综合征（最常见，约70%）<br>
+      &bull; 高血压、乏力、腹泻<br>
+      &bull; 肝功能异常（需定期监测）<br>
+      &bull; 皮疹、口腔炎
+    </div>
+  </div>
+
+  <div class="drug-card targeted">
+    <div class="drug-name">安罗替尼（Anlotinib）<span class="tag tag-orange">三线靶向</span></div>
+    <div class="drug-detail">
+      <strong>作用机制：</strong>国产多靶点酪氨酸激酶抑制剂，抑制VEGFR、PDGFR、FGFR、c-KIT等<br><br>
+      <strong>适应证：</strong>既往接受过至少两种系统治疗后进展的晚期软组织肉瘤（含DFSP）<br><br>
+      <strong>用法用量：</strong><br>
+      &bull; <strong>12mg/日</strong>，口服，连用2周停1周（3周一周期）<br>
+      &bull; 餐前服用<br><br>
+      <strong>常见不良反应：</strong><br>
+      &bull; 高血压、手足综合征<br>
+      &bull; 乏力、腹泻<br>
+      &bull; 血脂升高、甲状腺功能减退<br>
+      &bull; 出血风险（注意监测凝血功能）
+    </div>
+  </div>
+
+  <div class="drug-card chemo">
+    <div class="drug-name">化疗方案<span class="tag tag-red">晚期挽救</span></div>
+    <div class="drug-detail">
+      <p style="margin-bottom:8px;"><strong>方案一：吉西他滨+多西他赛</strong></p>
+      &bull; 吉西他滨 900mg/m&sup2; d1,d8 + 多西他赛 100mg/m&sup2; d8<br>
+      &bull; 每3周重复<br>
+      &bull; 对软组织肉瘤有一定疗效，FS-DFSP亚型可考虑<br><br>
+      <p style="margin-bottom:8px;"><strong>方案二：多柔比星单药</strong></p>
+      &bull; 多柔比星 60~75mg/m&sup2;，每3周一次<br>
+      &bull; 累积剂量不超过450mg/m&sup2;（心脏毒性）<br>
+      &bull; 适用于一般状况较好的晚期患者<br><br>
+      <p style="margin-bottom:8px;"><strong>方案三：长春新碱+达卡巴嗪</strong></p>
+      &bull; 亦有报道用于转移性DFSP<br>
+      &bull; 疗效有限，仅作为替代选择
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128138;</span> 用药监测要点</div>
+    <div class="list-item">
+      <h4>伊马替尼治疗期间</h4>
+      <p>每周查血常规（前4周），稳定后每2~4周一次；每月查肝肾功能；定期心电图和心超；记录体重和水肿情况</p>
+    </div>
+    <div class="list-item">
+      <h4>舒尼替尼治疗期间</h4>
+      <p>定期监测血压、甲状腺功能、肝功能、血常规；注意手足综合征的皮肤护理</p>
+    </div>
+    <div class="list-item">
+      <h4>帕唑帕尼治疗期间</h4>
+      <p>每周期监测肝功能（重点关注肝毒性）；定期查血压、尿蛋白和甲状腺功能</p>
+    </div>
+    <div class="list-item">
+      <h4>瑞戈非尼治疗期间</h4>
+      <p>密切监测血压和肝功能；注意手足综合征护理；定期检查血常规和尿常规</p>
+    </div>
+    <div class="list-item">
+      <h4>安罗替尼治疗期间</h4>
+      <p>监测血压、血脂和凝血功能；注意出血倾向评估；定期查血常规和甲状腺功能</p>
+    </div>
+    <div class="list-item">
+      <h4>化疗期间</h4>
+      <p>每周期前评估血常规、肝肾功能、心功能（多柔比星）；注意止吐和骨髓保护</p>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <strong>&#9888; 特别提醒：</strong>伊马替尼对DFSP的疗效依赖于PDGFB通路的异常激活，<strong>用药前应行分子检测确认COL1A1-PDGFB融合基因</strong>。少数无此融合的DFSP患者对伊马替尼可能无效。
+  </div>
+        </div>
+      </div>
+
+      <div class="page" id="tab-prognosis-page">
+        <div class="page-scroll">
+          <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#128200;</span> 预后数据</div>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="label">5年生存率</div>
+        <div class="value" style="color:#1a6b4a;">&gt;95%</div>
+      </div>
+      <div class="info-item">
+        <div class="label">10年生存率</div>
+        <div class="value" style="color:#1a6b4a;">~90%</div>
+      </div>
+      <div class="info-item">
+        <div class="label">局部复发率</div>
+        <div class="value" style="color:#c45a20;">10~50%</div>
+      </div>
+      <div class="info-item">
+        <div class="label">远处转移率</div>
+        <div class="value" style="color:#1a6b4a;">&lt;5%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128200;</span> 不同术式复发率对比</div>
+    <table class="cmp-table">
+      <tr><th>手术方式</th><th>局部复发率</th><th>特点</th></tr>
+      <tr><td>Mohs显微手术</td><td style="color:#1a6b4a;font-weight:700;">&lt;2%</td><td>切缘精确，组织保留好</td></tr>
+      <tr><td>扩大切除（切缘阴性）</td><td style="color:#c45a20;font-weight:700;">10~20%</td><td>标准术式，需足够切缘</td></tr>
+      <tr><td>边缘切除（切缘阳性）</td><td style="color:#b91c1c;font-weight:700;">30~50%</td><td>不推荐，需补充放疗</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#9888;</span> 复发危险因素</div>
+    <div class="list-item">
+      <h4><span class="tag tag-red">高危</span> 切缘阳性</h4>
+      <p>未达到阴性切缘是复发最重要的危险因素，复发风险增加3~5倍</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-red">高危</span> 纤维肉瘤样型（FS-DFSP）</h4>
+      <p>FS亚型局部复发率和远处转移率均显著高于经典型</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-orange">中危</span> 肿瘤体积大（>5cm）</h4>
+      <p>较大肿瘤更难达到充分切缘，且可能存在更深部浸润</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-orange">中危</span> 头颈部发生</h4>
+      <p>解剖限制导致切缘难以达到2~3cm</p>
+    </div>
+    <div class="list-item">
+      <h4><span class="tag tag-orange">中危</span> 既往复发史</h4>
+      <p>每复发一次，后续再复发风险增加</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128197;</span> 术后随访方案</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">前2年 &mdash; 每3~6个月</div>
+        <div class="desc">体格检查+局部超声/MRI，重点检查手术区域和引流淋巴结</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">第3~5年 &mdash; 每6个月</div>
+        <div class="desc">体格检查，必要时影像学检查</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">5年后 &mdash; 每年一次</div>
+        <div class="desc">长期随访，虽然晚期复发少见但仍有报道</div>
+      </div>
+    </div>
+    <div class="warn-box">
+      <strong>建议随访至少10年：</strong>DFSP可迟发复发，有术后20年以上复发的报道，长期随访不可忽视。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#128736;</span> 预后改善建议</div>
+    <div class="list-item">
+      <h4>首诊选择专业机构</h4>
+      <p>建议在有软组织肉瘤诊疗经验的中心就诊，首次手术质量决定远期预后</p>
+    </div>
+    <div class="list-item">
+      <h4>确保切缘阴性</h4>
+      <p>术中冰冻病理确认切缘是最关键的预后因素</p>
+    </div>
+    <div class="list-item">
+      <h4>坚持定期随访</h4>
+      <p>早期发现复发可再次手术切除，预后仍较好</p>
+    </div>
+    <div class="list-item">
+      <h4>关注心理支持</h4>
+      <p>DFSP虽低度恶性但反复复发可能带来心理压力，需关注患者心理健康</p>
+    </div>
+  </div>
+        </div>
+      </div>
+
+      <div class="page" id="tab-faq-page">
+        <div class="page-scroll">
+          <div class="card">
+    <div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#10067;</span> 常见问题解答</div>
+    
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">DFSP是癌症吗？会不会危及生命？<span class="arrow">&#9654;</span></div>
+      <div class="faq-a">DFSP属于低度恶性肿瘤，是软组织肉瘤的一种。虽然名称中含"肉瘤"（即恶性），但与常见"癌"不同：它生长缓慢、极少远处转移（<5%），总体5年生存率>95%。绝大多数患者不会因此病危及生命，但需重视其局部侵袭性和高复发倾向，需规范治疗和长期随访。</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">多次复发怎么办？<span class="arrow">&#9654;</span></div>
+      <div class="faq-a">DFSP确实容易局部复发，但每次复发仍可再次手术切除。对于反复复发或难以达到阴性切缘的情况，建议：(1)选择Mohs显微手术确保切缘；(2)术后补充放疗降低复发率；(3)评估是否适合伊马替尼新辅助或辅助靶向治疗。重要的是在软组织肉瘤专科中心就诊，制定个体化方案。</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">伊马替尼需要吃多久？<span class="arrow">&#9654;</span></div>
+      <div class="faq-a">用药时长取决于治疗目的：(1)新辅助治疗（术前缩小肿瘤）：通常3~6个月，肿瘤缩小后手术；(2)不可切除的维持治疗：可能需要长期用药，直至疾病进展或不可耐受；(3)转移性DFSP：建议持续用药。具体疗程需由主治医师根据疗效和耐受性决定，切勿自行停药。</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">手术后需要化疗吗？<span class="arrow">&#9654;</span></div>
+      <div class="faq-a">经典型DFSP术后通常不需要辅助化疗。化疗对经典型DFSP敏感性低，不作为常规辅助治疗。但如果存在切缘阳性、可考虑辅助放疗；纤维肉瘤样型（FS-DFSP）伴转移风险时，医师可能评估靶向或化疗的必要性。</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">DFSP会遗传给下一代吗？<span class="arrow">&#9654;</span></div>
+      <div class="faq-a">DFSP的COL1A1-PDGFB融合基因属于体细胞水平突变（后天获得），不是生殖细胞突变，因此DFSP本身不会遗传。但神经纤维瘤病1型（NF1）患者DFSP发病率较高，NF1属于常染色体显性遗传病。如果患者合并NF1或其他遗传性肿瘤综合征，建议遗传咨询。</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">日常生活中需要注意什么？<span class="arrow">&#9654;</span></div>
+      <div class="faq-a">(1)定期随访，不可因"不痛不痒"而忽视；(2)注意保护手术区域皮肤，避免外伤；(3)如发现手术区域或身体其他部位出现新生物，及时就医；(4)保持健康生活方式，合理饮食，适度运动；(5)用药期间遵医嘱，不随意停药或调整剂量；(6)关注心理健康，保持积极心态。</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">头面部DFSP如何处理？<span class="arrow">&#9654;</span></div>
+      <div class="faq-a">头面部DFSP因解剖限制难以达到2~3cm切缘，首选Mohs显微描记手术，可在确保切缘阴性的同时最大限度保留正常组织和功能外观。术后如切缘仍不足，可补充放疗。术前也可考虑伊马替尼新辅助治疗缩小肿瘤范围，降低手术难度。</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">怀孕期间发现DFSP怎么办？<span class="arrow">&#9654;</span></div>
+      <div class="faq-a">孕期发现DFSP需多学科评估。如肿瘤较小、生长缓慢，可在产后择期手术；如肿瘤进展快，妊娠中期可考虑手术。伊马替尼有致畸风险，孕期禁用。建议在产科和外科多学科协作下制定个体化方案。</div>
+    </div>
+  </div>
+        </div>
+      </div>
+</div>
+
+<!-- Bottom Nav -->
+<nav class="bottom-nav">
+
+        <div class="nav-item active" data-tab="tab-guide">
+          <span class="nav-icon">🏥</span>
+          <span class="nav-label">攻略</span>
+        </div>
+        <div class="nav-item" data-tab="tab-care">
+          <span class="nav-icon">🩹</span>
+          <span class="nav-label">护理</span>
+        </div>
+        <div class="nav-item" data-tab="tab-discharge">
+          <span class="nav-icon">📋</span>
+          <span class="nav-label">出院</span>
+        </div>
+        <div class="nav-item" data-tab="tab-insurance">
+          <span class="nav-icon">💰</span>
+          <span class="nav-label">理赔</span>
+        </div>
+        <div class="nav-item" data-tab="tab-overview">
+          <span class="nav-icon">📖</span>
+          <span class="nav-label">概述</span>
+        </div>
+        <div class="nav-item more-btn" id="moreBtn">
+          <span class="nav-icon">⋯</span>
+          <span class="nav-label">更多</span>
+        </div>
+</nav>
+
+<!-- More Menu Overlay -->
+<div class="more-overlay" id="moreOverlay" onclick="closeMore(event)">
+  <div class="more-menu" onclick="event.stopPropagation()">
+    <div class="more-title" id="moreTitle">更多内容</div>
+    <div class="more-grid">
+      
+        <div class="more-item" data-tab="tab-symptom">
+          <span class="more-icon">🔍</span>
+          <span class="more-label">症状</span>
+        </div>
+        <div class="more-item" data-tab="tab-diagnosis">
+          <span class="more-icon">🔬</span>
+          <span class="more-label">诊断</span>
+        </div>
+        <div class="more-item" data-tab="tab-treatment">
+          <span class="more-icon">💊</span>
+          <span class="more-label">治疗</span>
+        </div>
+        <div class="more-item" data-tab="tab-medicine">
+          <span class="more-icon">💉</span>
+          <span class="more-label">用药</span>
+        </div>
+        <div class="more-item" data-tab="tab-prognosis">
+          <span class="more-icon">📊</span>
+          <span class="more-label">预后</span>
+        </div>
+        <div class="more-item" data-tab="tab-faq">
+          <span class="more-icon">❓</span>
+          <span class="more-label">问答</span>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== Tab Switching =====
+var currentTab = 'tab-guide';
+var allTabs = ["tab-guide","tab-care","tab-discharge","tab-insurance","tab-overview","tab-symptom","tab-diagnosis","tab-treatment","tab-medicine","tab-prognosis","tab-faq"];
+var currentLang = 'zh';
+
+function switchTab(tabId) {
+  if (tabId === currentTab) return;
+  // Update page
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  var targetPage = document.getElementById(tabId + '-page');
+  if (targetPage) targetPage.classList.add('active');
+  // Update nav highlight
+  updateNavHighlight(tabId);
+  currentTab = tabId;
+  closeMore();
+  // Scroll to top
+  if (targetPage) targetPage.querySelector('.page-scroll').parentElement.scrollTop = 0;
+}
+
+function updateNavHighlight(tabId) {
+  document.querySelectorAll('.nav-item').forEach(function(n) {
+    n.classList.toggle('active', n.dataset.tab === tabId);
+  });
+  // If tab is in "more" menu, highlight the more button
+  var mainTabIds = ['tab-guide','tab-care','tab-discharge','tab-insurance','tab-overview'];
+  if (mainTabIds.indexOf(tabId) === -1) {
+    document.getElementById('moreBtn').classList.add('active');
+  }
+}
+
+// ===== Bottom Nav Click =====
+document.querySelectorAll('.nav-item[data-tab]').forEach(function(item) {
+  item.addEventListener('click', function() {
+    switchTab(this.dataset.tab);
+  });
+});
+
+// ===== More Menu =====
+document.getElementById('moreBtn').addEventListener('click', function(e) {
+  e.stopPropagation();
+  var overlay = document.getElementById('moreOverlay');
+  overlay.classList.add('show');
+});
+
+document.querySelectorAll('.more-item').forEach(function(item) {
+  item.addEventListener('click', function() {
+    switchTab(this.dataset.tab);
+  });
+});
+
+function closeMore(e) {
+  if (e && e.target !== document.getElementById('moreOverlay')) return;
+  document.getElementById('moreOverlay').classList.remove('show');
+}
+
+// ===== Swipe Support =====
+var touchStartX = 0;
+var touchStartY = 0;
+var isSwiping = false;
+document.addEventListener('touchstart', function(e) {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+  isSwiping = false;
+}, { passive: true });
+document.addEventListener('touchmove', function(e) {
+  if (isSwiping) return;
+  var dx = e.touches[0].clientX - touchStartX;
+  var dy = e.touches[0].clientY - touchStartY;
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 20) isSwiping = true;
+}, { passive: true });
+document.addEventListener('touchend', function(e) {
+  if (!isSwiping) return;
+  var dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) < 60) return;
+  var idx = allTabs.indexOf(currentTab);
+  if (dx < 0 && idx < allTabs.length - 1) switchTab(allTabs[idx + 1]);
+  if (dx > 0 && idx > 0) switchTab(allTabs[idx - 1]);
+});
+
+// ===== Language Switch =====
+var zhContents = {};
+var currentLang = 'zh';
+
+function saveZhContent() {
+  allTabs.forEach(function(tabId) {
+    var page = document.getElementById(tabId + '-page');
+    if (page) zhContents[tabId] = page.querySelector('.page-scroll').innerHTML;
+  });
+  zhContents.headerTitle = document.getElementById('headerTitle').textContent;
+  zhContents.headerSub = document.getElementById('headerSub').textContent;
+}
+
+saveZhContent();
+
+var enTabLabels = {
+  'tab-guide': 'Guide', 'tab-care': 'Care', 'tab-discharge': 'Discharge',
+  'tab-insurance': 'Claims', 'tab-overview': 'Overview', 'tab-symptom': 'Symptoms',
+  'tab-diagnosis': 'Diagnosis', 'tab-treatment': 'Treatment', 'tab-medicine': 'Medication',
+  'tab-prognosis': 'Prognosis', 'tab-faq': 'FAQ'
+};
+
+// English translations will be loaded from the main file's enTranslations
+var enTranslations = {  'tab-overview': '<div class="card"><div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#9432;</span> Disease Definition</div><p style="font-size:14px;line-height:1.8;">Dermatofibrosarcoma Protuberans (DFSP) is a <strong>low-grade malignant soft tissue sarcoma</strong> arising from dermal fibroblasts, first described by Hoffmann in 1925. It is characterized by slow-growing subcutaneous nodules with <strong>strong local invasiveness</strong> but <strong>very low distant metastasis rate</strong> (&lt;5%), making it one of the most common types of cutaneous sarcoma.</p></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128202;</span> Epidemiology</div><div class="info-grid"><div class="info-item"><div class="label">Annual Incidence</div><div class="value">0.8~5/million</div></div><div class="info-item"><div class="label">% of STS</div><div class="value">~4%</div></div><div class="info-item"><div class="label">Peak Age</div><div class="value">20~50 yrs</div></div><div class="info-item"><div class="label">Gender</div><div class="value">M slightly > F</div></div></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#f0e6fe;color:#6b21a8;">&#129516;</span> Pathogenesis</div><p style="font-size:13px;line-height:1.8;margin-bottom:10px;">Over <strong>90%</strong> of DFSP patients harbor the <strong>t(17;22)(q22;q13)</strong> chromosomal translocation, forming the <strong>COL1A1-PDGFB fusion gene</strong>. <strong>A minority</strong> (~2-5%) lack this translocation but harbor <strong>PDGFD</strong> gene rearrangements with alternative fusions (e.g., <strong>COL6A3-PDGFD, EMILIN2-PDGFD</strong>), which also activate the PDGFR signaling pathway to drive tumor growth.</p><div style="background:var(--bg);border-radius:10px;padding:14px;font-size:13px;line-height:1.8;"><strong>Pathogenic pathway:</strong><br>COL1A1 promoter fuses with PDGFB gene &rarr; Continuous overexpression of PDGFB protein &rarr; Activation of PDGFR-&beta; receptor tyrosine kinase &rarr; Sustained activation of downstream RAS/MAPK and PI3K/AKT pathways &rarr; Uncontrolled cell proliferation &rarr; Tumor formation<br><br><strong>Minor alternative pathway:</strong> PDGFD rearrangement (COL6A3/EMILIN2 etc. as fusion partners) &rarr; PDGFD protein overexpression &rarr; Same PDGFR-&beta; activation &rarr; Downstream pathway activation &rarr; Tumor formation</div></div><div class="card"><div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#9888;</span> Risk Factors</div><div class="list-item"><h4>Genetic Factors</h4><p>COL1A1-PDGFB fusion gene is the core driver; minority have PDGFD rearrangements (COL6A3-PDGFD, EMILIN2-PDGFD, etc.); NF1 patients have increased incidence</p></div><div class="list-item"><h4>Trauma & Surgery History</h4><p>~20% of patients report local trauma or prior surgery; trauma may trigger tumor or draw attention to existing lesion</p></div><div class="list-item"><h4>Radiation Exposure</h4><p>Increased DFSP incidence in previously irradiated areas; classified as radiation-associated sarcoma</p></div></div>',  'tab-symptom': '<div class="card"><div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#128308;</span> Typical Clinical Presentation</div><div class="timeline"><div class="timeline-item"><div class="time">Early Stage (months to years)</div><div class="desc"><strong>Painless firm plaque or small nodule</strong> on skin surface, rubber-like consistency, 1~3cm, normal or slightly reddish color, adherent to skin but mobile</div></div><div class="timeline-item"><div class="time">Progressive Stage (years)</div><div class="desc">Lesion gradually <strong>enlarges and elevates</strong>, forming multiple nodules, purplish-red or bluish, thinned overlying skin with telangiectasia</div></div><div class="timeline-item"><div class="time">Late Stage</div><div class="desc"><strong>Protuberant mass</strong> (hence "protuberans"), surface may ulcerate, bleed or become secondarily infected, occasional pain</div></div></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#127919;</span> Common Sites</div><div class="stat-row"><span class="stat-label">Trunk (chest, abdomen, back)</span><span class="stat-value">40~60%</span></div><div class="stat-row"><span class="stat-label">Proximal limbs (shoulder, thigh, upper arm)</span><span class="stat-value">20~30%</span></div><div class="stat-row"><span class="stat-label">Head & Neck</span><span class="stat-value">10~15%</span></div><div class="stat-row"><span class="stat-label">Other sites</span><span class="stat-value">Rare</span></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128293;</span> Clinical Subtypes</div><div class="list-item"><h4>Classic DFSP <span class="tag tag-green">Most Common</span></h4><p>HE staining shows storiform/layered dermal spindle cells; "honeycomb-like" distribution when infiltrating subcutaneous fat; CD34(+), Factor XIIIa(-); slow-growing, high local recurrence, very rare metastasis</p></div><div class="list-item"><h4>Fibrosarcomatous (FS-DFSP) <span class="tag tag-red">More Aggressive</span></h4><p>Increased spindle cells with increased atypia, mitoses >5/10HPF; fascicular, herringbone or fishbone pattern instead of storiform; occasional necrosis; CD34 decreased or lost; ~13.5% of DFSP; higher recurrence and metastasis rates (15~20%)</p></div><div class="list-item"><h4>Pigmented (Bednar Tumor) <span class="tag tag-blue">Rare &lt;5%</span></h4><p>Layered spindle cells mixed with scattered melanin-containing dendritic cells; CD34(+); S-100(+), HMB45(+) in pigmented cells; ~1~5% of DFSP</p></div><div class="list-item"><h4>Giant Cell Variant <span class="tag tag-purple">Rare</span></h4><p>Spindle cells mixed with pleomorphic or multinucleated giant cells; CD34(+)</p></div><div class="list-item"><h4>Giant Cell Fibroblastoma (GCF) <span class="tag tag-purple">Common in Children</span></h4><p>Layered, fascicular, wavy uniform spindle cells with filamentous collagen, dense sclerosis, multinucleated giant cells scattered at pseudovascular spaces, myxoid stroma; GCF shares the same genetic abnormality (COL1A1-PDGFB fusion) as DFSP; recurrent GCF may show DFSP histology</p></div><div class="list-item"><h4>Granular Cell Variant <span class="tag tag-purple">Rare</span></h4><p>Spindle cells mixed with granular cells featuring eccentric round nuclei, prominent nucleoli, abundant lysosomal granules; CD34(+)</p></div><div class="list-item"><h4>Sclerosing Variant <span class="tag tag-purple">Rare</span></h4><p>Spindle cells embedded in >50% hypocellular collagenous component; CD34(+)</p></div><div class="list-item"><h4>Myxoid Variant <span class="tag tag-purple">Rare</span></h4><p>Slender infiltrative spindle cells in myxoid stroma (>50% myxoid area), rich endogenous vascular growth; CD34(+), alpha-SMA(-), desmin(-); must be differentiated from myxoid liposarcoma</p></div></div><div class="warn-box"><strong>&#9888; Misdiagnosis Alert:</strong>DFSP is often misdiagnosed early as hypertrophic scar, dermatofibroma, or aggressive fibromatosis. Average diagnostic delay is <strong>2~5 years</strong>. Repeated "scar" excision with recurrence should raise high suspicion for DFSP.</div><div class="card" style="border-left:4px solid var(--accent);"><div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128200;</span> DFSP Clinical Staging</div><p style="font-size:13px;color:var(--text-light);line-height:1.7;">DFSP staging is based on tumor growth morphology and infiltration depth, providing important guidance for surgical planning and prognosis assessment</p></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#127919;</span> Staging Details</div><div class="timeline"><div class="timeline-item"><div class="time">Stage I &mdash; Non-protuberant lesion</div><div class="desc">Includes <strong>atrophic or sclerotic plaques</strong>, yellowish patches or small nodules. Tumor confined to dermis, not yet elevated; easily overlooked or misdiagnosed as scar</div></div><div class="timeline-item"><div class="time">Stage II &mdash; Protuberant primary tumor</div><div class="desc">Tumor has <strong>elevated above the skin surface</strong>, forming a palpable mass. Further subdivided into IIA and IIB by infiltration depth</div></div><div class="timeline-item"><div class="time">Stage IIA &mdash; Superficial tumor</div><div class="desc">Tumor <strong>does not invade deep fascia</strong>; confined to dermis and superficial subcutaneous fat. Surgical excision relatively easier with higher negative margin rate</div></div><div class="timeline-item"><div class="time">Stage IIB &mdash; Deep tumor</div><div class="desc">Tumor <strong>at or infiltrating fascia</strong>, or located below superficial fascia. Deeper infiltration increases surgical difficulty and positive margin risk; may require adjuvant radiation</div></div><div class="timeline-item"><div class="time">Stage III &mdash; Lymph node metastasis</div><div class="desc">Tumor has <strong>metastasized to regional lymph nodes</strong>. Extremely rare in DFSP (<1%); suggests aggressive subtype (e.g., FS-DFSP); requires lymph node dissection + systemic therapy</div></div><div class="timeline-item"><div class="time">Stage IV &mdash; Distant metastasis</div><div class="desc">Tumor <strong>metastasized to distant organs</strong> (most commonly lung). Very rare (<5%); almost exclusively in FS-DFSP subtype. Requires systemic therapy (targeted + chemo)</div></div></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128202;</span> Key Data by Stage</div><table class="cmp-table"><tr><th>Stage</th><th>Depth</th><th>Metastasis Risk</th><th>Treatment Focus</th></tr><tr><td><strong>Stage I</strong></td><td>Dermis</td><td style="color:#1a6b4a;">Very low</td><td>Wide excision</td></tr><tr><td><strong>Stage IIA</strong></td><td>Superficial subcutaneous</td><td style="color:#1a6b4a;">Very low</td><td>Wide excision</td></tr><tr><td><strong>Stage IIB</strong></td><td>Infiltrating fascia or deeper</td><td style="color:#c45a20;">Low</td><td>Wide excision + consider RT</td></tr><tr><td><strong>Stage III</strong></td><td>Lymph node metastasis</td><td style="color:#b91c1c;">Moderate</td><td>Lymph node dissection + systemic therapy</td></tr><tr><td><strong>Stage IV</strong></td><td>Distant organ metastasis</td><td style="color:#b91c1c;">High</td><td>Targeted + chemo combination</td></tr></table></div><div class="card"><div class="card-title"><span class="icon" style="background:#f0e6fe;color:#6b21a8;">&#129516;</span> Staging & Subtype Relationship</div><div class="list-item"><h4><span class="tag tag-green">Classic DFSP</span></h4><p>Vast majority are Stage I~IIB; rarely progresses to Stage III/IV. Even with multiple local recurrences, remains locally aggressive</p></div><div class="list-item"><h4><span class="tag tag-red">FS-DFSP</span></h4><p>Most common cause of Stage III/IV; ~15~20% may develop distant metastasis. Higher staging requires more aggressive systemic therapy</p></div><div class="list-item"><h4><span class="tag tag-blue">GCF (Pediatric)</span></h4><p>Typically Stage I~IIA; recurrence may show classic DFSP features, requiring long-term follow-up</p></div></div><div class="warn-box"><strong>&#9888; Note:</strong>DFSP staging differs from the AJCC/TNM system for soft tissue sarcoma. DFSP staging focuses more on <strong>infiltration depth and growth morphology</strong>, as DFSP metastatic behavior significantly differs from classic soft tissue sarcoma.</div>',
+
+  'tab-diagnosis': '<div class="card"><div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128269;</span> Diagnostic Pathway</div><div class="timeline"><div class="timeline-item"><div class="time">Step 1 &mdash; Clinical Examination</div><div class="desc">Detailed history (duration, prior excisions), physical exam assessing mass size, consistency, mobility, relationship to surrounding tissues</div></div><div class="timeline-item"><div class="time">Step 2 &mdash; Imaging Studies</div><div class="desc"><strong>MRI</strong> (preferred): assess depth and tissue relationship; <strong>Ultrasound</strong>: initial screening; <strong>CT</strong>: evaluate bone invasion</div></div><div class="timeline-item"><div class="time">Step 3 &mdash; Tissue Biopsy</div><div class="desc">Core needle biopsy or incisional biopsy; <strong>avoid small excisional biopsy</strong> as it may compromise subsequent surgery</div></div><div class="timeline-item"><div class="time">Step 4 &mdash; Pathological Diagnosis</div><div class="desc">Histology + immunohistochemistry + molecular testing for comprehensive diagnosis</div></div></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#f0e6fe;color:#6b21a8;">&#129516;</span> Histopathological Features</div><div class="list-item"><h4>Gross Morphology</h4><p>Tumor in dermis, unencapsulated, grayish-white, infiltrative growth with pseudopod-like extensions into subcutaneous fat</p></div><div class="list-item"><h4>Microscopic Features</h4><p>Spindle cells in characteristic <strong>storiform pattern</strong>, dense but low atypia, few mitoses; <strong>"honeycomb-like"</strong> infiltration into subcutaneous fat is diagnostically valuable</p></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#128300;</span> Immunohistochemical Markers</div><table class="cmp-table"><tr><th>Marker</th><th>Expression</th><th>Significance</th></tr><tr><td><strong>CD34</strong></td><td>Strongly positive (>90%)</td><td>Most important diagnostic marker</td></tr><tr><td>vimentin</td><td>Positive</td><td>Mesenchymal origin</td></tr><tr><td>PDGFB</td><td>Overexpressed</td><td>Fusion gene product</td></tr><tr><td>Factor XIIIa</td><td>Negative or weak</td><td>Differentiate from dermatofibroma</td></tr><tr><td>S-100</td><td>Negative</td><td>Differentiate from melanoma</td></tr><tr><td>AE1/AE3</td><td>Negative</td><td>Differentiate from carcinoma</td></tr></table></div><div class="card"><div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#129514;</span> Molecular Testing</div><div class="list-item"><h4>FISH</h4><p>Detect t(17;22) translocation or PDGFB rearrangement; high sensitivity and specificity; one of the gold standards</p></div><div class="list-item"><h4>RT-PCR</h4><p>Detect COL1A1-PDGFB fusion transcripts; identify exact fusion breakpoint</p></div><div class="list-item"><h4>NGS (Next-Gen Sequencing)</h4><p>Simultaneously detect fusion genes and other variants; suitable for challenging cases</p></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#9888;</span> Differential Diagnosis</div><table class="cmp-table"><tr><th>Disease</th><th>Key Differentiating Features</th></tr><tr><td>Dermatofibroma</td><td>CD34 negative or weak; Factor XIIIa strongly positive; small size</td></tr><tr><td>Neurofibroma</td><td>S-100 positive; CD34 partially positive</td></tr><tr><td>Malignant Melanoma</td><td>S-100, HMB45, Melan-A positive</td></tr><tr><td>Aggressive Fibromatosis</td><td>beta-catenin nuclear positive; CD34 negative</td></tr><tr><td>Fibrosarcoma</td><td>No storiform pattern; CD34 negative</td></tr></table></div>',  'tab-treatment': '<div class="card"><div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#127919;</span> General Treatment Principles</div><p style="font-size:14px;line-height:1.8;"><strong>Surgical excision is the first-line treatment</strong>. Due to locally invasive growth and high recurrence, adequate margins must be ensured. For unresectable or metastatic patients, targeted therapy is an important option.</p></div><div class="drug-card surgery"><div class="drug-name">I. Wide Local Excision</div><div class="drug-detail"><strong>Margin:</strong><strong>2~3cm</strong> beyond tumor edge, including deep fascia and full-thickness tissue<br><strong>Negative margin rate:</strong>~70~85%<br><strong>Local recurrence rate:</strong>10~20% (with negative margins)<br><strong>Indication:</strong>First choice for most resectable DFSP<br><strong>Note:</strong>Ideal margins may not be achievable in head/neck or special sites</div></div><div class="drug-card surgery"><div class="drug-name">II. Mohs Micrographic Surgery</div><div class="drug-detail"><strong>Principle:</strong>Sequential excision with real-time frozen section margin assessment until margins are negative<br><strong>Local recurrence rate:</strong>&lt;2% (significantly lower than wide excision)<br><strong>Advantage:</strong>Maximum preservation of normal tissue with precise margin control<br><strong>Indication:</strong>Head/neck, special sites, recurrent DFSP<br><strong>Limitation:</strong>Time-consuming; requires experienced Mohs surgeon</div></div><div class="warn-box"><strong>&#9888; Important:</strong>DFSP infiltrates subcutaneous fat with "pseudopod-like" extensions. Gross visible boundary is far smaller than actual pathological boundary. Relying on visual assessment of margins is unreliable &mdash; <strong>pathological confirmation of negative margins is mandatory</strong>.</div><div class="drug-card radio"><div class="drug-name">III. Radiation Therapy</div><div class="drug-detail"><strong>Adjuvant RT:</strong>For positive or close margins (<1cm), reduces local recurrence<br><strong>Definitive RT:</strong>For unresectable patients<br><strong>Dose:</strong>Typically 50~66Gy/25~33 fractions<br><strong>Efficacy:</strong>Adjuvant RT can improve local control to >85% in positive-margin patients</div></div><div class="drug-card targeted"><div class="drug-name">IV. Targeted Therapy</div><div class="drug-detail"><strong>Indication:</strong>Unresectable, locally advanced, metastatic, or neoadjuvant downsizing<br><strong>Core agents:</strong>Imatinib (1st-line) &rarr; Sunitinib (2nd-line) &rarr; Regorafenib/Pazopanib/Anlotinib (3rd-line)<br><strong>Response rate:</strong>ORR ~50~70%, DCR >90%<br><strong>Neoadjuvant use:</strong>Preoperative tumor shrinkage, reducing surgical difficulty and extent</div></div><div class="drug-card chemo"><div class="drug-name">V. Chemotherapy</div><div class="drug-detail"><strong>Indication:</strong>Metastatic or FS-DFSP subtype, targeted therapy-resistant<br><strong>Regimens:</strong>Gemcitabine + Docetaxel, Doxorubicin-based<br><strong>Efficacy:</strong>Traditional chemotherapy has low sensitivity for classic DFSP; only as late salvage</div></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128200;</span> Stage-Based Treatment</div><table class="cmp-table"><tr><th>Stage</th><th>Depth</th><th>Recommended Treatment</th></tr><tr><td><strong>Stage I</strong></td><td>Dermis</td><td>Wide local excision (2~3cm margin); Mohs optional</td></tr><tr><td><strong>Stage IIA</strong></td><td>Superficial subcutaneous fat</td><td>Wide local excision; high negative margin rate; regular follow-up</td></tr><tr><td><strong>Stage IIB</strong></td><td>Infiltrating fascia or deeper</td><td>Wide excision + evaluate adjuvant RT; consider imatinib neoadjuvant downstaging</td></tr><tr><td><strong>Stage III</strong></td><td>Lymph node metastasis</td><td>Lymph node dissection + imatinib targeted + evaluate RT</td></tr><tr><td><strong>Stage IV</strong></td><td>Distant organ metastasis</td><td>Imatinib 1st-line &rarr; sunitinib 2nd-line &rarr; 3rd-line TKIs &rarr; targeted + chemo combination</td></tr></table></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128200;</span> Treatment Algorithm</div><div style="font-size:13px;line-height:2;background:var(--bg);border-radius:10px;padding:16px;"><div>&#9312; <strong>Resectable tumor</strong> &rarr; Wide excision or Mohs surgery</div><div>&#9313; <strong>Positive/close margins</strong> &rarr; Adjuvant radiation</div><div>&#9314; <strong>Unresectable/locally advanced</strong> &rarr; Imatinib targeted therapy</div><div>&#9315; <strong>Imatinib-resistant</strong> &rarr; Sunitinib 2nd-line</div><div>&#9316; <strong>2nd-line progression</strong> &rarr; Regorafenib/Pazopanib/Anlotinib 3rd-line</div><div>&#9317; <strong>Effective shrinkage on targeted therapy</strong> &rarr; Evaluate surgical opportunity</div><div>&#9318; <strong>Metastatic/FS subtype</strong> &rarr; Targeted + chemo combination</div></div></div>',  'tab-medicine': '<div class="drug-card targeted"><div class="drug-name">Imatinib Mesylate<span class="tag tag-purple">1st-line Targeted</span></div><div class="drug-detail"><strong>Mechanism:</strong>Selectively inhibits PDGFR-&alpha;/&beta;, BCR-ABL, c-KIT tyrosine kinases, blocking the COL1A1-PDGFB fusion-driven aberrant signaling pathway<br><br><strong>Dosage:</strong><br>&bull; <strong>400mg/day</strong>, oral, once daily<br>&bull; Advanced/metastatic: may increase to <strong>600~800mg/day</strong><br>&bull; Take with food, with plenty of water<br><br><strong>Efficacy:</strong><br>&bull; ORR: 50~70%<br>&bull; DCR: >90%<br>&bull; Median time to response: 1~3 months<br><br><strong>Common AEs:</strong><br>&bull; Edema (periorbital, lower limb), ~60%<br>&bull; Nausea, diarrhea, abdominal pain<br>&bull; Muscle cramps, bone pain<br>&bull; Fatigue, rash<br>&bull; Hematologic toxicity (neutropenia, thrombocytopenia)<br><br><strong>Precautions:</strong><br>&bull; <strong>Molecular testing for COL1A1-PDGFB fusion</strong> recommended before treatment<br>&bull; Regular CBC, liver/kidney function monitoring<br>&bull; Avoid strong CYP3A4 inducers/inhibitors<br>&bull; Contraindicated in pregnancy; contraception required</div></div><div class="drug-card targeted"><div class="drug-name">Sunitinib Malate<span class="tag tag-orange">2nd-line Targeted</span></div><div class="drug-detail"><strong>Mechanism:</strong>Multi-target tyrosine kinase inhibitor, inhibiting PDGFR, VEGFR, c-KIT<br><br><strong>Indication:</strong>DFSP patients resistant or intolerant to imatinib<br><br><strong>Dosage:</strong><br>&bull; <strong>50mg/day</strong>, oral, 4 weeks on/2 weeks off (6-week cycle)<br>&bull; Or <strong>37.5mg/day</strong> continuous dosing<br><br><strong>Common AEs:</strong><br>&bull; Fatigue, hypertension, hand-foot syndrome<br>&bull; Diarrhea, nausea, taste changes<br>&bull; Myelosuppression, hypothyroidism<br>&bull; Hepatic dysfunction</div></div><div class="drug-card targeted"><div class="drug-name">Pazopanib<span class="tag tag-orange">2nd/3rd-line Targeted</span></div><div class="drug-detail"><strong>Mechanism:</strong>Multi-target tyrosine kinase inhibitor, inhibiting VEGFR, PDGFR-&alpha;/&beta;, KIT<br><br><strong>Indication:</strong>Soft tissue sarcoma (incl. DFSP) after imatinib resistance; may serve as 2nd or 3rd line<br><br><strong>Dosage:</strong><br>&bull; <strong>800mg/day</strong>, oral, on empty stomach (1h before or 2h after meals)<br>&bull; Do not split or chew<br><br><strong>Common AEs:</strong><br>&bull; Hypertension, diarrhea, nausea<br>&bull; Hepatotoxicity (close LFT monitoring required)<br>&bull; Fatigue, hair depigmentation<br>&bull; Proteinuria</div></div><div class="drug-card targeted"><div class="drug-name">Regorafenib<span class="tag tag-orange">3rd-line Targeted</span></div><div class="drug-detail"><strong>Mechanism:</strong>Oral multi-kinase inhibitor targeting PDGFR-&beta;, VEGFR1-3, KIT, RET, RAF<br><br><strong>Indication:</strong>Advanced/metastatic DFSP resistant to both imatinib and sunitinib<br><br><strong>Dosage:</strong><br>&bull; <strong>160mg/day</strong>, oral, 3 weeks on/1 week off (4-week cycle)<br>&bull; Take with low-fat meal, same time daily<br><br><strong>Common AEs:</strong><br>&bull; Hand-foot syndrome (most common, ~70%)<br>&bull; Hypertension, fatigue, diarrhea<br>&bull; Hepatic dysfunction (regular monitoring)<br>&bull; Rash, stomatitis</div></div><div class="drug-card targeted"><div class="drug-name">Anlotinib<span class="tag tag-orange">3rd-line Targeted</span></div><div class="drug-detail"><strong>Mechanism:</strong>Domestic multi-target tyrosine kinase inhibitor, inhibiting VEGFR, PDGFR, FGFR, c-KIT<br><br><strong>Indication:</strong>Advanced soft tissue sarcoma (incl. DFSP) progressed after &ge;2 prior systemic therapies<br><br><strong>Dosage:</strong><br>&bull; <strong>12mg/day</strong>, oral, 2 weeks on/1 week off (3-week cycle)<br>&bull; Take before meals<br><br><strong>Common AEs:</strong><br>&bull; Hypertension, hand-foot syndrome<br>&bull; Fatigue, diarrhea<br>&bull; Elevated lipids, hypothyroidism<br>&bull; Bleeding risk (monitor coagulation)</div></div><div class="drug-card chemo"><div class="drug-name">Chemotherapy Regimens<span class="tag tag-red">Late Salvage</span></div><div class="drug-detail"><p style="margin-bottom:8px;"><strong>Regimen 1: Gemcitabine + Docetaxel</strong></p>&bull; Gemcitabine 900mg/m&sup2; d1,d8 + Docetaxel 100mg/m&sup2; d8<br>&bull; Repeat every 3 weeks<br>&bull; Some efficacy in soft tissue sarcoma; FS-DFSP may consider<br><br><p style="margin-bottom:8px;"><strong>Regimen 2: Doxorubicin monotherapy</strong></p>&bull; Doxorubicin 60~75mg/m&sup2;, every 3 weeks<br>&bull; Cumulative dose &le;450mg/m&sup2; (cardiotoxicity)<br>&bull; For patients with good general condition<br><br><p style="margin-bottom:8px;"><strong>Regimen 3: Vincristine + Dacarbazine</strong></p>&bull; Also reported for metastatic DFSP<br>&bull; Limited efficacy, alternative option only</div></div><div class="card"><div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128138;</span> Medication Monitoring</div><div class="list-item"><h4>During Imatinib Treatment</h4><p>Weekly CBC (first 4 weeks), then every 2~4 weeks; monthly LFTs/RFTs; regular ECG/echo; record weight and edema</p></div><div class="list-item"><h4>During Sunitinib Treatment</h4><p>Regular BP, thyroid function, LFTs, CBC; skin care for hand-foot syndrome</p></div><div class="list-item"><h4>During Pazopanib Treatment</h4><p>Monitor LFTs each cycle (focus on hepatotoxicity); regular BP, urine protein, thyroid function</p></div><div class="list-item"><h4>During Regorafenib Treatment</h4><p>Close BP and LFT monitoring; hand-foot syndrome care; regular CBC and urinalysis</p></div><div class="list-item"><h4>During Anlotinib Treatment</h4><p>Monitor BP, lipids, coagulation; bleeding tendency assessment; regular CBC and thyroid function</p></div><div class="list-item"><h4>During Chemotherapy</h4><p>Pre-cycle CBC, LFTs/RFTs, cardiac function (doxorubicin); antiemetic and myeloprotective care</p></div></div><div class="warn-box"><strong>&#9888; Important Reminder:</strong>Imatinib efficacy in DFSP depends on PDGFB pathway activation. <strong>Molecular testing for COL1A1-PDGFB fusion gene should be performed before treatment</strong>. Rare DFSP without this fusion may not respond to imatinib.</div>',  'tab-prognosis': '<div class="card"><div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#128200;</span> Prognostic Data</div><div class="info-grid"><div class="info-item"><div class="label">5-Year Survival</div><div class="value" style="color:#1a6b4a;">&gt;95%</div></div><div class="info-item"><div class="label">10-Year Survival</div><div class="value" style="color:#1a6b4a;">~90%</div></div><div class="info-item"><div class="label">Local Recurrence Rate</div><div class="value" style="color:#c45a20;">10~50%</div></div><div class="info-item"><div class="label">Distant Metastasis Rate</div><div class="value" style="color:#1a6b4a;">&lt;5%</div></div></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128200;</span> Recurrence Rate by Surgery Type</div><table class="cmp-table"><tr><th>Surgical Method</th><th>Local Recurrence</th><th>Features</th></tr><tr><td>Mohs Micrographic Surgery</td><td style="color:#1a6b4a;font-weight:700;">&lt;2%</td><td>Precise margins, good tissue preservation</td></tr><tr><td>Wide Excision (negative margins)</td><td style="color:#c45a20;font-weight:700;">10~20%</td><td>Standard approach, adequate margins needed</td></tr><tr><td>Marginal Excision (positive margins)</td><td style="color:#b91c1c;font-weight:700;">30~50%</td><td>Not recommended; requires adjuvant RT</td></tr></table></div><div class="card"><div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#9888;</span> Recurrence Risk Factors</div><div class="list-item"><h4><span class="tag tag-red">High Risk</span> Positive Margins</h4><p>Failure to achieve negative margins is the most important risk factor; 3~5x increased recurrence risk</p></div><div class="list-item"><h4><span class="tag tag-red">High Risk</span> Fibrosarcomatous Type (FS-DFSP)</h4><p>FS subtype has significantly higher local recurrence and distant metastasis rates than classic type</p></div><div class="list-item"><h4><span class="tag tag-orange">Intermediate Risk</span> Large Tumor (>5cm)</h4><p>Larger tumors harder to achieve adequate margins; may have deeper infiltration</p></div><div class="list-item"><h4><span class="tag tag-orange">Intermediate Risk</span> Head & Neck Location</h4><p>Anatomic constraints make 2~3cm margins difficult</p></div><div class="list-item"><h4><span class="tag tag-orange">Intermediate Risk</span> Prior Recurrence History</h4><p>Each recurrence increases risk of subsequent recurrence</p></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128197;</span> Postoperative Follow-up</div><div class="timeline"><div class="timeline-item"><div class="time">First 2 years &mdash; Every 3~6 months</div><div class="desc">Physical exam + local ultrasound/MRI, focus on surgical area and draining lymph nodes</div></div><div class="timeline-item"><div class="time">Years 3~5 &mdash; Every 6 months</div><div class="desc">Physical exam, imaging as needed</div></div><div class="timeline-item"><div class="time">After 5 years &mdash; Annually</div><div class="desc">Long-term follow-up; late recurrence is rare but reported</div></div></div><div class="warn-box"><strong>Follow-up for at least 10 years recommended:</strong>DFSP can recur late; recurrence >20 years post-surgery has been reported. Long-term follow-up should not be neglected.</div></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#128736;</span> Prognosis Improvement Tips</div><div class="list-item"><h4>Choose Specialized Center at First Visit</h4><p>Seek care at a center with soft tissue sarcoma expertise; first surgery quality determines long-term prognosis</p></div><div class="list-item"><h4>Ensure Negative Margins</h4><p>Intraoperative frozen section margin confirmation is the most critical prognostic factor</p></div><div class="list-item"><h4>Adhere to Regular Follow-up</h4><p>Early detection of recurrence allows re-excision with still favorable prognosis</p></div><div class="list-item"><h4>Psychological Support</h4><p>Though low-grade, repeated recurrences may cause psychological stress; patient mental health matters</p></div></div>',  'tab-faq': '<div class="card"><div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#10067;</span> Frequently Asked Questions</div><div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Is DFSP cancer? Is it life-threatening?<span class="arrow">&#9654;</span></div><div class="faq-a">DFSP is a low-grade malignant tumor, a type of soft tissue sarcoma. Although it contains "sarcoma" (malignant) in its name, it differs from common "carcinoma": it grows slowly and very rarely metastasizes distantly (<5%). Overall 5-year survival rate is >95%. The vast majority of patients will not have their lives threatened by this disease, but its local invasiveness and high recurrence tendency require standardized treatment and long-term follow-up.</div></div><div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What if it recurs multiple times?<span class="arrow">&#9654;</span></div><div class="faq-a">DFSP does tend to recur locally, but each recurrence can be re-excised surgically. For repeated recurrences or difficulty achieving negative margins: (1) Choose Mohs micrographic surgery for margin certainty; (2) Postoperative adjuvant radiation to reduce recurrence; (3) Evaluate suitability for imatinib neoadjuvant or adjuvant targeted therapy. It is important to be treated at a soft tissue sarcoma specialty center for individualized treatment plans.</div></div><div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How long should imatinib be taken?<span class="arrow">&#9654;</span></div><div class="faq-a">Duration depends on treatment purpose: (1) Neoadjuvant (preoperative tumor shrinkage): typically 3~6 months, then surgery; (2) Unresectable maintenance: may require long-term use until progression or intolerance; (3) Metastatic DFSP: continuous use recommended. Specific duration should be determined by the treating physician based on efficacy and tolerability. Do not stop medication on your own.</div></div><div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Is chemotherapy needed after surgery?<span class="arrow">&#9654;</span></div><div class="faq-a">Classic DFSP typically does not require adjuvant chemotherapy. Chemotherapy has low sensitivity for classic DFSP and is not standard adjuvant therapy. However, with positive margins, adjuvant radiation may be considered; for FS-DFSP with metastatic risk, the physician may evaluate the necessity of targeted therapy or chemotherapy.</div></div><div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Can DFSP be inherited by the next generation?<span class="arrow">&#9654;</span></div><div class="faq-a">The COL1A1-PDGFB fusion gene in DFSP is a somatic-level mutation (acquired), not a germline mutation, so DFSP itself is not hereditary. However, NF1 patients have higher DFSP incidence, and NF1 is an autosomal dominant disorder. If the patient has NF1 or other hereditary tumor syndromes, genetic counseling is recommended.</div></div><div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What should I pay attention to in daily life?<span class="arrow">&#9654;</span></div><div class="faq-a">(1) Regular follow-up, do not neglect because "it doesn\'t hurt"; (2) Protect the surgical area skin, avoid trauma; (3) If new growth appears at the surgical area or elsewhere, see a doctor promptly; (4) Maintain healthy lifestyle, proper diet, moderate exercise; (5) Follow medication instructions, do not stop or adjust doses on your own; (6) Pay attention to mental health, stay positive.</div></div><div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">How to manage head/facial DFSP?<span class="arrow">&#9654;</span></div><div class="faq-a">Head/facial DFSP is challenging for 2~3cm margins due to anatomic constraints. Mohs micrographic surgery is preferred, achieving negative margins while maximally preserving normal tissue, function and appearance. If margins remain insufficient, adjuvant radiation may be added. Preoperative imatinib neoadjuvant therapy can also be considered to shrink the tumor and reduce surgical difficulty.</div></div><div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">What if DFSP is found during pregnancy?<span class="arrow">&#9654;</span></div><div class="faq-a">Multidisciplinary evaluation is needed. If the tumor is small and slow-growing, surgery can be deferred until after delivery; if rapidly progressive, surgery may be considered in the second trimester. Imatinib has teratogenic risk and is contraindicated during pregnancy. Individualized plan should be developed with obstetric and surgical collaboration.</div></div></div>',  'tab-guide': '<div class="card" style="border-left:4px solid var(--accent);"><div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#127979;</span> Hospital Visit Guide - The Third Affiliated Hospital of Sun Yat-sen University</div><p style="font-size:13px;color:var(--text-light);line-height:1.7;margin-bottom:10px;">This guide is for DFSP patients planning to visit Prof. Wan Miaojian at the Dermatology Department of The Third Affiliated Hospital of Sun Yat-sen University. Content is from patient experience sharing and is for reference only. The hospital is located in <strong>Guangzhou</strong> (not Zhongshan city).</p></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#128222;</span> Step 1: Online Consultation</div><div class="timeline"><div class="timeline-item"><div class="time">Download "HaoDF" App or WeChat Mini Program</div><div class="desc">Search for <strong>Wan Miaojian</strong> or <strong>Sun Yat-sen University Third Hospital</strong> to find Prof. Wan\'s homepage</div></div><div class="timeline-item"><div class="time">Choose Consultation Method</div><div class="desc"><strong>Text consultation</strong>: Fill in medical records and wait for Prof. Wan. He is busy; consultation times vary, generally <strong>after 10pm</strong>. Just leave a message.<br><strong>Phone consultation</strong>: Relatively faster.<br>Don\'t worry about text consultation expiring; Prof. Wan will gift extra reply credits.</div></div><div class="timeline-item"><div class="time">Apply for Pathology Consultation</div><div class="desc">Per Prof. Wan\'s request, <strong>mail pathology slides for consultation</strong>. Borrow <strong>pathology slides</strong> and <strong>IHC slides</strong> from your original hospital\'s pathology department. Also prepare <strong>8 blank slides</strong> as backup, 3um thick, sealed and baked!</div></div></div><div class="warn-box"><strong>&#9888; Important:</strong>Include a note with your <strong>patient ID number and contact information</strong> (written on blank paper!). The patient ID must be clearly written, otherwise the doctor cannot order pathology consultation and billing!</div></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128196;</span> Step 2: Registration & Filing</div><div class="list-item"><h4>Online Registration</h4><p>Register via the <strong>Sun Yat-sen Third Hospital App</strong> or <strong>WeChat Official Account</strong>. Select <strong>self-pay</strong> for registration; medical insurance will be processed after admission</p></div><div class="list-item"><h4>Wait for Consultation Results</h4><p>After the slides are received, check the hospital WeChat account for <strong>payment notice</strong> or wait for phone call within the same day or next day</p></div><div class="list-item"><h4>Results in ~1~3 Working Days After Payment</h4><p>Check via hospital WeChat, App, or Mini Program (<strong>Report Query &rarr; Pathology</strong>)</p></div><div class="list-item"><h4>Schedule Admission</h4><p>Send the pathology report to <strong>Prof. Wan via HaoDF</strong> to schedule admission. Typically <strong>Mon/Tue admission</strong>, <strong>Wed/Thu surgery</strong>, discharge next Tue</p></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128652;</span> Step 3: Transportation</div><p style="font-size:13px;color:var(--text-light);margin-bottom:12px;">Destination: <strong>The Third Affiliated Hospital of Sun Yat-sen University, Tianhe Campus</strong></p><table class="cmp-table"><tr><th>From</th><th>Route</th></tr><tr><td>Baiyun Airport</td><td>Line 3 North Extension &rarr; Tiyu Xilu Station &rarr; Transfer to Line 3 &rarr; Gangding Station Exit D</td></tr><tr><td>Guangzhou Station</td><td>Line 5 &rarr; Zhujiang New Town &rarr; Transfer to Line 3 &rarr; Gangding Station</td></tr><tr><td>Guangzhou North Station</td><td>Line 9 &rarr; Gaozeng &rarr; Transfer Line 3 North &rarr; Tiyu Xilu &rarr; Transfer Line 3 &rarr; Gangding</td></tr><tr><td>Guangzhou South Station</td><td>Line 7 &rarr; Hanxi Changlong &rarr; Transfer Line 3 &rarr; Gangding Station</td></tr><tr><td>Guangzhou East Station</td><td>Line 3 North &rarr; Tiyu Xilu &rarr; Transfer Line 3 &rarr; Gangding Station</td></tr></table></div><div class="card"><div class="card-title"><span class="icon" style="background:#f0e6fe;color:#6b21a8;">&#127973;</span> Step 4: Admission</div><div class="timeline"><div class="timeline-item"><div class="time">Go to Inpatient Department</div><div class="desc">Admission is on <strong>2nd Floor, Building 2</strong>. Enter the hospital main gate and Building 2 is on the right (the oldest building). Walk straight ~40m along the main path to between Buildings 2 and 6, turn right ~50m to find the <strong>Dermatology Ward entrance</strong> (a small door)</div></div><div class="timeline-item"><div class="time">Take Elevator to 2nd Floor</div><div class="desc">Go to the <strong>doctor\'s office</strong> for admission paperwork, then wait at the <strong>nursing station</strong> for an available bed</div></div><div class="timeline-item"><div class="time">Hospital Stay Notes</div><div class="desc">Stay is about <strong>one week</strong>. Admission deposit <strong>10,000~20,000 RMB</strong>. 5-bed and 2-bed rooms available; room assignment is not selectable due to limited beds</div></div><div class="timeline-item"><div class="time">Add Prof. Wan\'s WeChat</div><div class="desc">In the evening, Prof. Wan will visit the ward for rounds and add new patients\' WeChat for post-discharge consultation and follow-up</div></div></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#128736;</span> Step 5: Preoperative Preparation</div><div class="list-item"><h4>Preoperative Tests</h4><p>Surgery type and timing determined. Options: <strong>local anesthesia</strong> or <strong>general anesthesia</strong>. Mon-Thu for local, Fri for general</p></div><div class="list-item"><h4>Purchase Supplies</h4><p>Buy <strong>5 jin (~2.5kg) of rice</strong> and <strong>women\'s long stockings</strong>. Nurses will help make rice bags for postoperative wound compression. Available at hospital supermarket, nearby stores, or delivery</p></div><div class="list-item"><h4>Companion Notes</h4><p>Companions have bed, pillow, blanket. QR code at bedside for meal ordering. Takeout delivery available (to bedside). Many dining options nearby</p></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#9989;</span> Step 6: Surgery & Hospitalization</div><div class="timeline"><div class="timeline-item"><div class="time">Surgery Day</div><div class="desc">Relaxed atmosphere; you can chat with Prof. Wan during surgery. <strong>Intraoperative frozen section</strong> will check margins. Escort to ward by wheelchair (local anesthesia)</div></div><div class="timeline-item"><div class="time">Frozen Section Note</div><div class="desc">Frozen sections have error rate; additional peripheral samples will be taken for <strong>paraffin section</strong> margin review</div></div><div class="timeline-item"><div class="time">Postoperative Waiting</div><div class="desc">Wait for <strong>paraffin margin report</strong>, <strong>tumor IHC report</strong>, and <strong>FISH report</strong> (~1~3 working days). When paraffin report shows "margin 1-X negative for tumor", you are cleared for discharge</div></div><div class="timeline-item"><div class="time">During Hospitalization</div><div class="desc">Chat with fellow patients to pass time. Prof. Wan typically takes <strong>"graduation photos"</strong> with patients on Sunday evenings</div></div></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128694;</span> Step 7: Discharge & Follow-up</div><div class="list-item"><h4>Discharge Settlement</h4><p><strong>Employee medical insurance</strong>: out-of-pocket ~1,000~5,000 RMB. <strong>New rural cooperative</strong>: ~50% coverage. Specifics depend on local insurance policies</p></div><div class="list-item"><h4>Sick Leave & Insurance</h4><p>Request doctor to note rest duration on orders. For commercial insurance, print <strong>inpatient expense details</strong> and <strong>insurance settlement form</strong> at the first floor (also available via WeChat). Critical illness insurance may pay out as severe disease</p></div><div class="list-item"><h4>CT Films</h4><p>If lung nodules present, remember to <strong>pick up CT films</strong> for local hospital comparison (electronic films also available via WeChat)</p></div><div class="list-item"><h4>Medical Record Copy</h4><p>Two weeks after discharge, request <strong>medical record copies</strong> via hospital App or WeChat mini program</p></div><div class="list-item"><h4>Special Outpatient Disease Registration (Men Te)</h4><p>Bring all medical records and insurance card to local hospital for <strong>special outpatient disease registration</strong> (some areas allow online). Once approved, DFSP-related outpatient exams and targeted therapy costs are highly reimbursable</p></div><div class="list-item"><h4>Postoperative Targeted Therapy</h4><p>Classic type usually does not need targeted therapy. FS type requires targeted therapy based on sarcomatous proportion. For severe side effects, visit local hospital and WeChat Prof. Wan. Patients on targeted therapy should regularly check <strong>CBC, liver and kidney function</strong>; abnormal results can be sent to Prof. Wan via WeChat</p></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128137;</span> Postoperative Follow-up & Care</div><div class="list-item"><h4>Regular Follow-up</h4><p>Normal schedule: <strong>ultrasound every 3 months</strong>, <strong>chest CT annually</strong>. Results can be sent to Prof. Wan via WeChat. For in-person visits, book Mon/Tue morning ultrasound; see Prof. Wan at outpatient in afternoon <strong>without appointment</strong></p></div><div class="list-item"><h4>Wound Care</h4><p>After suture removal, use <strong>tension-reduction devices</strong> to prevent scar widening; after scab falls off, use <strong>scar sheets</strong> to prevent hypertrophic scarring; <strong>compression garments</strong> also available (customizable via Taobao)</p></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#9888;</span> Cross-Regional Medical Insurance Filing</div><div class="drug-detail">Out-of-province patients need <strong>cross-regional medical insurance filing</strong>. Available via Alipay or WeChat (search "cross-regional medical insurance", select "other cross-provincial temporary medical filing"). If you have a <strong>referral letter</strong> from local hospital, file at local insurance window for <strong>higher reimbursement rate</strong>.</div></div><div class="card" style="background:linear-gradient(135deg,#e6f5ee,#f0faf5);border:none;"><div style="text-align:center;padding:10px 0;"><div style="font-size:16px;font-weight:700;color:var(--primary-dark);margin-bottom:8px;">Follow medical advice, eat regularly, sleep early</div><div style="font-size:14px;color:var(--text-light);line-height:1.8;">Stay positive, don\'t overthink the subtype &mdash; <strong>clear margins are what matter</strong>!<br>Questions? Ask in the support group &mdash; fellow patients are incredibly warm and helpful.<br>Wishing everyone a smooth journey, all the best, and no recurrence!</div></div></div>',  'tab-care': '<div class="card" style="border-left:4px solid var(--accent);"><div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#129656;</span> Postoperative Scar Prevention</div><p style="font-size:13px;color:var(--text-light);line-height:1.7;">Content source: Prof. Wan Miaojian, Dermatologic Surgery, The Third Affiliated Hospital of Sun Yat-sen University</p></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#128161;</span> Core Concept</div><p style="font-size:14px;line-height:1.8;">Postoperative scar appearance depends on multiple factors. Beyond <strong>wound size, location</strong> and <strong>scar predisposition</strong>, <strong>postoperative prevention</strong> is critical; <strong>skin tension reduction is particularly important</strong> &mdash; high tension directly affects scar width and hypertrophy.</p></div><div class="card"><div class="card-title"><span class="icon" style="background:#f0e6fe;color:#6b21a8;">&#127919;</span> Tension Reduction Methods</div><div class="info-grid" style="grid-template-columns:1fr 1fr 1fr;"><div class="info-item"><div class="label">Botox Injection</div><div class="value" style="font-size:13px;">Reduce muscle tension</div></div><div class="info-item"><div class="label">Elastic Pressure Garment</div><div class="value" style="font-size:13px;">Continuous pressure</div></div><div class="info-item"><div class="label">Tension Strips/Devices</div><div class="value" style="font-size:13px;color:#c45a20;">Most Important</div></div></div><div style="margin-top:14px;padding:14px;background:var(--bg);border-radius:10px;font-size:13px;line-height:1.7;"><strong>Three core tension reduction tools:</strong><ol style="padding-left:20px;margin-top:6px;"><li style="margin-bottom:6px;"><strong>Steri-Strips</strong> (adhesive strips) &mdash; for linear incisions</li><li style="margin-bottom:6px;"><strong>Skin tension reduction device</strong> (zipper-type) &mdash; for longer incisions</li><li style="margin-bottom:6px;"><strong>Scar sheets</strong> (silicone sheets) &mdash; prevent hypertrophy + reduce tension</li></ol><div class="warn-box" style="margin-top:10px;margin-bottom:0;"><strong>&#9888; Duration:</strong>Use for at least <strong>3 months or longer</strong>!</div></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128221;</span> How to Use Steri-Strips</div><div class="timeline"><div class="timeline-item"><div class="time">Step 1 &mdash; Clean Wound</div><div class="desc">Clean wound with <strong>sterile normal saline</strong>, dry before applying strips</div></div><div class="timeline-item"><div class="time">Step 2 &mdash; Application Direction</div><div class="desc">Apply <strong>perpendicular to the incision</strong>! One strip is enough for short wounds, extending <strong>1cm</strong> beyond incision; use additional strips for longer wounds</div></div><div class="timeline-item"><div class="time">Step 3 &mdash; Compression Technique</div><div class="desc">Fix one side first, use another finger on the opposite side to <strong>push toward center slightly</strong>, creating <strong>slight wrinkling</strong>, then apply strip</div></div><div class="timeline-item"><div class="time">Step 4 &mdash; Replacement</div><div class="desc">Change every <strong>2 days</strong> or when adhesion weakens</div></div></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128279;</span> How to Use Skin Tension Device</div><div class="timeline"><div class="timeline-item"><div class="time">Fix one side</div><div class="desc">First fix one side of the device to skin</div></div><div class="timeline-item"><div class="time">Zipper tightening</div><div class="desc">Gradually tighten skin using <strong>zipper</strong>, until <strong>slight wrinkling</strong> appears</div></div></div></div><div class="card" style="background:#fff8f0;border:1px solid #fde0c4;"><div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#9888;</span> Important Precautions</div><div class="list-item" style="border-bottom:1px solid var(--border);"><h4><span class="tag tag-red">Allergy Warning</span> Don\'t reapply to same spot</h4><p>May cause <strong>skin redness, blisters</strong> and other allergic reactions; if allergy occurs, stop using strips</p></div><div class="list-item" style="border-bottom:1px solid var(--border);"><h4><span class="tag tag-orange">Replacement Frequency</span> Every 2 days or when adhesion weakens</h4><p>Don\'t wait until strips fall off; replace promptly when adhesion decreases</p></div><div class="list-item" style="border-bottom:1px solid var(--border);"><h4><span class="tag tag-blue">Key Technique</span> Perpendicular to incision + center compression</h4><p>Must be perpendicular to incision; push both sides toward center for slight wrinkling</p></div><div class="list-item"><h4><span class="tag tag-green">Duration</span> At least 3 months</h4><p>Tension reduction is the most critical measure for preventing scar widening; consistent use yields best results</p></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#128736;</span> Comprehensive Postoperative Care</div><div class="list-item" style="border-bottom:1px solid var(--border);"><h4>After Suture Removal</h4><p>Begin using <strong>tension reduction devices</strong> to prevent scar widening</p></div><div class="list-item" style="border-bottom:1px solid var(--border);"><h4>After Scab Falls Off</h4><p>Can use <strong>scar sheets</strong> (silicone sheets) to prevent hypertrophic scarring</p></div><div class="list-item" style="border-bottom:1px solid var(--border);"><h4>Compression Therapy</h4><p>Can also use <strong>elastic pressure garments</strong>, customizable via Taobao</p></div><div class="list-item"><h4>Regular Follow-up</h4><p>Normal schedule: <strong>ultrasound every 3 months</strong>, <strong>chest CT annually</strong>. Results can be sent to Prof. Wan via WeChat</p></div></div><div class="card" style="background:linear-gradient(135deg,#e6f5ee,#f0faf5);border:none;"><div style="text-align:center;padding:6px 0;"><div style="font-size:15px;font-weight:700;color:var(--primary-dark);margin-bottom:6px;">Consistent tension reduction prevents scarring</div><div style="font-size:13px;color:var(--text-light);line-height:1.8;">Tension reduction is the most critical part of postoperative scar prevention<br>Stick with it for at least 3 months &mdash; don\'t give up halfway!</div></div></div>',  'tab-discharge': '<div class="card" style="border-left:4px solid var(--accent);"><div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128209;</span> DFSP Postoperative Discharge Instructions</div><p style="font-size:13px;color:var(--text-light);">Content is divided into <strong>Classic Type</strong> and <strong>Fibrosarcomatous (FS) Type</strong> sections. Please refer to your specific subtype.</p></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#9989;</span> Classic Type Discharge Instructions</div><div class="section-title">1. Dressing Changes & Suture Removal</div><div class="list-item"><h4><span class="tag tag-green">Dressing</span> Daily dressing changes</h4><p>If not possible, every 2~3 days; keep wound <strong>clean, dry, no sweat or water</strong></p></div><div class="list-item"><h4><span class="tag tag-green">Suture Removal</span> 2~3 weeks post-surgery</h4><p>Small wounds <strong>2 weeks</strong>; large wounds or high-tension areas <strong>3 weeks</strong></p></div><div class="section-title">2. Regular Postoperative Follow-up</div><table class="cmp-table"><tr><th>Test</th><th>Frequency</th></tr><tr><td>Superficial Mass Ultrasound</td><td>First 3 years: every <strong>3~6 months</strong><br>Years 3~5: every <strong>6~12 months</strong></td></tr><tr><td>Chest CT</td><td>Annually, unenhanced sufficient</td></tr></table><div class="warn-box" style="margin-bottom:0;"><strong>&#9888; Send all follow-up results to Prof. Wan</strong></div><div class="section-title">3. Lifestyle</div><div class="info-grid"><div class="info-item"><div class="label">No Smoking</div><div class="value" style="font-size:20px;">&#128684;</div></div><div class="info-item"><div class="label">No Alcohol</div><div class="value" style="font-size:20px;">&#128694;</div></div><div class="info-item"><div class="label">No Late Nights</div><div class="value" style="font-size:20px;">&#128164;</div></div><div class="info-item"><div class="label">Avoid Spicy Food</div><div class="value" style="font-size:20px;">&#127798;</div></div></div><p style="font-size:13px;color:var(--text-light);margin-top:10px;">Minimize life, work, and study stress</p><div class="section-title">4. Scar Prevention</div><div class="list-item"><h4><span class="tag tag-blue">Silicone Scar Gel</span></h4><p>Purchase yourself; use <strong>after sutures removed and scab falls off</strong> for at least 3~6 months</p></div><div class="list-item"><h4><span class="tag tag-blue">Tension Reduction Device/Strips</span></h4><p>Can use <strong>before suture removal</strong>; 3~6 months</p></div><div class="list-item"><h4><span class="tag tag-blue">Directed Compression</span></h4><p>Abdomen: <strong>abdominal binder</strong>; limbs: <strong>elastic sleeves/stockings</strong>; chest/shoulder/back: <strong>compression garment</strong></p></div><div style="background:var(--bg);border-radius:10px;padding:14px;font-size:13px;line-height:1.7;margin-top:8px;"><strong>Compression method:</strong>Prepare appropriately sized <strong>towels, gauze</strong> etc., cover wound then apply elastic products. Use <strong>23 hours/day</strong> (except bathing) for <strong>1 year</strong>.</div><div class="section-title">5. Self-Examination</div><p style="font-size:13px;color:var(--text-light);line-height:1.7;">Palpate surgical area and surroundings for any <strong>round, firm</strong> or unclear masses. If uncertain, get an <strong>ultrasound</strong>:</p><div style="margin-top:8px;"><span class="tag tag-green">Reported as scar</span> &rarr; Regular observation<br><span class="tag tag-red">Suspicious/Recurrence</span> &rarr; Contact Prof. Wan</div></div><div class="card" style="border-left:4px solid #b91c1c;"><div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#9888;</span> FS Type Discharge Instructions</div><p style="font-size:13px;color:var(--text-light);margin-bottom:14px;">Dressing, lifestyle, and scar prevention same as above. Additional notes below:</p><div class="list-item"><h4><span class="tag tag-red">Follow-up</span> Lifelong monitoring</h4><p>FS type has higher recurrence risk than classic type; requires lifelong regular follow-up</p></div><div class="list-item"><h4><span class="tag tag-purple">Targeted Therapy</span> Imatinib (if FISH positive)</h4><p>Requires imatinib for adjuvant therapy</p></div><div class="list-item"><h4><span class="tag tag-blue">Drug Selection</span></h4><p>Domestic or imported brands both acceptable; most patients can use domestic. <strong>Do not frequently switch between tablets and capsules</strong></p></div><div class="drug-card targeted" style="margin-top:14px;"><div class="drug-name">Imatinib Medication Guide</div><div class="drug-detail"><strong>Start time:</strong>Within 3 months post-surgery<br><strong>Dosage:</strong>4 tablets daily (<strong>400mg</strong>), take in morning <strong>with food</strong>, with a large glass of water<br><br><strong>Monitoring:</strong><br>&bull; Check at <strong>1 month</strong> and <strong>4 months</strong><br>&bull; Then every <strong>3 months</strong>: <strong>CBC</strong> and <strong>liver/kidney function</strong><br><br><strong>Side effects:</strong><br>&bull; GI irritation<br>&bull; Edema (localized body swelling)<br>&bull; <strong>Mild side effects do not require discontinuation</strong><br><br><strong>Treatment duration:</strong>9~12 months, <strong>per physician orders</strong></div></div></div>',  'tab-insurance': '<div class="card" style="border-left:4px solid var(--accent);"><div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128176;</span> Insurance Claims Guide</div><p style="font-size:13px;color:var(--text-light);">DFSP is classified as a malignant tumor and meets critical illness insurance payout criteria. Below are key claims reference points.</p></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#9989;</span> Claims Eligibility</div><div class="list-item"><h4><span class="tag tag-green">Critical Illness Insurance</span> May payout as malignant tumor</h4><p>DFSP is a <strong>low-grade malignant soft tissue sarcoma</strong>. Pathology report stating "sarcoma/malignant" meets critical illness <strong>malignant tumor</strong> claim criteria.</p></div><div style="background:var(--bg);border-radius:10px;padding:14px;font-size:13px;line-height:1.7;margin:0 0 14px;"><strong style="color:var(--primary-dark);">ICD-O-3 Disease Codes (Core Basis for Insurance Claims)</strong><table class="cmp-table" style="margin-top:8px;margin-bottom:0;font-size:12px;"><tr><th>Subtype</th><th>ICD-O-3</th><th>ICD-O-3.2</th><th>CI Payout</th></tr><tr><td><strong>Classic DFSP</strong></td><td style="font-weight:700;color:#1a6b4a;">8832/3<br><span style="font-weight:400;color:var(--text-light);font-size:11px;">Malignant</span></td><td style="font-weight:700;color:#1a6b4a;">8832/1<br><span style="font-weight:400;color:var(--text-light);font-size:11px;">Borderline</span></td><td style="color:#1a6b4a;font-weight:700;">Payable</td></tr><tr><td><strong>FS-DFSP</strong></td><td style="font-weight:700;color:#b91c1c;">8832/3<br><span style="font-weight:400;color:var(--text-light);font-size:11px;">Malignant</span></td><td style="font-weight:700;color:#b91c1c;">8832/3<br><span style="font-weight:400;color:var(--text-light);font-size:11px;">Malignant</span></td><td style="color:#1a6b4a;font-weight:700;">Payable</td></tr><tr><td>Pigmented<br>(Bednar)</td><td>8833/3<br><span style="font-weight:400;color:var(--text-light);font-size:11px;">Malignant</span></td><td>8833/1<br><span style="font-weight:400;color:var(--text-light);font-size:11px;">Borderline</span></td><td>Payable</td></tr></table><div class="warn-box" style="margin-top:10px;margin-bottom:0;"><strong>&#9888; Key Note:</strong>Most insurance policies use <strong>ICD-O-3</strong> as standard (note: ICD-O-3.2 differs — it codes classic/pigmented as /1 = borderline, while ICD-O-3 codes them as /3 = malignant). Classic type code <strong>8832/3</strong>, pigmented <strong>8833/3</strong> (both /3 malignant in ICD-O-3), FS type <strong>8832/3</strong>. CI policies use ICD-O-3 behavior code <strong>/3</strong> for payout; all DFSP subtypes qualify, so <strong>insurers should pay</strong>. If denied, appeal or request review.</div></div><div class="list-item"><h4>ICD-10 Code</h4><p><strong>C49</strong> (malignant neoplasm of connective and other soft tissue of skin and subcutaneous tissue), for medical insurance reimbursement and registration</p></div><div class="list-item"><h4><span class="tag tag-blue">Medical Insurance</span> Hospitalization & surgery reimbursement</h4><p>Million-yuan medical insurance can cover hospitalization/surgery costs; note <strong>deductible</strong> and <strong>waiting period</strong> restrictions</p></div><div class="list-item"><h4><span class="tag tag-orange">Special Outpatient Disease</span> Outpatient disease-specific coverage</h4><p>In some regions, <strong>special outpatient disease registration</strong> enables high reimbursement for DFSP-related outpatient exams and targeted therapy</p></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#128221;</span> Required Claims Documents</div><table class="cmp-table"><tr><th>Document</th><th>Description</th><th>How to Obtain</th></tr><tr><td>Pathology Report</td><td>Core evidence of DFSP diagnosis</td><td>Hospital pathology department</td></tr><tr><td>Discharge Summary</td><td>Includes diagnosis and surgical method</td><td>Provided at discharge</td></tr><tr><td>Inpatient Expense Details</td><td>Itemized cost breakdown</td><td>First floor print / WeChat electronic</td></tr><tr><td>Insurance Settlement Form</td><td>Medical insurance reimbursement voucher</td><td>Hospital / WeChat</td></tr><tr><td>Invoice</td><td>Medical expense invoice</td><td>Hospital finance department</td></tr><tr><td>ID Card</td><td>Insured person identification</td><td>Self</td></tr><tr><td>Bank Card</td><td>Claims payment receiving account</td><td>Self</td></tr><tr><td>Policy No./Contract</td><td>Insurance contract info</td><td>Insurance company App</td></tr></table></div><div class="card"><div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128200;</span> Claims Process</div><div class="timeline"><div class="timeline-item"><div class="time">Step 1 &mdash; Report</div><div class="desc">Report claim promptly after discharge via insurance company <strong>App, phone, WeChat</strong>. Generally within <strong>10 days</strong> of discharge</div></div><div class="timeline-item"><div class="time">Step 2 &mdash; Prepare Documents</div><div class="desc">Collect required documents above; <strong>pathology report</strong> and <strong>discharge summary</strong> are most critical</div></div><div class="timeline-item"><div class="time">Step 3 &mdash; Submit Application</div><div class="desc">Submit online via App or mail paper documents. <strong>Photocopies</strong> must be hospital-stamped</div></div><div class="timeline-item"><div class="time">Step 4 &mdash; Review</div><div class="desc">Insurance company review, typically <strong>5~30 working days</strong>. May request additional documents</div></div><div class="timeline-item"><div class="time">Step 5 &mdash; Payout</div><div class="desc">After approval, claims payment transferred to designated bank account</div></div></div></div><div class="card" style="background:#fff8f0;border:1px solid #fde0c4;"><div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#9888;</span> Important Notes</div><div class="list-item" style="border-bottom:1px solid var(--border);"><h4>Print expense details at discharge</h4><p>Go to <strong>first floor to print inpatient expense details and insurance settlement form</strong> at discharge. Also available via WeChat. Difficult to obtain after discharge</p></div><div class="list-item" style="border-bottom:1px solid var(--border);"><h4>Medical Record Copies</h4><p>Available <strong>2 weeks after discharge</strong> via hospital App or WeChat mini program. Complete records needed for claims</p></div><div class="list-item" style="border-bottom:1px solid var(--border);"><h4>CT Film Pickup</h4><p>If lung nodules present, remember to <strong>pick up CT films</strong> for local hospital comparison (electronic films also available via WeChat)</p></div><div class="list-item" style="border-bottom:1px solid var(--border);"><h4>Waiting Period</h4><p>If diagnosed during <strong>waiting period</strong>, may not be payable. Read policy terms carefully</p></div><div class="list-item" style="border-bottom:1px solid var(--border);"><h4>Honest Disclosure</h4><p>Any <strong>pre-existing conditions</strong> must be honestly disclosed at enrollment, otherwise claims may be denied</p></div><div class="list-item"><h4>Special Outpatient Disease Registration</h4><p>Bring all medical records and insurance card to local hospital for <strong>special outpatient disease registration</strong> (some areas online). If eligible, must register &mdash; reimbursement rate is very high!</p></div></div><div class="card"><div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#128176;</span> Common Insurance Type Claims</div><div class="list-item"><h4><span class="tag tag-green">Critical Illness Insurance</span></h4><p>Lump-sum payout upon diagnosis. DFSP qualifies as malignant tumor. Note if policy has <strong>minor/moderate/severe</strong> tiered payouts; DFSP typically paid at severe level. <strong>ICD-O-3 code</strong> required (classic 8832/3, FS 8832/3)</p></div><div class="list-item"><h4><span class="tag tag-blue">Million-Yuan Medical Insurance</span></h4><p>Reimburses hospitalization/surgery costs (after deductible and medical insurance). Targeted therapy drugs may be covered; check if on <strong>drug list</strong></p></div><div class="list-item"><h4><span class="tag tag-orange">Accident Insurance</span></h4><p>DFSP is not an accidental injury; <strong>accident insurance does not cover it</strong></p></div><div class="list-item"><h4><span class="tag tag-purple">Life Insurance</span></h4><p>Products with death benefit may payout if DFSP causes death, but DFSP mortality is extremely low</p></div></div><div class="card" style="background:#f0f7ff;border:1px solid #c7ddf5;"><div class="card-title"><span class="icon" style="background:#e6f0fe;color:#1e40af;">&#127970;</span> Company Group Insurance & Union Subsidies</div><div class="list-item"><h4><span class="tag tag-blue">Group Insurance</span> Don\'t forget your company may have insurance!</h4><p>Many companies purchase <strong>group critical illness, group medical, group accident</strong> insurance. Check with <strong>HR department</strong> for coverage. Group insurance claims <strong>do not affect personal commercial insurance</strong> payouts</p></div><div class="list-item"><h4><span class="tag tag-green">Union Subsidies</span> Union may have serious illness subsidies</h4><p>Consult <strong>union serious illness assistance/condolence fund</strong> policies. Some unions offer one-time <strong>illness subsidies</strong> from thousands to tens of thousands, requiring diagnosis proof and pathology report</p></div><div class="list-item"><h4><span class="tag tag-orange">Supplementary Medical Insurance</span></h4><p>Some companies provide <strong>supplementary medical insurance</strong> covering out-of-pocket expenses beyond medical insurance. Prepare <strong>self-pay expense list</strong> and consult company HR</p></div><div class="list-item"><h4><span class="tag tag-purple">Mutual Aid Plans</span></h4><p>Some regions/industries have <strong>employee mutual aid protection plans</strong> (e.g., through general unions). Enrolled employees with serious illness may apply for mutual aid funds</p></div><div class="warn-box" style="margin-bottom:0;"><strong>&#128161; Tip:</strong>Group insurance, union subsidies, mutual aid funds, and personal commercial insurance are <strong>not mutually exclusive</strong> &mdash; you can <strong>claim from all channels</strong>. Check every available channel immediately after discharge!</div></div><div class="warn-box"><strong>&#9888; Disclaimer:</strong>The above is for reference only. Specific claim conditions and processes are subject to your <strong>insurance policy terms</strong>. For questions, contact your insurance agent or call the insurance company customer service.</div>'}
+
+function switchLang(lang) {
+  if (lang === currentLang) return;
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(function(b) {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  if (lang === 'en') {
+    if (Object.keys(enTranslations).length > 0) {
+      allTabs.forEach(function(tabId) {
+        if (enTranslations[tabId]) {
+          var page = document.getElementById(tabId + '-page');
+          if (page) page.querySelector('.page-scroll').innerHTML = enTranslations[tabId];
+        }
+      });
+    }
+    document.getElementById('headerTitle').textContent = 'Dragon Book';
+    document.getElementById('headerSub').textContent = 'DFSP Patient Guide & Strategy';
+    document.getElementById('badgeText').textContent = 'By Dragon Society';
+    document.getElementById('moreTitle').textContent = 'More';
+    document.querySelectorAll('.nav-item[data-tab] .nav-label').forEach(function(l) {
+      var tab = l.parentElement.dataset.tab;
+      if (enTabLabels[tab]) l.textContent = enTabLabels[tab];
+    });
+    document.querySelectorAll('.more-item .more-label').forEach(function(l) {
+      var tab = l.parentElement.dataset.tab;
+      if (enTabLabels[tab]) l.textContent = enTabLabels[tab];
+    });
+    document.documentElement.lang = 'en';
+  } else {
+    allTabs.forEach(function(tabId) {
+      if (zhContents[tabId]) {
+        var page = document.getElementById(tabId + '-page');
+        if (page) page.querySelector('.page-scroll').innerHTML = zhContents[tabId];
+      }
+    });
+    document.getElementById('headerTitle').textContent = zhContents.headerTitle;
+    document.getElementById('headerSub').textContent = zhContents.headerSub;
+    document.getElementById('badgeText').textContent = '屠龙会出品';
+    document.getElementById('moreTitle').textContent = '更多内容';
+    var zhLabels = {
+      'tab-guide':'攻略','tab-care':'护理','tab-discharge':'出院','tab-insurance':'理赔',
+      'tab-overview':'概述','tab-symptom':'症状','tab-diagnosis':'诊断',
+      'tab-treatment':'治疗','tab-medicine':'用药','tab-prognosis':'预后','tab-faq':'问答'
+    };
+    document.querySelectorAll('.nav-item[data-tab] .nav-label').forEach(function(l) {
+      var tab = l.parentElement.dataset.tab;
+      if (zhLabels[tab]) l.textContent = zhLabels[tab];
+    });
+    document.querySelectorAll('.more-item .more-label').forEach(function(l) {
+      var tab = l.parentElement.dataset.tab;
+      if (zhLabels[tab]) l.textContent = zhLabels[tab];
+    });
+    document.documentElement.lang = 'zh-CN';
+  }
+}
+</script>
+</body>
+</html>
