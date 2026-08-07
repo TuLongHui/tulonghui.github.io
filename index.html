@@ -174,7 +174,7 @@ html,body{height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFo
 .checklist col.col-done{width:12%;}
 .checklist col.col-reminder{width:20%;}
 .checklist col.col-status{width:16%;}
-/* ===== Visit Counter (busuanzi) ===== */
+/* ===== Visit Counter (baidu tongji) ===== */
 .visit-counter{margin-top:10px;padding:8px 14px;background:linear-gradient(135deg,#e6f5ee,#f0f7ff);border-radius:10px;font-size:12px;color:var(--text-light);display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;}
 .visit-counter .vc-item{display:flex;align-items:center;gap:4px;}
 .visit-counter .vc-num{font-size:16px;font-weight:700;color:var(--primary);font-family:'SF Mono','Consolas',monospace;}
@@ -189,6 +189,15 @@ p{font-size:13px;line-height:1.8;margin-bottom:8px;}
 h3{font-size:15px;margin-bottom:8px;color:var(--primary);}
 strong{color:var(--primary-dark);}
 </style>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c8477d55e516a3f493e3f90fdb81442a";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 </head>
 <body>
 
@@ -2048,8 +2057,8 @@ document.addEventListener('touchend', function(e) {
 var zhContents = {};
 var currentLang = 'zh';
 
-var zhFooterHtml = '<div class="app-footer"><div class="visit-counter"><div class="vc-item"><span>👀 总访问量</span><span class="vc-num" id="busuanzi_site_pv">...</span></div><div class="vc-divider"></div><div class="vc-item"><span>👥 访客数</span><span class="vc-num" id="busuanzi_site_uv">...</span></div></div><p>本程序仅供医学科普参考，不能替代专业医疗建议</p><p>如有相关症状，请及时就医诊治</p><p style="margin-top:8px;opacity:0.6;">内容来源：综合国内外临床指南及文献 &copy; 2026</p></div>';
-var enFooterHtml = '<div class="app-footer"><div class="visit-counter"><div class="vc-item"><span>👀 Total Views</span><span class="vc-num" id="busuanzi_site_pv">...</span></div><div class="vc-divider"></div><div class="vc-item"><span>👥 Visitors</span><span class="vc-num" id="busuanzi_site_uv">...</span></div></div><p>This app is for medical education reference only and cannot replace professional medical advice</p><p>If you have related symptoms, please seek medical attention promptly</p><p style="margin-top:8px;opacity:0.6;">Content sources: Comprehensive domestic and international clinical guidelines and literature &copy; 2026</p></div>';
+var zhFooterHtml = '<div class="app-footer"><p>本程序仅供医学科普参考，不能替代专业医疗建议</p><p>如有相关症状，请及时就医诊治</p><p style="margin-top:8px;opacity:0.6;">内容来源：综合国内外临床指南及文献 &copy; 2026</p></div>';
+var enFooterHtml = '<div class="app-footer"><p>This app is for medical education reference only and cannot replace professional medical advice</p><p>If you have related symptoms, please seek medical attention promptly</p><p style="margin-top:8px;opacity:0.6;">Content sources: Comprehensive domestic and international clinical guidelines and literature &copy; 2026</p></div>';
 
 function saveZhContent() {
   allTabs.forEach(function(tabId) {
@@ -2158,7 +2167,6 @@ function switchLang(lang) {
   }
 }
 </script>
-<!-- Busuanzi Visit Counter -->
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 </body>
 </html>
