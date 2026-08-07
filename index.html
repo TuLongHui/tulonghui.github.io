@@ -19,7 +19,7 @@ html,body{height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFo
 .app-header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--header-h);background:linear-gradient(135deg,var(--primary-dark),var(--primary),var(--primary-light));color:#fff;padding:calc(var(--safe-t) + 12px) 16px 12px;display:flex;align-items:center;gap:12px;}
 .badge{width:52px;height:52px;border-radius:12px;overflow:hidden;flex-shrink:0;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;}
 .badge img{width:100%;height:100%;object-fit:contain;}
-.header-text h1{font-size:22px;font-weight:700;line-height:1.3;letter-spacing:2px;}
+.header-text h1{font-size:22px;font-weight:700;line-height:1.3;letter-spacing:4px;font-family:'峄山碑篆体',serif;}
 .header-text .subtitle{font-size:12px;opacity:0.8;margin-top:2px;}
 .badge-text{font-size:10px;opacity:0.6;margin-top:4px;letter-spacing:1px;}
 
@@ -174,11 +174,11 @@ html,body{height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFo
 .checklist col.col-done{width:12%;}
 .checklist col.col-reminder{width:20%;}
 .checklist col.col-status{width:16%;}
-/* ===== Visit Counter (baidu tongji) ===== */
-.visit-counter{margin-top:10px;padding:8px 14px;background:linear-gradient(135deg,#e6f5ee,#f0f7ff);border-radius:10px;font-size:12px;color:var(--text-light);display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;}
+/* ===== Visit Counter ===== */
+.visit-counter{margin-top:10px;padding:8px 16px;background:linear-gradient(135deg,#e6f5ee,#f0f7ff);border-radius:20px;font-size:12px;color:var(--text-light);display:flex;justify-content:center;align-items:center;gap:12px;}
 .visit-counter .vc-item{display:flex;align-items:center;gap:4px;}
-.visit-counter .vc-num{font-size:16px;font-weight:700;color:var(--primary);font-family:'SF Mono','Consolas',monospace;}
-.visit-counter .vc-divider{width:1px;height:14px;background:var(--border);}
+.visit-counter .vc-num{font-size:15px;font-weight:700;color:var(--primary);font-family:'SF Mono','Consolas',monospace;}
+.visit-counter .vc-divider{width:1px;height:12px;background:var(--border);}
 .date-picker-row{display:flex;align-items:center;gap:10px;margin:10px 0 4px;padding:10px 12px;background:var(--bg);border-radius:10px;}
 .date-picker-row label{font-size:13px;font-weight:600;color:var(--primary-dark);white-space:nowrap;}
 .date-picker-row .dp-trigger{flex:1;}
@@ -189,6 +189,7 @@ p{font-size:13px;line-height:1.8;margin-bottom:8px;}
 h3{font-size:15px;margin-bottom:8px;color:var(--primary);}
 strong{color:var(--primary-dark);}
 </style>
+<link rel="stylesheet" href="https://cn-font.claude-code-best.win/packages/ysbzt/dist/%E5%B3%84%E5%B1%B1%E7%A2%91%E7%AF%86%E4%BD%93/result.css">
 <script>
 var _hmt = _hmt || [];
 (function() {
@@ -2057,8 +2058,8 @@ document.addEventListener('touchend', function(e) {
 var zhContents = {};
 var currentLang = 'zh';
 
-var zhFooterHtml = '<div class="app-footer"><p>本程序仅供医学科普参考，不能替代专业医疗建议</p><p>如有相关症状，请及时就医诊治</p><p style="margin-top:8px;opacity:0.6;">内容来源：综合国内外临床指南及文献 &copy; 2026</p></div>';
-var enFooterHtml = '<div class="app-footer"><p>This app is for medical education reference only and cannot replace professional medical advice</p><p>If you have related symptoms, please seek medical attention promptly</p><p style="margin-top:8px;opacity:0.6;">Content sources: Comprehensive domestic and international clinical guidelines and literature &copy; 2026</p></div>';
+var zhFooterHtml = '<div class="app-footer"><p>本程序仅供医学科普参考，不能替代专业医疗建议</p><p>如有相关症状，请及时就医诊治</p><p style="margin-top:8px;opacity:0.6;">内容来源：综合国内外临床指南及文献 &copy; 2026</p><div class="visit-counter"><span class="vc-item">\u{1F440} 总访问 <span class="vc-num vc-num-val">-</span></span></div></div>';
+var enFooterHtml = '<div class="app-footer"><p>This app is for medical education reference only and cannot replace professional medical advice</p><p>If you have related symptoms, please seek medical attention promptly</p><p style="margin-top:8px;opacity:0.6;">Content sources: Comprehensive domestic and international clinical guidelines and literature &copy; 2026</p><div class="visit-counter"><span class="vc-item">\u{1F440} Views <span class="vc-num vc-num-val">-</span></span></div></div>';
 
 function saveZhContent() {
   allTabs.forEach(function(tabId) {
@@ -2081,6 +2082,15 @@ function appendFooter(html) {
   });
 }
 appendFooter(zhFooterHtml);
+
+// ===== Visit Counter (Abacus API) =====
+fetch('https://abacus.jasoncameron.dev/hit/tulonghui/dfsp')
+  .then(function(r){return r.json();})
+  .then(function(d){
+    var nums = document.querySelectorAll('.vc-num-val');
+    nums.forEach(function(n){n.textContent = d.value;});
+  })
+  .catch(function(){});
 
 // restore user data on page load
 restoreDataOnLoad();
