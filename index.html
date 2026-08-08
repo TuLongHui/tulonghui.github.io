@@ -188,6 +188,14 @@ html,body{height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFo
 p{font-size:13px;line-height:1.8;margin-bottom:8px;}
 h3{font-size:15px;margin-bottom:8px;color:var(--primary);}
 strong{color:var(--primary-dark);}
+/* ===== Ancient Book Style ===== */
+.side-deco{position:fixed;top:var(--header-h);bottom:var(--nav-h);width:10px;z-index:50;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='10'%20height='20'%20viewBox='0%200%2010%2020'%3E%3Crect%20width='10'%20height='20'%20fill='%230f4a32'/%3E%3Cg%20fill='none'%20stroke='%23c4a35a'%20stroke-width='0.6'%3E%3Crect%20x='2'%20y='2'%20width='6'%20height='6'/%3E%3Crect%20x='3.5'%20y='3.5'%20width='3'%20height='3'/%3E%3Crect%20x='2'%20y='12'%20width='6'%20height='6'/%3E%3Crect%20x='3.5'%20y='13.5'%20width='3'%20height='3'/%3E%3C/g%3E%3C/svg%3E");background-repeat:repeat-y;}
+.side-deco-left{left:0;box-shadow:inset -1px 0 0 rgba(196,163,90,0.4);}
+.side-deco-right{right:0;box-shadow:inset 1px 0 0 rgba(196,163,90,0.4);}
+.app-header{border-bottom:2px solid #c4a35a;}
+.bottom-nav{border-top:2px solid #c4a35a;}
+.pages{background:radial-gradient(ellipse at 50% 0%,rgba(196,163,90,0.06),transparent 60%),var(--bg);}
+.card{border:1px solid var(--border);}
 </style>
 <link rel="stylesheet" href="https://cn-font.claude-code-best.win/packages/ysbzt/dist/%E5%B3%84%E5%B1%B1%E7%A2%91%E7%AF%86%E4%BD%93/result.css">
 <script>
@@ -201,6 +209,8 @@ var _hmt = _hmt || [];
 </script>
 </head>
 <body>
+<div class="side-deco side-deco-left"></div>
+<div class="side-deco side-deco-right"></div>
 
 <!-- Header -->
 <header class="app-header">
