@@ -165,6 +165,12 @@ html,body{height:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFo
 .checklist .ck-item{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;}
 .checklist .ck-box{width:20px;height:20px;border:2px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;}
 .checklist .ck-box.checked{background:var(--primary);border-color:var(--primary);}
+.checklist tr[data-months="f3"] .ck-box.checked,
+.checklist tr[data-months="f6"] .ck-box.checked,
+.checklist tr[data-months="f9"] .ck-box.checked,
+.checklist tr[data-months="f12"] .ck-box.checked,
+.checklist tr[data-months="f18"] .ck-box.checked,
+.checklist tr[data-months="f24"] .ck-box.checked{background:var(--primary-dark);border-color:var(--primary-dark);}
 .checklist .ck-box.checked::after{content:'✓';color:#fff;font-size:13px;font-weight:700;}
 .checklist .ck-text.checked{color:var(--text-light);text-decoration:line-through;}
 .checklist .date-cell{font-size:12px;color:var(--primary-dark);font-weight:600;white-space:nowrap;}
