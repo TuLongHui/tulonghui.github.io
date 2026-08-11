@@ -596,6 +596,27 @@ var _hmt = _hmt || [];
     <div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128209;</span> DFSP 术后复查注意事项</div>
     <p style="font-size:13px;color:var(--text-light);">以下内容分为<strong>通用型</strong>和<strong>肉瘤型（FS型）</strong>两部分，请根据自身分型参考</p>
     <div class="date-picker-row" style="margin-top:12px;"><label>手术日期：</label><input type="hidden" id="surgeryDate"><div class="dp-trigger" data-target="surgeryDate" onclick="openDatePicker('surgeryDate')"><span class="dp-trigger-text">点击选择日期</span><span class="dp-trigger-icon">&#128197;</span></div></div>
+
+    <div class="section-title" style="margin-top:14px;">术后定期复查</div>
+    <table class="checklist" id="followTable">
+      <colgroup><col class="col-time"><col class="col-exam"><col class="col-done"><col class="col-reminder"><col class="col-status"></colgroup>
+      <tr><th>时间节点</th><th>检查项目</th><th>完成</th><th>提醒日期</th><th></th></tr>
+      <tr data-months="f3"><td>术后3个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      <tr data-months="f6"><td>术后6个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      <tr data-months="f9"><td>术后9个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      <tr data-months="f12"><td>术后12个月</td><td>体表肿物彩超 + 胸部CT</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      <tr data-months="f15"><td>术后15个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      <tr data-months="f18"><td>术后18个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      <tr data-months="f21"><td>术后21个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      <tr data-months="f24"><td>术后24个月</td><td>体表肿物彩超 + 胸部CT</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      <tr data-months="f30"><td>术后30个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      <tr data-months="f36"><td>术后36个月</td><td>体表肿物彩超 + 胸部CT</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      <tr data-months="f48"><td>术后48个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      <tr data-months="f60"><td>术后60个月</td><td>体表肿物彩超 + 胸部CT</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+    </table>
+    <div class="warn-box" style="margin-bottom:0;">
+      <strong>&#9888; 所有复查检查结果发给万教授看</strong>
+    </div>
   </div>
 
   <!-- 通用型 -->
@@ -616,28 +637,7 @@ var _hmt = _hmt || [];
       </div>
     </div>
 
-    <div class="section-title">2. 术后定期复查</div>
-    <table class="checklist" id="followTable">
-      <colgroup><col class="col-time"><col class="col-exam"><col class="col-done"><col class="col-reminder"><col class="col-status"></colgroup>
-      <tr><th>时间节点</th><th>检查项目</th><th>完成</th><th>提醒日期</th><th></th></tr>
-      <tr data-months="f3"><td>术后3个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="f6"><td>术后6个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="f9"><td>术后9个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="f12"><td>术后12个月</td><td>体表肿物彩超 + 胸部CT</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="f15"><td>术后15个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="f18"><td>术后18个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="f21"><td>术后21个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="f24"><td>术后24个月</td><td>体表肿物彩超 + 胸部CT</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="f30"><td>术后30个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="f36"><td>术后36个月</td><td>体表肿物彩超 + 胸部CT</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="f48"><td>术后48个月</td><td>体表肿物彩超</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="f60"><td>术后60个月</td><td>体表肿物彩超 + 胸部CT</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-    </table>
-    <div class="warn-box" style="margin-bottom:0;">
-      <strong>&#9888; 所有复查检查结果发给万教授看</strong>
-    </div>
-
-    <div class="section-title">3. 生活方式</div>
+    <div class="section-title">2. 生活方式</div>
     <div class="info-grid">
       <div class="info-item">
         <div class="label">不抽烟</div>
@@ -658,7 +658,7 @@ var _hmt = _hmt || [];
     </div>
     <p style="font-size:13px;color:var(--text-light);margin-top:10px;">生活压力、工作压力、学习压力不要太大</p>
 
-    <div class="section-title">4. 自查</div>
+    <div class="section-title">3. 自查</div>
     <p style="font-size:13px;color:var(--text-light);line-height:1.7;">自己摸手术部位及周边有无长出<strong>圆圆、硬硬</strong>的或不明确的肿块，有疑问去做<strong>彩超</strong>：</p>
     <div style="margin-top:8px;">
       <span class="tag tag-green">报瘢痕</span> → 定期观察即可<br>
