@@ -594,8 +594,10 @@ var _hmt = _hmt || [];
         <div class="page-scroll">
           <div class="card" style="border-left:4px solid var(--accent);">
     <div class="card-title"><span class="icon" style="background:#fef0e6;color:#c45a20;">&#128209;</span> 术后康复注意事项</div>
+    <div class="date-picker-row" style="margin-top:12px;"><label>手术日期：</label><input type="hidden" id="surgeryDate"><div class="dp-trigger" data-target="surgeryDate" onclick="openDatePicker('surgeryDate')"><span class="dp-trigger-text">点击选择日期</span><span class="dp-trigger-icon">&#128197;</span></div></div>
+    <div class="date-picker-row" style="margin-top:6px;align-items:center;"><label>肉瘤型请勾选：</label><input type="checkbox" id="fsTypeSelect" onchange="toggleFSType()" style="width:18px;height:18px;cursor:pointer;accent-color:var(--primary-dark);"></div>
 
-    <div class="section-title">1. 换药拆线</div>
+    <div class="section-title" style="margin-top:14px;">1. 换药拆线</div>
     <div class="list-item">
       <h4><span class="tag tag-green">换药</span> 每天换药</h4>
       <p>如做不到可2~3天换一次，但要保持<strong>伤口干净</strong>，不出汗、不沾水、不弄脏</p>
@@ -640,9 +642,7 @@ var _hmt = _hmt || [];
 
   <div class="card">
     <div class="card-title"><span class="icon" style="background:#e6f5ee;color:#1a6b4a;">&#9989;</span> 定期复查</div>
-    <div class="date-picker-row" style="margin-top:12px;"><label>手术日期：</label><input type="hidden" id="surgeryDate"><div class="dp-trigger" data-target="surgeryDate" onclick="openDatePicker('surgeryDate')"><span class="dp-trigger-text">点击选择日期</span><span class="dp-trigger-icon">&#128197;</span></div></div>
-
-    <div class="section-title" style="margin-top:14px;">术后定期复查</div>
+    <div class="section-title" style="margin-top:14px;">术后定期复查计划表</div>
     <table class="checklist" id="followTable">
       <colgroup><col class="col-time"><col class="col-exam"><col class="col-done"><col class="col-reminder"><col class="col-status"></colgroup>
       <tr><th>时间节点</th><th>检查项目</th><th>完成</th><th>提醒日期</th><th></th></tr>
@@ -664,55 +664,57 @@ var _hmt = _hmt || [];
     </div>
   </div>
 
-  <div class="card" style="border-left:4px solid #b91c1c;">
-    <div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#9888;</span> 肉瘤型（FS型）专属</div>
-    <p style="font-size:13px;color:var(--text-light);margin-bottom:14px;">以下为肉瘤型患者额外注意事项：</p>
+  <div id="fsTypeContent" style="display:none;">
+<div class="card" style="border-left:4px solid #b91c1c;">
+      <div class="card-title"><span class="icon" style="background:#fde8e8;color:#b91c1c;">&#9888;</span> 肉瘤型（FS型）专属</div>
+      <p style="font-size:13px;color:var(--text-light);margin-bottom:14px;">以下为肉瘤型患者额外注意事项：</p>
 
-    <div class="list-item">
-      <h4><span class="tag tag-red">随访周期</span> 终身随访</h4>
-      <p>肉瘤型复发风险较经典型高，需终身定期复查</p>
+      <div class="list-item">
+        <h4><span class="tag tag-red">随访周期</span> 终身随访</h4>
+        <p>肉瘤型复发风险较经典型高，需终身定期复查</p>
+      </div>
+
+      <div class="list-item">
+        <h4><span class="tag tag-purple">靶向药</span> 伊马替尼（基因检测FISH阳性）</h4>
+        <p>需服用伊马替尼进行辅助治疗</p>
+      </div>
+
+      <div class="list-item">
+        <h4><span class="tag tag-blue">药物选择</span></h4>
+        <p>国产和进口均可；大部分吃国产即可。<strong>片剂和胶囊不要频繁更换</strong></p>
+      </div>
+
+      <div class="section-title" style="margin-top:14px;">伊马替尼服药监测计划</div>
+      <div class="date-picker-row"><label>首次服药日期：</label><input type="hidden" id="medStartDate"><div class="dp-trigger" data-target="medStartDate" onclick="openDatePicker('medStartDate')"><span class="dp-trigger-text">点击选择日期</span><span class="dp-trigger-icon">&#128197;</span></div></div>
+      <table class="checklist" id="medTable">
+        <colgroup><col class="col-time"><col class="col-exam"><col class="col-done"><col class="col-reminder"><col class="col-status"></colgroup>
+        <tr><th>时间节点</th><th>检查项目</th><th>完成</th><th>提醒日期</th><th></th></tr>
+        <tr data-months="m1"><td>服药1个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+        <tr data-months="m4"><td>服药4个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+        <tr data-months="m7"><td>服药7个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+        <tr data-months="m10"><td>服药10个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+        <tr data-months="m12"><td>服药12个月</td><td>血常规 + 肝功肾功生化 + 评估停药</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      </table>
     </div>
 
-    <div class="list-item">
-      <h4><span class="tag tag-purple">靶向药</span> 伊马替尼（基因检测FISH阳性）</h4>
-      <p>需服用伊马替尼进行辅助治疗</p>
-    </div>
-
-    <div class="list-item">
-      <h4><span class="tag tag-blue">药物选择</span></h4>
-      <p>国产和进口均可；大部分吃国产即可。<strong>片剂和胶囊不要频繁更换</strong></p>
-    </div>
-
-    <div class="section-title" style="margin-top:14px;">伊马替尼服药监测计划</div>
-    <div class="date-picker-row"><label>首次服药日期：</label><input type="hidden" id="medStartDate"><div class="dp-trigger" data-target="medStartDate" onclick="openDatePicker('medStartDate')"><span class="dp-trigger-text">点击选择日期</span><span class="dp-trigger-icon">&#128197;</span></div></div>
-    <table class="checklist" id="medTable">
-      <colgroup><col class="col-time"><col class="col-exam"><col class="col-done"><col class="col-reminder"><col class="col-status"></colgroup>
-      <tr><th>时间节点</th><th>检查项目</th><th>完成</th><th>提醒日期</th><th></th></tr>
-      <tr data-months="m1"><td>服药1个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="m4"><td>服药4个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="m7"><td>服药7个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="m10"><td>服药10个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="m12"><td>服药12个月</td><td>血常规 + 肝功肾功生化 + 评估停药</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-    </table>
+    <div class="card" style="margin-top:14px;">
+      <div class="card-title"><span class="icon" style="background:#fef3c7;color:#f59e0b;">&#128138;</span> 伊马替尼服药指南</div>
+      <div class="drug-detail">
+        <strong>开始时间：</strong>术后三个月内开始吃<br>
+        <strong>用法用量：</strong>每天早上<strong>4片</strong>（400mg），早上<strong>随餐服用</strong>，喝一大杯水<br><br>
+        <strong>不良反应：</strong><br>
+        &bull; 胃肠道刺激<br>
+        &bull; 水肿（身体局部水肿）<br>
+        &bull; <strong>轻度不良反应不停药</strong><br><br>
+        <strong>服药周期：</strong>9~12个月，<strong>以医嘱为准</strong><br><br>
+        <strong>产品购买：</strong><br>
+        &bull; <strong>进口原研：</strong><span class="ins-link" onclick="showDrugModal('gleevec')">诺华「格列卫」</span>（甲磺酸伊马替尼片），400mg/片<br>
+        &bull; <strong>国产仿制：</strong><span class="ins-link" onclick="showDrugModal('generic')">豪森「昕维」、正大天晴「格尼可」</span>等，400mg/片<br>
+        &bull; <strong>购买渠道：</strong>医院药房凭处方购买（<span class="ins-link" onclick="showInsModal()">部分可走医保</span>）、京东健康/阿里健康等网上药店（需上传处方）<br>
+        &bull; <strong>提示：</strong>国产和进口疗效相当，大部分患者吃国产即可；片剂和胶囊不要频繁更换
+      </div>
   </div>
 
-  <div class="card" style="margin-top:14px;">
-    <div class="card-title"><span class="icon" style="background:#fef3c7;color:#f59e0b;">&#128138;</span> 伊马替尼服药指南</div>
-    <div class="drug-detail">
-      <strong>开始时间：</strong>术后三个月内开始吃<br>
-      <strong>用法用量：</strong>每天早上<strong>4片</strong>（400mg），早上<strong>随餐服用</strong>，喝一大杯水<br><br>
-      <strong>不良反应：</strong><br>
-      &bull; 胃肠道刺激<br>
-      &bull; 水肿（身体局部水肿）<br>
-      &bull; <strong>轻度不良反应不停药</strong><br><br>
-      <strong>服药周期：</strong>9~12个月，<strong>以医嘱为准</strong><br><br>
-      <strong>产品购买：</strong><br>
-      &bull; <strong>进口原研：</strong><span class="ins-link" onclick="showDrugModal('gleevec')">诺华「格列卫」</span>（甲磺酸伊马替尼片），400mg/片<br>
-      &bull; <strong>国产仿制：</strong><span class="ins-link" onclick="showDrugModal('generic')">豪森「昕维」、正大天晴「格尼可」</span>等，400mg/片<br>
-      &bull; <strong>购买渠道：</strong>医院药房凭处方购买（<span class="ins-link" onclick="showInsModal()">部分可走医保</span>）、京东健康/阿里健康等网上药店（需上传处方）<br>
-      &bull; <strong>提示：</strong>国产和进口疗效相当，大部分患者吃国产即可；片剂和胶囊不要频繁更换
-    </div>
-  </div>
         </div>
       </div>
 
@@ -1595,7 +1597,6 @@ var _hmt = _hmt || [];
   </div>
 </div>
 
-
 <!-- Custom Date Picker Modal -->
 <div class="dp-overlay" id="dpOverlay" onclick="closeDatePicker(event)">
   <div class="dp-box" onclick="event.stopPropagation()">
@@ -2033,6 +2034,18 @@ function calcFollowDates() {
 }
 function calcMedDates() { calcDatesFrom('medStartDate', 'medTable'); }
 
+function toggleFSType() {
+  var sel = document.getElementById('fsTypeSelect');
+  var content = document.getElementById('fsTypeContent');
+  if (!sel || !content) return;
+  if (sel.checked) {
+    content.style.display = '';
+  } else {
+    content.style.display = 'none';
+  }
+  saveUserData();
+}
+
 // ===== User Data Persistence (auto device ID) =====
 var LS_PREFIX = 'tulonghui_dfsp_';
 var deviceId = '';
@@ -2073,6 +2086,8 @@ function saveUserData() {
     }
   });
   data.checkedRows = checkedRows;
+  var fsSel = document.getElementById('fsTypeSelect');
+  if (fsSel) data.fsType = fsSel.checked ? 'yes' : 'no';
   try { localStorage.setItem(key, JSON.stringify(data)); } catch(e) {}
 }
 
@@ -2091,6 +2106,8 @@ function loadUserData() {
     });
   }
   isLoading = true;
+  var fsSel = document.getElementById('fsTypeSelect');
+  if (fsSel && data.fsType) { fsSel.checked = (data.fsType === 'yes'); toggleFSType(); }
   var sd = document.getElementById('surgeryDate');
   if (sd && data.surgeryDate) { sd.value = data.surgeryDate; calcFollowDates(); }
   var md = document.getElementById('medStartDate');
@@ -2266,7 +2283,6 @@ function switchLang(lang) {
   }
 }
 </script>
-
 
 </body>
 </html>
