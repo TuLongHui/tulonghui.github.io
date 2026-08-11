@@ -685,8 +685,20 @@ var _hmt = _hmt || [];
       <p>国产和进口均可；大部分吃国产即可。<strong>片剂和胶囊不要频繁更换</strong></p>
     </div>
 
-    <div class="drug-card targeted" style="margin-top:14px;">
-      <div class="drug-name">伊马替尼服药指南</div>
+    <div class="section-title" style="margin-top:14px;">伊马替尼服药监测计划</div>
+    <div class="date-picker-row"><label>首次服药日期：</label><input type="hidden" id="medStartDate"><div class="dp-trigger" data-target="medStartDate" onclick="openDatePicker('medStartDate')"><span class="dp-trigger-text">点击选择日期</span><span class="dp-trigger-icon">&#128197;</span></div></div>
+    <table class="checklist" id="medTable">
+      <colgroup><col class="col-time"><col class="col-exam"><col class="col-done"><col class="col-reminder"><col class="col-status"></colgroup>
+      <tr><th>时间节点</th><th>检查项目</th><th>完成</th><th>提醒日期</th><th></th></tr>
+      <tr data-months="m1"><td>服药1个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      <tr data-months="m4"><td>服药4个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      <tr data-months="m7"><td>服药7个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      <tr data-months="m10"><td>服药10个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+      <tr data-months="m12"><td>服药12个月</td><td>血常规 + 肝功肾功生化 + 评估停药</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
+    </table>
+
+    <div class="card" style="margin-top:14px;">
+      <div class="card-title"><span class="icon" style="background:#fef3c7;color:#f59e0b;">&#128138;</span> 伊马替尼服药指南</div>
       <div class="drug-detail">
         <strong>开始时间：</strong>术后三个月内开始吃<br>
         <strong>用法用量：</strong>每天早上<strong>4片</strong>（400mg），早上<strong>随餐服用</strong>，喝一大杯水<br><br>
@@ -702,18 +714,6 @@ var _hmt = _hmt || [];
         &bull; <strong>提示：</strong>国产和进口疗效相当，大部分患者吃国产即可；片剂和胶囊不要频繁更换
       </div>
     </div>
-
-    <div class="section-title" style="margin-top:14px;">伊马替尼服药监测计划</div>
-    <div class="date-picker-row"><label>首次服药日期：</label><input type="hidden" id="medStartDate"><div class="dp-trigger" data-target="medStartDate" onclick="openDatePicker('medStartDate')"><span class="dp-trigger-text">点击选择日期</span><span class="dp-trigger-icon">&#128197;</span></div></div>
-    <table class="checklist" id="medTable">
-      <colgroup><col class="col-time"><col class="col-exam"><col class="col-done"><col class="col-reminder"><col class="col-status"></colgroup>
-      <tr><th>时间节点</th><th>检查项目</th><th>完成</th><th>提醒日期</th><th></th></tr>
-      <tr data-months="m1"><td>服药1个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="m4"><td>服药4个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="m7"><td>服药7个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="m10"><td>服药10个月</td><td>血常规 + 肝功肾功生化</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-      <tr data-months="m12"><td>服药12个月</td><td>血常规 + 肝功肾功生化 + 评估停药</td><td><div class="ck-item" onclick="toggleCk(this)"><div class="ck-box"></div><span class="ck-text">已查</span></div></td><td class="date-cell empty">选日期后显示</td><td class="status-cell"></td></tr>
-    </table>
   </div>
         </div>
       </div>
