@@ -24,21 +24,24 @@ overflow-x:hidden}
 .wrap>:nth-child(3){animation-delay:.4s}
 .wrap>:nth-child(4){animation-delay:.55s}
 .wrap>:nth-child(5){animation-delay:.7s}
+.wrap>:nth-child(6){animation-delay:.85s}
 .taiji{display:inline-block;width:20px;height:20px;margin-bottom:.8rem;opacity:.35;animation:spin 12s linear infinite}
 .badge{display:inline-block;padding:6px 20px;border:1px solid rgba(232,199,100,.3);border-radius:20px;
 font-size:13px;letter-spacing:4px;color:rgba(232,199,100,.7);margin-bottom:2rem;background:rgba(232,199,100,.04)}
-.title{font-size:2.6rem;color:#E8C764;letter-spacing:.3em;text-shadow:0 0 20px rgba(232,199,100,.3),0 2px 4px rgba(0,0,0,.8);margin-bottom:.5rem;font-family:'SiyinSong','STKaiti','KaiTi',serif}
+.title{font-size:2.6rem;color:#E8C764;letter-spacing:.3em;text-shadow:0 0 20px rgba(232,199,100,.3),0 2px 4px rgba(0,0,0,.8);margin-bottom:.5rem}
 .subtitle{font-size:14px;letter-spacing:6px;color:rgba(232,199,100,.5);margin-bottom:2.5rem}
-.qr{position:relative;display:inline-block;padding:16px;background:#fff;
-box-shadow:0 0 0 1px rgba(232,199,100,.2),0 0 40px rgba(232,199,100,.08),0 20px 60px rgba(0,0,0,.4);margin-bottom:2rem}
-.qr::before{content:'';position:absolute;inset:-8px;border:1px solid rgba(232,199,100,.15);border-radius:0}
-.corner{position:absolute;width:18px;height:18px;border:2px solid #E8C764}
+.qr-wrap{position:relative;display:inline-block;margin-bottom:2rem}
+.qr{padding:16px;background:#fff;
+box-shadow:0 0 0 1px rgba(232,199,100,.2),0 0 40px rgba(232,199,100,.08),0 20px 60px rgba(0,0,0,.4)}
+.qr::before{content:'';position:absolute;inset:-8px;border:1px solid rgba(232,199,100,.15);pointer-events:none}
+.corner{position:absolute;width:18px;height:18px;border:2px solid #E8C764;z-index:2}
 .corner.tl{top:-12px;left:-12px;border-right:none;border-bottom:none}
 .corner.tr{top:-12px;right:-12px;border-left:none;border-bottom:none}
 .corner.bl{bottom:-12px;left:-12px;border-right:none;border-top:none}
 .corner.br{bottom:-12px;right:-12px;border-left:none;border-top:none}
-.qr img{display:block;width:258px;height:258px;-webkit-touch-callout:default;-webkit-user-select:none;user-select:none}
+.qr img{display:block;width:258px;height:258px;-webkit-touch-callout:default;-webkit-user-select:none;user-select:none;pointer-events:auto}
 .scan-text{font-size:18px;color:#0B1F14;margin-top:12px;letter-spacing:2px;font-weight:600}
+.save-tip{font-size:12px;color:#999;margin-top:6px;line-height:1.5}
 .notice{font-size:15px;color:rgba(232,199,100,.65);line-height:1.8;margin-bottom:1.5rem}
 .notice b{color:#E8C764}
 .footer{margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(232,199,100,.08);font-size:12px;color:rgba(232,199,100,.3);letter-spacing:2px}
@@ -55,7 +58,10 @@ box-shadow:0 0 0 1px rgba(232,199,100,.2),0 0 40px rgba(232,199,100,.08),0 20px 
 </svg>
 <div class="badge">已迁移至微信小程序</div>
 <div><div class="title">屠隆宝典</div><div class="subtitle">DFSP 患者科普攻略</div></div>
-<div class="qr"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><img src="wechat-code.jpg" alt="屠隆宝典微信小程序码"><div class="scan-text">微信扫码查看</div></div>
+<div class="qr-wrap">
+<div class="qr"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><img src="wechat-code.jpg" alt="屠隆宝典微信小程序码" oncontextmenu="return false"><div class="scan-text">微信扫码查看</div></div>
+<div class="save-tip">长按图片保存到相册，再用微信扫一扫</div>
+</div>
 <p class="notice"><b>屠隆宝典</b>已全面迁移至微信小程序<br>请使用微信扫描上方小程序码<br>获取最新的 DFSP 患者科普攻略</p>
 <div class="footer">屠隆会出品</div>
 </div>
