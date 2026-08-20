@@ -1,4 +1,4 @@
-﻿﻿﻿﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -24,6 +24,7 @@ overflow-x:hidden}
 .wrap>:nth-child(3){animation-delay:.4s}
 .wrap>:nth-child(4){animation-delay:.55s}
 .wrap>:nth-child(5){animation-delay:.7s}
+.taiji{display:inline-block;width:20px;height:20px;margin-bottom:.8rem;opacity:.35;animation:spin 12s linear infinite}
 .badge{display:inline-block;padding:6px 20px;border:1px solid rgba(232,199,100,.3);border-radius:20px;
 font-size:13px;letter-spacing:4px;color:rgba(232,199,100,.7);margin-bottom:2rem;background:rgba(232,199,100,.04)}
 .title{font-size:2.6rem;color:#E8C764;letter-spacing:.3em;text-shadow:0 0 20px rgba(232,199,100,.3),0 2px 4px rgba(0,0,0,.8);margin-bottom:.5rem;font-family:'SiyinSong','STKaiti','KaiTi',serif}
@@ -41,20 +42,24 @@ box-shadow:0 0 0 1px rgba(232,199,100,.2),0 0 40px rgba(232,199,100,.08),0 20px 
 .notice{font-size:15px;color:rgba(232,199,100,.65);line-height:1.8;margin-bottom:1.5rem}
 .notice b{color:#E8C764}
 .footer{margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(232,199,100,.08);font-size:12px;color:rgba(232,199,100,.3);letter-spacing:2px}
-.footer a{color:rgba(232,199,100,.5);text-decoration:none;border-bottom:1px dashed rgba(232,199,100,.2)}
 </style>
 </head>
 <body>
 <div id="sf"></div>
 <div class="wrap">
+<svg class="taiji" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<circle cx="50" cy="50" r="48" fill="none" stroke="#E8C764" stroke-width="2"/>
+<path d="M50,2 A48,48 0 0,1 50,98 A24,24 0 0,1 50,50 A24,24 0 0,0 50,2 Z" fill="#E8C764"/>
+<circle cx="50" cy="26" r="6" fill="#0B1F14"/>
+<circle cx="50" cy="74" r="6" fill="#E8C764"/>
+</svg>
 <div class="badge">已迁移至微信小程序</div>
 <div><div class="title">屠隆宝典</div><div class="subtitle">DFSP 患者科普攻略</div></div>
 <div class="qr"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><img src="wechat-code.jpg" alt="屠隆宝典微信小程序码"><div class="scan-text">微信扫码查看</div></div>
 <p class="notice"><b>屠隆宝典</b>已全面迁移至微信小程序<br>请使用微信扫描上方小程序码<br>获取最新的 DFSP 患者科普攻略</p>
-<div class="footer">TuLongHui · 屠隆宝典攻略<br><a href="https://github.com/TuLongHui/tulonghui.github.io">GitHub</a></div>
+<div class="footer">屠隆会出品</div>
 </div>
 <script>
-// 星空+流星
 var sf=document.getElementById('sf');
 for(var i=0;i<30;i++){var s=document.createElement('div');s.className='star';s.style.cssText='width:'+(Math.random()*2+1)+'px;height:'+(Math.random()*2+1)+'px;background:#E8C76450;position:fixed;left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;animation-delay:'+Math.random()*3+'s;opacity:'+(Math.random()*.6+.2);sf.appendChild(s)}
 for(var j=0;j<3;j++){var m=document.createElement('div');m.style.cssText='position:fixed;width:2px;height:2px;background:#E8C764;border-radius:50%;box-shadow:0 0 6px #E8C764;left:'+Math.random()*100+'%;top:'+Math.random()*50+'%;animation:shoot '+(3+Math.random()*4)+'s ease-in '+(Math.random()*5)+'s infinite';sf.appendChild(m)}
