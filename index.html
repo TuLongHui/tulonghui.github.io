@@ -1,4 +1,4 @@
-﻿﻿﻿﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -27,26 +27,26 @@ overflow-x:hidden}
 .wrap>:nth-child(6){animation-delay:.85s}
 .taiji{display:inline-block;width:20px;height:20px;margin-bottom:.8rem;opacity:.35;animation:spin 12s linear infinite}
 .badge{display:inline-block;padding:6px 20px;border:1px solid rgba(232,199,100,.3);border-radius:20px;
-font-size:13px;letter-spacing:4px;color:rgba(232,199,100,.7);margin-bottom:.2rem;background:rgba(232,199,100,.04)}
+font-size:12px;letter-spacing:3px;color:rgba(232,199,100,.7);margin-bottom:.2rem;background:rgba(232,199,100,.04)}
 .badge-en{display:block;font-size:11px;letter-spacing:2px;color:rgba(232,199,100,.4);margin-bottom:1.2rem}
 .title{font-size:2.2rem;color:#E8C764;letter-spacing:.3em;text-shadow:0 0 20px rgba(232,199,100,.3),0 2px 4px rgba(0,0,0,.8);margin-bottom:.5rem}
 .subtitle{font-size:12px;letter-spacing:5px;color:rgba(232,199,100,.5);margin-bottom:.2rem}
-.subtitle-en{font-size:11px;letter-spacing:2px;color:rgba(232,199,100,0.3);margin-bottom:1.2rem}
-.qr-wrap{position:relative;display:inline-block;margin-bottom:1.2rem;text-align:center}
-.qr{padding:8px;background:#fff;margin:0 auto;border-radius:50%;
+.subtitle-en{font-size:11px;letter-spacing:2px;color:rgba(232,199,100,.3);margin-bottom:1.5rem}
+.qr-section{margin-bottom:1.2rem}
+.qr-box{position:relative;display:inline-block;padding:8px;background:#fff;border-radius:50%;
 box-shadow:0 0 0 1px rgba(232,199,100,.2),0 0 40px rgba(232,199,100,.08),0 20px 60px rgba(0,0,0,.4)}
-.qr::before{content:'';position:absolute;inset:-8px;border:1px solid rgba(232,199,100,.15);pointer-events:none}
+.qr-box::before{content:'';position:absolute;inset:-8px;border:1px solid rgba(232,199,100,.15);border-radius:50%;pointer-events:none}
 .corner{position:absolute;width:18px;height:18px;border:2px solid #E8C764;z-index:2}
 .corner.tl{top:-12px;left:-12px;border-right:none;border-bottom:none}
 .corner.tr{top:-12px;right:-12px;border-left:none;border-bottom:none}
 .corner.bl{bottom:-12px;left:-12px;border-right:none;border-top:none}
 .corner.br{bottom:-12px;right:-12px;border-left:none;border-top:none}
-.qr img{display:block;width:200px;height:200px;border-radius:50%;-webkit-touch-callout:default;-webkit-user-select:none;user-select:none;pointer-events:auto}
-.scan-text{font-size:16px;color:#0B1F14;margin-top:10px;letter-spacing:2px;font-weight:600}
+.qr-box img{display:block;width:200px;height:200px;border-radius:50%;-webkit-touch-callout:default;-webkit-user-select:none;user-select:none;pointer-events:auto}
+.scan-text{font-size:16px;color:#0B1F14;margin-top:12px;letter-spacing:2px;font-weight:600}
 .scan-text-en{font-size:13px;color:#0B1F14;opacity:.6;margin-top:2px;letter-spacing:1px;font-weight:400}
-.save-tip{font-size:12px;color:#999;margin-top:6px;line-height:1.5}
+.save-tip{font-size:12px;color:#999;margin-top:8px;line-height:1.5}
 .save-tip-en{font-size:11px;color:#bbb;margin-top:2px;line-height:1.4}
-.notice{font-size:13px;color:rgba(232,199,100,0.65);line-height:1.8;margin-bottom:.2rem}
+.notice{font-size:13px;color:rgba(232,199,100,.65);line-height:1.8;margin-bottom:.2rem}
 .notice-en{font-size:12px;color:rgba(232,199,100,.4);line-height:1.7;margin-bottom:1.2rem}
 .notice b{color:#E8C764}
 .footer{margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(232,199,100,.08);font-size:12px;color:rgba(232,199,100,.3);letter-spacing:2px}
@@ -65,8 +65,13 @@ box-shadow:0 0 0 1px rgba(232,199,100,.2),0 0 40px rgba(232,199,100,.08),0 20px 
 <div class="badge">已迁移至微信小程序</div>
 <div class="badge-en">Migrated to WeChat Mini-Program</div>
 <div><div class="title">屠隆宝典</div><div class="subtitle">DFSP 患者科普攻略</div><div class="subtitle-en">DFSP Patient Guide</div></div>
-<div class="qr-wrap">
-<div class="qr"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><img src="wechat-code.jpg" alt="屠隆宝典微信小程序码 / WeChat Mini-Program Code" oncontextmenu="return false"><div class="scan-text">微信扫码查看</div><div class="scan-text-en">Scan with WeChat</div></div>
+<div class="qr-section">
+<div class="qr-box">
+<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+<img src="wechat-code.jpg" alt="屠隆宝典微信小程序码 / WeChat Mini-Program Code" oncontextmenu="return false">
+</div>
+<div class="scan-text">微信扫码查看</div>
+<div class="scan-text-en">Scan with WeChat</div>
 <div class="save-tip">长按图片保存到相册，再用微信扫一扫</div>
 <div class="save-tip-en">Press and hold the image to save, then scan with WeChat</div>
 </div>
