@@ -194,7 +194,7 @@ function truncate(s, n) {
       const body = {
         touser: user.openId,
         template_id: TEMPLATE_ID,
-        page: 'pages/index/index?category=discharge',
+        page: 'pages/index/index?category=secret&tab=tab-discharge',
         data: {
           date1: { value: today },
           thing2: { value: truncate(isEn ? 'Test push' : '测试推送', 20) },
@@ -231,7 +231,7 @@ function truncate(s, n) {
       const body = {
         touser: user.openId,
         template_id: TEMPLATE_ID,
-        page: 'pages/index/index?category=discharge',
+        page: 'pages/index/index?category=secret&tab=tab-discharge',
         data: {
           date1: { value: d.date },
           thing2: { value: truncate(remain, 20) },
