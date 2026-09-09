@@ -152,9 +152,9 @@ function truncate(s, n) {
         template_id: TEMPLATE_ID,
         page: 'pages/index/index?category=discharge',
         data: {
-          thing1: { value: truncate(isEn ? 'Test push, ignore' : '测试推送，请忽略', 20) },
-          thing2: { value: truncate(isEn ? 'DFSP follow-up reminder' : 'DFSP复查提醒', 20) },
-          time3: { value: today },
+          date1: { value: today },
+          thing2: { value: truncate(isEn ? 'Test push' : '测试推送', 20) },
+          thing3: { value: truncate(isEn ? 'Test, please ignore' : '测试推送，请忽略', 20) },
           thing4: { value: truncate(isEn ? 'Push channel works' : '推送链路已打通', 20) }
         }
       }
@@ -179,16 +179,20 @@ function truncate(s, n) {
     const isEn = user.lang === 'en'
     for (const d of due) {
       const examName = d.exam || (isEn ? 'Follow-up examination' : '复查检查')
-      const when = d.date === today ? (isEn ? 'today' : '今天') : (isEn ? 'tomorrow' : '明天')
+      // 天数描述：与客户端横幅口径一致（明天/今天/已超期N天）
+      const remain = d.date === tmr ? (isEn ? 'Due tomorrow' : '明天到期')
+        : d.date === today ? (isEn ? 'Due today' : '今天到期')
+        : d.date
+      const note = isEn ? 'Please arrange the exam' : '请安排检查，详见小程序复查页'
       const body = {
         touser: user.openId,
         template_id: TEMPLATE_ID,
         page: 'pages/index/index?category=discharge',
         data: {
-          thing1: { value: truncate(examName, 20) },
-          thing2: { value: truncate(isEn ? 'DFSP follow-up reminder' : 'DFSP复查提醒', 20) },
-          time3: { value: d.date },
-          thing4: { value: truncate(isEn ? 'Due ' + when : when + '到期，请安排检查', 20) }
+          date1: { value: d.date },
+          thing2: { value: truncate(remain, 20) },
+          thing3: { value: truncate(examName, 20) },
+          thing4: { value: truncate(note, 20) }
         }
       }
       const resp = await httpJson('POST', 'https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=' + TOKEN, body)
