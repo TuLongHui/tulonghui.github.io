@@ -1,0 +1,43 @@
+name: Remind Identity
+# 用户在小程序订阅成功后，客户端用 wx.login 的 code 实时触发本工作流，
+# 用 AppSecret 调 jscode2session 换 openid，绑定到 data/reminder-subscriptions.json 的对应用户
+on:
+  workflow_dispatch:
+    inputs:
+      code:
+        description: 'wx.login code (valid 5 min)'
+        required: true
+      userId:
+        description: 'local user id'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  bind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Exchange code for openid and bind
+        run: node scripts/remind-identity.cjs "${{ github.event.inputs.code }}" "${{ github.event.inputs.userId }}"
+        env:
+          WX_APPID: wx46a511f1dfe2d724
+          WX_APP_SECRET: ${{ secrets.APP_SECRET }}
+
+      - name: Commit binding
+        run: |
+          git config user.name "tulonghui-bot"
+          git config user.email "tulonghui-bot@users.noreply.github.com"
+          git add data/reminder-subscriptions.json
+          git diff --cached --quiet && echo "no change" && exit 0
+          git commit -m "bind openid"
+          git pull --rebase origin main
+          git push
