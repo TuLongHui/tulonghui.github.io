@@ -1,6 +1,7 @@
 name: Remind Identity
 # 用户在小程序订阅成功后，客户端用 wx.login 的 code 实时触发本工作流，
-# 用 AppSecret 调 jscode2session 换 openid，绑定到 data/reminder-subscriptions.json 的对应用户
+# 用 AppSecret 调 jscode2session 换 openid，经 contents API 绑定到 data/reminder-subscriptions.json。
+# v2: 脚本内直接读-改-写远程数据（带重试），不再走 git 提交，根除并发触发时的 rebase 冲突。
 on:
   workflow_dispatch:
     inputs:
@@ -31,13 +32,4 @@ jobs:
         env:
           WX_APPID: wx46a511f1dfe2d724
           WX_APP_SECRET: ${{ secrets.APP_SECRET }}
-
-      - name: Commit binding
-        run: |
-          git config user.name "tulonghui-bot"
-          git config user.email "tulonghui-bot@users.noreply.github.com"
-          git add data/reminder-subscriptions.json
-          git diff --cached --quiet && echo "no change" && exit 0
-          git commit -m "bind openid"
-          git pull --rebase origin main
-          git push
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
