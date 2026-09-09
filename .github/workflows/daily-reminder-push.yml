@@ -36,3 +36,4 @@ jobs:
         env:
           WX_APPID: wx46a511f1dfe2d724
           WX_APP_SECRET: ${{ secrets.APP_SECRET }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
