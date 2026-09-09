@@ -87,13 +87,22 @@ function sleep(ms) { return new Promise(res => setTimeout(res, ms)) }
     }
     if (!obj.subscriptions || typeof obj.subscriptions !== 'object') obj.subscriptions = {}
 
-    // 2b. 绑定 openid 到本次 userId，并清理同 openid 的其他条目（openid 唯一原则）
+    // 2b. 绑定 openid 到本次 userId，并清理同 openid 的其他条目（openid 唯一原则）。
+    // 合并策略：旧条目里有而本次条目没有的字段先拷入，再删除（避免丢计划数据）
     if (!obj.subscriptions[USER_ID] || typeof obj.subscriptions[USER_ID] !== 'object') obj.subscriptions[USER_ID] = { v: 1 }
     const removedNow = []
     for (const uid of Object.keys(obj.subscriptions)) {
       if (uid === USER_ID) continue
-      if (obj.subscriptions[uid] && obj.subscriptions[uid].openId === openid) {
+      const old = obj.subscriptions[uid]
+      if (old && old.openId === openid) {
         removedNow.push(uid)
+        for (const k of Object.keys(old)) {
+          if (k === 'openId' || k === 'openIdTime' || obj.subscriptions[USER_ID][k] !== undefined) continue
+          obj.subscriptions[USER_ID][k] = old[k]
+        }
+        if (typeof old.quota === 'number') {
+          obj.subscriptions[USER_ID].quota = Math.max(obj.subscriptions[USER_ID].quota || 0, old.quota)
+        }
         delete obj.subscriptions[uid]
       }
     }
