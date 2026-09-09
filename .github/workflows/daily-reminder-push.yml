@@ -4,7 +4,17 @@ name: Daily Reminder Push
 on:
   schedule:
     - cron: '0 10 * * *'   # UTC 10:00 = 北京时间 18:00
-  workflow_dispatch: {}     # 支持手动触发测试
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'push = 定时推送 | check = 查看模板字段定义 | test = 给已绑定用户发测试消息'
+        required: false
+        default: 'push'
+        type: choice
+        options:
+          - push
+          - check
+          - test
 
 permissions:
   contents: read
@@ -21,8 +31,8 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Scan plans and send subscribe messages
-        run: node scripts/daily-reminder-push.cjs
+      - name: Run reminder script
+        run: node scripts/daily-reminder-push.cjs "${{ github.event.inputs.mode || 'push' }}"
         env:
           WX_APPID: wx46a511f1dfe2d724
           WX_APP_SECRET: ${{ secrets.APP_SECRET }}
