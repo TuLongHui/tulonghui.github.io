@@ -10,6 +10,7 @@ const https = require('https')
 
 const APPID = process.env.WX_APPID || ''
 const SECRET = process.env.WX_APP_SECRET || ''
+const GH_TOKEN = process.env.GH_TOKEN || ''  // 用于推送成功后回写 quota 扣减（可选）
 const FILE = 'data/reminder-subscriptions.json'
 const TEMPLATE_ID = process.env.WX_TEMPLATE_ID || 'VUYZLeb7KcZWttZmvQDZp40iBxg-7IK5mM00lWVLy0w'
 const MODE = (process.argv[2] || 'push').toLowerCase()
@@ -40,6 +41,80 @@ function httpJson(method, url, body) {
 
 function pad(n) { return String(n).padStart(2, '0') }
 function dateStr(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) }
+
+// GitHub contents API：读文件（拿 sha + 内容）/ 写文件
+function ghGet(path) {
+  return new Promise((resolve, reject) => {
+    const u = new URL('https://api.github.com' + path)
+    const req = https.request({ method: 'GET', hostname: u.hostname, path: u.pathname + u.search, headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github+json', 'User-Agent': 'reminder-bot' } }, res => { let b = ''; res.on('data', d => b += d); res.on('end', () => { let j = b; try { j = JSON.parse(b) } catch (e) {}; resolve({ status: res.statusCode, body: j }) }) })
+    req.on('error', reject); req.end()
+  })
+}
+function ghPut(path, body) {
+  return new Promise((resolve, reject) => {
+    const u = new URL('https://api.github.com' + path)
+    const payload = JSON.stringify(body)
+    const req = https.request({ method: 'PUT', hostname: u.hostname, path: u.pathname + u.search, headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload), 'User-Agent': 'reminder-bot' } }, res => { let b = ''; res.on('data', d => b += d); res.on('end', () => { let j = b; try { j = JSON.parse(b) } catch (e) {}; resolve({ status: res.statusCode, body: j }) }) })
+    req.on('error', reject); req.write(payload); req.end()
+  })
+}
+// 推送成功后回写 quota 扣减（记录本盘被消耗的授权次数）
+async function deductQuota(consumed) {
+  if (!GH_TOKEN || !consumed.length) return
+  const apiPath = '/repos/TuLongHui/tulonghui.github.io/contents/' + FILE
+  const g = await ghGet(apiPath + '?ref=main')
+  if (g.status !== 200) { console.log('quota 回写失败：读文件 ' + g.status); return }
+  let obj
+  try { obj = JSON.parse(Buffer.from(g.body.content, 'base64').toString('utf8')) } catch (e) { console.log('quota 回写失败：解析'); return }
+  for (const c of consumed) {
+    const u = obj.subscriptions && obj.subscriptions[c.userId]
+    if (u && typeof u.quota === 'number' && u.quota > 0) u.quota = Math.max(0, u.quota - c.count)
+  }
+  const p = await ghPut(apiPath, {
+    message: 'deduct reminder quota: ' + consumed.map(c => c.userId + 'x' + c.count).join(', '),
+    content: Buffer.from(JSON.stringify(obj, null, 2)).toString('base64'),
+    sha: g.body.sha,
+    branch: 'main'
+  })
+  console.log('quota 回写: ' + (p.status === 200 ? 'OK' : 'FAIL ' + p.status))
+}
+
+// GitHub contents API：读文件（拿 sha + 内容）/ 写文件
+function ghGet(path) {
+  return new Promise((resolve, reject) => {
+    const u = new URL('https://api.github.com' + path)
+    const req = https.request({ method: 'GET', hostname: u.hostname, path: u.pathname + u.search, headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github+json', 'User-Agent': 'reminder-bot' } }, res => { let b = ''; res.on('data', d => b += d); res.on('end', () => { let j = b; try { j = JSON.parse(b) } catch (e) {}; resolve({ status: res.statusCode, body: j }) }) })
+    req.on('error', reject); req.end()
+  })
+}
+function ghPut(path, body) {
+  return new Promise((resolve, reject) => {
+    const u = new URL('https://api.github.com' + path)
+    const payload = JSON.stringify(body)
+    const req = https.request({ method: 'PUT', hostname: u.hostname, path: u.pathname + u.search, headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload), 'User-Agent': 'reminder-bot' } }, res => { let b = ''; res.on('data', d => b += d); res.on('end', () => { let j = b; try { j = JSON.parse(b) } catch (e) {}; resolve({ status: res.statusCode, body: j }) }) })
+    req.on('error', reject); req.write(payload); req.end()
+  })
+}
+// 推送成功后回写 quota 扣减（记录本盘被消耗的授权次数）
+async function deductQuota(consumed) {
+  if (!GH_TOKEN || !consumed.length) return
+  const apiPath = '/repos/TuLongHui/tulonghui.github.io/contents/' + FILE
+  const g = await ghGet(apiPath + '?ref=main')
+  if (g.status !== 200) { console.log('quota 回写失败：读文件 ' + g.status); return }
+  let obj
+  try { obj = JSON.parse(Buffer.from(g.body.content, 'base64').toString('utf8')) } catch (e) { console.log('quota 回写失败：解析'); return }
+  for (const c of consumed) {
+    const u = obj.subscriptions && obj.subscriptions[c.userId]
+    if (u && typeof u.quota === 'number' && u.quota > 0) u.quota = Math.max(0, u.quota - c.count)
+  }
+  const p = await ghPut(apiPath, {
+    message: 'deduct reminder quota: ' + consumed.map(c => c.userId + 'x' + c.count).join(', '),
+    content: Buffer.from(JSON.stringify(obj, null, 2)).toString('base64'),
+    sha: g.body.sha,
+    branch: 'main'
+  })
+  console.log('quota 回写: ' + (p.status === 200 ? 'OK' : 'FAIL ' + p.status))
+}
 
 // 重建各用户的计划日期集（与客户端 buildFollowPlan/buildMedPlan 口径一致）
 function buildDates(user) {
@@ -139,6 +214,7 @@ function truncate(s, n) {
   const today = dateStr(new Date())
   const tmr = dateStr(new Date(Date.now() + 86400000))
   let sent = 0, skipped = 0
+  const consumed = []  // [{userId, count}] 用于推送成功后扣减 quota
 
   for (const userId of Object.keys(subs)) {
     const user = subs[userId]
@@ -199,8 +275,16 @@ function truncate(s, n) {
       const ok = resp.data && resp.data.errcode === 0
       console.log((ok ? 'SENT' : 'FAIL') + ' user=' + userId + ' date=' + d.date + ' exam=' + examName +
         (ok ? '' : ' err=' + JSON.stringify(resp.data)))
-      if (ok) sent++
+      if (ok) {
+        sent++
+        // 记录本次消耗，推送完后统一回写扣减
+        const rec = consumed.find(c => c.userId === userId)
+        if (rec) rec.count++
+        else consumed.push({ userId, count: 1 })
+      }
     }
   }
   console.log('done. sent=' + sent + ' skippedNoOpenId=' + skipped)
+  // v2.1.35 推送成功后扣减剩余次数（微信一次性订阅：每条消息消耗一次授权）
+  await deductQuota(consumed)
 })().catch(e => { console.error(e); process.exit(1) })
