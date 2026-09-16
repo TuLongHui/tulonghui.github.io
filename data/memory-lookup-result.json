@@ -1,1 +1,1 @@
-{"results":{"r17895339388370":{"found":false,"ts":1789533957788},"r1789533973824576":{"found":false,"ts":1789533991666}}}
+{"results":{"r1789540016734956":{"found":true,"payload":{"v":1,"time":1789539996393,"ver":"2.2.36","data":{"surgeryDate":"2025-07-31","medDate":"","followPeriod":"0-5","followPlanChecks":{"0-5":[true,true,true,false,false,false,false,false,false,false,false,false,false,false]},"isFsType":true}},"ts":1789540035660}}}
