@@ -1,1 +1,3 @@
-{"results":{"ci-smoke-1789518404783":{"found":false,"error":"openid-fail","ts":1789518423108},"ci-smoke-1789518748408":{"found":false,"error":"openid-fail","ts":1789518768074}}}
+{
+  "results": {}
+}
