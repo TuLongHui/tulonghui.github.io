@@ -1,7 +1,8 @@
-// memory-identity.cjs — 记忆功能服务端（v2.2.33）：memory-bind / memory-lookup
+// memory-identity.cjs — 记忆功能服务端（v2.2.35 明文直传）：memory-bind / memory-lookup
 // memory-lookup: wx.login code → openid → 指纹 → 在 data/user-backups.json 匹配备份 → 写 data/memory-lookup-result.json
-// memory-bind:   wx.login code → openid → 指纹 → 把指纹绑到客户端 userId 条目（换机恢复后归并，必要时从旧条目复制 rec）
-// 安全设计：云端只存 openid 的 SHA-256 前 12 位指纹，绝不落明文 openid；恢复码（密钥）不经过服务端
+//                命中返回 payload 明文（v2 旧 rec 密文条目回退返回 rec，由客户端兼容处理）
+// memory-bind:   wx.login code → openid → 指纹 → 把指纹绑到客户端 userId 条目（换机恢复后归并，必要时从同指纹旧条目复制 rec/payload）
+// 安全设计：云端不落明文 openid（只存 SHA-256 前 12 位指纹）；payload 本身明文（用户 2026-09-15 决策：去加密，修手机端卡死）
 // 用法: node memory-identity.cjs <memory-bind|memory-lookup> <code> [userId] [requestId]
 // 环境变量: WX_APPID, WX_APP_SECRET, GH_TOKEN
 'use strict'
@@ -18,6 +19,7 @@ const GH_TOKEN = process.env.GH_TOKEN || ''
 
 const BACKUPS_FILE = 'data/user-backups.json'
 const RESULT_FILE = 'data/memory-lookup-result.json'
+const SUBS_FILE = 'data/reminder-subscriptions.json' // remind-identity 用（推送需明文 openid，历史设计如此）
 const API_BASE = '/repos/TuLongHui/tulonghui.github.io/contents/'
 const RESULT_TTL_MS = 30 * 60 * 1000 // 查询结果保留 30 分钟
 
@@ -26,19 +28,20 @@ function fpOf(str) {
   return crypto.createHash('sha256').update(String(str)).digest('hex').slice(0, 12)
 }
 
-// 在 backups 中找 openId 指纹匹配的最新 rec（同指纹多条目取 rec.ts 最大者）
-function pickRecForOpenid(backups, fp) {
+// 在 backups 中找 openId 指纹匹配的最新条目（同指纹多条目取 rec/payload 时间最大者）
+function pickEntryForOpenid(backups, fp) {
   let best = null
   let bestTs = -1
   const map = backups || {}
   for (const uid of Object.keys(map)) {
     const entry = map[uid]
-    if (entry && entry.openId === fp && entry.rec) {
-      const ts = typeof entry.rec.ts === 'number' ? entry.rec.ts : 0
-      if (ts > bestTs) { best = entry; bestTs = ts }
-    }
+    if (!entry || entry.openId !== fp) continue
+    // v2 明文条目取 payload.time；v1 旧密文条目取 rec.ts
+    const ts = (entry.payload && typeof entry.payload.time === 'number' && entry.payload.time) ||
+               (entry.rec && typeof entry.rec.ts === 'number' && entry.rec.ts) || 0
+    if (ts > bestTs) { best = entry; bestTs = ts }
   }
-  return best ? best.rec : null
+  return best
 }
 
 // 清理过期查询结果（原地删除），返回是否有变更
@@ -121,9 +124,26 @@ async function rmw(path, mutate, commitMsg) {
 }
 
 ;(async () => {
-  if ((EVENT !== 'memory-bind' && EVENT !== 'memory-lookup') || !CODE || !APPID || !SECRET || !GH_TOKEN) {
-    console.error('usage: node memory-identity.cjs <memory-bind|memory-lookup> <code> [userId] [requestId]  (env: WX_APPID/WX_APP_SECRET/GH_TOKEN)')
+  if ((EVENT !== 'memory-bind' && EVENT !== 'memory-lookup' && EVENT !== 'remind-identity') || !CODE || !APPID || !SECRET || !GH_TOKEN) {
+    console.error('usage: node memory-identity.cjs <memory-bind|memory-lookup|remind-identity> <code> [userId] [requestId]  (env: WX_APPID/WX_APP_SECRET/GH_TOKEN)')
     process.exit(1)
+  }
+  // remind-identity 断链修复：客户端 v2.2.33 起统一走 repository_dispatch（原 workflow_dispatch 通道不可用），
+  // 转发到既有 remind-identity.cjs 逻辑（同 openid 唯一化合并写入订阅文件）
+  if (EVENT === 'remind-identity') {
+    if (!USER_ID) { console.error('remind-identity missing userId'); process.exit(1) }
+    const { execFile } = require('child_process')
+    const path = require('path')
+    await new Promise((resolve) => {
+      execFile('node', [path.join(__dirname, 'remind-identity.cjs'), CODE, USER_ID], {
+        env: { WX_APPID: APPID, WX_APP_SECRET: SECRET, GH_TOKEN: GH_TOKEN }
+      }, (err, stdout, stderr) => {
+        if (err) { console.error('remind-identity sub-run failed:', stderr || err.message) ; process.exitCode = 1 }
+        else { console.log(stdout.trim()) }
+        resolve()
+      })
+    })
+    process.exit(process.exitCode || 0)
   }
 
   // 1. jscode2session 换 openid
@@ -154,15 +174,19 @@ async function rmw(path, mutate, commitMsg) {
     if (g.status === 200 && g.body && g.body.content) {
       try { backups = (JSON.parse(Buffer.from(g.body.content, 'base64').toString('utf8')) || {}).backups || {} } catch (e) { backups = {} }
     }
-    const rec = pickRecForOpenid(backups, fp)
-    // 3. 写查询结果（顺带清理 30 分钟前旧结果）
+    const entry = pickEntryForOpenid(backups, fp)
+    const hitPayload = entry && entry.payload ? entry.payload : null
+    const hitRec = entry && entry.rec ? entry.rec : null
+    // 3. 写查询结果（顺带清理 30 分钟前旧结果）；v2 明文→payload，v1 旧密文→rec（客户端兼容）
     const ok = await rmw(RESULT_FILE, (obj) => {
       if (!obj.results || typeof obj.results !== 'object') obj.results = {}
       pruneResults(obj.results, Date.now(), RESULT_TTL_MS)
-      obj.results[REQUEST_ID] = rec ? { found: true, rec: rec, ts: Date.now() } : { found: false, ts: Date.now() }
-    }, 'memory-lookup ' + (rec ? 'hit' : 'miss') + ' ' + new Date().toISOString().slice(0, 10))
+      obj.results[REQUEST_ID] = entry
+        ? { found: true, ...(hitPayload ? { payload: hitPayload } : { rec: hitRec }), ts: Date.now() }
+        : { found: false, ts: Date.now() }
+    }, 'memory-lookup ' + (entry ? 'hit' : 'miss') + ' ' + new Date().toISOString().slice(0, 10))
     if (!ok) { console.error('write lookup result failed'); process.exit(1) }
-    console.log('lookup ' + REQUEST_ID + ' -> ' + (rec ? 'HIT (rec ts ' + rec.ts + ')' : 'MISS'))
+    console.log('lookup ' + REQUEST_ID + ' -> ' + (entry ? (hitPayload ? 'HIT v2 (payload ts ' + hitPayload.time + ')' : 'HIT v1 (rec ts ' + hitRec.ts + ')') : 'MISS'))
     process.exit(0)
   }
 
@@ -184,13 +208,15 @@ async function rmw(path, mutate, commitMsg) {
     if (!obj.backups || typeof obj.backups !== 'object') obj.backups = {}
     let action = 'touched'
     if (!obj.backups[USER_ID] || typeof obj.backups[USER_ID] !== 'object') {
-      // 本机新条目不存在：从同指纹旧条目复制 rec（换机恢复后首次绑定），否则建空壳
-      const oldRec = pickRecForOpenid(obj.backups, fp)
-      if (oldRec) {
-        obj.backups[USER_ID] = { v: 1, openId: fp, openIdTime: Date.now(), rec: oldRec }
-        action = 'copied-rec'
+      // 本机新条目不存在：从同指纹旧条目复制 payload/rec（换机恢复后首次绑定），否则建空壳
+      const oldEntry = pickEntryForOpenid(obj.backups, fp)
+      if (oldEntry) {
+        obj.backups[USER_ID] = { v: oldEntry.v || 2, openId: fp, openIdTime: Date.now() }
+        if (oldEntry.payload) obj.backups[USER_ID].payload = oldEntry.payload
+        if (oldEntry.rec) obj.backups[USER_ID].rec = oldEntry.rec
+        action = 'copied-' + (oldEntry.payload ? 'payload' : 'rec')
       } else {
-        obj.backups[USER_ID] = { v: 1, openId: fp, openIdTime: Date.now() }
+        obj.backups[USER_ID] = { v: 2, openId: fp, openIdTime: Date.now() }
       }
     } else {
       // 条目已存在（恢复后可能已自动备份过）：仅补指纹
