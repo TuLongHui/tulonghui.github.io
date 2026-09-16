@@ -1,0 +1,58 @@
+name: Memory Identity
+# v2.2.33 记忆功能：备份绑定/查询 + 订阅提醒身份绑定（repository_dispatch 触发）
+# 背景：fine-grained Token 无 workflow_dispatch 权限，客户端统一改走 repository_dispatch，
+#       本工作流同时承接 remind-identity 事件（原 remind-identity.yml 只支持 workflow_dispatch，已断链），
+#       兼容期保留旧工作流不改，客户端已全部切到本通道。
+# 安全：云端只存 openid 的 SHA-256 前 12 位指纹（data/user-backups.json），恢复码（密钥）不经过服务端
+on:
+  repository_dispatch:
+    types: [memory-bind, memory-lookup, remind-identity]
+  workflow_dispatch:
+    inputs:
+      event:
+        description: 'memory-bind | memory-lookup | remind-identity'
+        required: true
+        default: 'memory-lookup'
+      code:
+        description: 'wx.login code (valid 5 min)'
+        required: true
+      userId:
+        description: 'local user id (bind/remind)'
+        required: false
+      requestId:
+        description: 'lookup result key'
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Handle identity event
+        env:
+          WX_APPID: wx46a511f1dfe2d724
+          WX_APP_SECRET: ${{ secrets.APP_SECRET }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            EV="${{ github.event.action }}"
+            CODE="${{ github.event.client_payload.code }}"
+            UID2="${{ github.event.client_payload.userId }}"
+            RID="${{ github.event.client_payload.requestId }}"
+          else
+            EV="${{ github.event.inputs.event }}"
+            CODE="${{ github.event.inputs.code }}"
+            UID2="${{ github.event.inputs.userId }}"
+            RID="${{ github.event.inputs.requestId }}"
+          fi
+          node scripts/memory-identity.cjs "$EV" "$CODE" "$UID2" "$RID"
