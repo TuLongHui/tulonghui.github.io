@@ -1,9 +1,11 @@
 name: Daily Reminder Push
-# 每天北京时间 18:00（UTC 10:00）扫描 data/reminder-subscriptions.json，
+# 每天北京时间 09:00（UTC 01:00）扫描 data/reminder-subscriptions.json，
 # 对明天到期/当天到期的未完成复查节点，经微信订阅消息推送给用户
+# v2.4.4：原本为北京 18:00，但 GitHub 免费额度高峰排队延迟 5~10 小时，常拖到深夜运行；
+# 提前到北京 09:00，即使再排队延迟也仍落在白天推送
 on:
   schedule:
-    - cron: '0 10 * * *'   # UTC 10:00 = 北京时间 18:00
+    - cron: '0 1 * * *'   # UTC 01:00 = 北京时间 09:00
   workflow_dispatch:
     inputs:
       mode:
