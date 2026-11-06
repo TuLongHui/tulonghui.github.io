@@ -6,6 +6,11 @@ name: Daily Reminder Push
 on:
   schedule:
     - cron: '0 1 * * *'   # UTC 01:00 = 北京时间 09:00
+  # repository_dispatch：fine-grained Token 无 actions 权限、无法用 API 点 workflow_dispatch，
+  # 改走 dispatch 通道（只需 Contents 写权限），与 memory-identity 同款模式；
+  # types 过滤，不与 memory-bind / memory-lookup / remind-identity 交叉触发
+  repository_dispatch:
+    types: [reminder-push]
   workflow_dispatch:
     inputs:
       mode:
@@ -34,7 +39,8 @@ jobs:
           node-version: '20'
 
       - name: Run reminder script
-        run: node scripts/daily-reminder-push.cjs "${{ github.event.inputs.mode || 'push' }}"
+        # repository_dispatch 触发时无 inputs，从 client_payload.mode 取模式
+        run: node scripts/daily-reminder-push.cjs "${{ github.event.inputs.mode || github.event.client_payload.mode || 'push' }}"
         env:
           WX_APPID: wx46a511f1dfe2d724
           WX_APP_SECRET: ${{ secrets.APP_SECRET }}
