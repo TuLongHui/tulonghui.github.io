@@ -1,6 +1,6 @@
 // daily-reminder-push.cjs — 扫描订阅计划，向明天/当天到期的用户推送微信订阅消息
 // 用法: node daily-reminder-push.cjs [push|check|test]
-//   push  默认。北京时间18点定时任务：扫描并推送明天/当天到期节点
+//   push  默认。北京时间9点定时任务：扫描并推送明天/当天到期节点（日期按东八区计算）
 //   check 拉取小程序订阅消息模板列表及字段定义（校准 data 映射用）
 //   test  给第一个已绑定 openid 的用户发一条测试推送
 // 环境变量: WX_APPID, WX_APP_SECRET, WX_TEMPLATE_ID(可选，默认用内置模板ID)
@@ -175,8 +175,13 @@ function truncate(s, n) {
     subs = obj.subscriptions || {}
   } catch (e) { console.log('no subscriptions file, nothing to do'); process.exit(0) }
 
-  const today = dateStr(new Date())
-  const tmr = dateStr(new Date(Date.now() + 86400000))
+  // v2.4.4 时区修正：GitHub Actions 免费额度高峰期排队会把定时任务延迟到深夜甚至次日凌晨，
+  // 而 runner 用 UTC，原来"今天/明天"按 UTC 取值在凌晨运行时会错位一天；
+  // 统一按东八区（北京时间）计算今天/明天，与用户实际日期一致
+  const cnNow = new Date(Date.now() + 8 * 3600000)
+  const cnTmr = new Date(cnNow.getTime() + 86400000)
+  const today = cnNow.getUTCFullYear() + '-' + pad(cnNow.getUTCMonth() + 1) + '-' + pad(cnNow.getUTCDate())
+  const tmr = cnTmr.getUTCFullYear() + '-' + pad(cnTmr.getUTCMonth() + 1) + '-' + pad(cnTmr.getUTCDate())
   let sent = 0, skipped = 0
   const consumed = []  // [{userId, count}] 用于推送成功后扣减 quota
   const seenOpenIds = {}  // v2.1.36 openid 去重：同一微信用户可能残留多个 userId 条目，只推一次
